@@ -64,25 +64,80 @@ const Banner = () => {
                 </button>
             </div>
 
-            {/* Image and Petition Form */}
-            <div className='relative mt-10'>
+            <div className="flex items-center justify-around max-w-[1440px] w-full mx-auto">
                 <Image
-                    src="/hand.png"
-                    alt="hand"
-                    width={1300}
-                    height={800}
-                    className="absolute top-[3%] left-1/2 -translate-x-1/2"
+                    src="/muntaha.png"
+                    alt="muntaha"
+                    width={200}
+                    height={200}
+                    className="rounded-lg image-beep"
+                    style={{ animationDelay: '0s' }}
                 />
 
-                <div className="flex flex-col md:flex-row max-w-[700px] mx-auto items-center bg-[#fff] border-[1px] rounded-lg border-dashed border-[#FF7128] mt-6 relative">
-                    <div className="w-full md:w-1/2">
-                        <PetitionForm />
-                    </div>
-                    <div className="w-full md:w-1/2">
-                        <Progress />
+                {/* Image and Petition Form */}
+                <div className='relative mt-10 w-full'>
+                    <Image
+                        src="/hand.png"
+                        alt="hand"
+                        width={1300}
+                        height={800}
+                        className="absolute top-[27%] left-1/2 -translate-x-1/2"
+                    />
+
+                    <div className="flex flex-col md:flex-row max-w-[600px] w-full mx-auto items-center bg-[#fff] border-[1px] rounded-lg border-dashed border-[#FF7128] mt-6 relative">
+                        <div className="w-full md:w-1/2">
+                            <PetitionForm />
+                        </div>
+                        <div className="w-full md:w-1/2">
+                            <Progress />
+                        </div>
                     </div>
                 </div>
+
+                <Image
+                    src="/muntaha.png"
+                    alt="muntaha"
+                    width={200}
+                    height={200}
+                    className="rounded-lg image-beep"
+                    style={{ animationDelay: '.5s' }}
+                />
             </div>
+            <div className='flex justify-center items-center gap-x-4 mt-8'>
+                <Image
+                    src="/muntaha.png"
+                    alt="muntaha"
+                    width={200}
+                    height={200}
+                    className="rounded-lg image-beep"
+                    style={{ animationDelay: '1s' }}
+                />
+                <Image
+                    src="/muntaha.png"
+                    alt="muntaha"
+                    width={200}
+                    height={200}
+                    className="rounded-lg image-beep"
+                    style={{ animationDelay: '1.8s' }}
+                />
+                <Image
+                    src="/muntaha.png"
+                    alt="muntaha"
+                    width={200}
+                    height={200}
+                    className="rounded-lg image-beep"
+                    style={{ animationDelay: '1.4s' }}
+                />
+                <Image
+                    src="/muntaha.png"
+                    alt="muntaha"
+                    width={200}
+                    height={200}
+                    className="rounded-lg image-beep"
+                    style={{ animationDelay: '1.8s' }}
+                />
+            </div>
+            
         </div>
 
 

@@ -11,6 +11,25 @@ body {
 /* Beep animation */
 /* Beep animation */
 /* Beep animation */
+
+@layer utilities {
+    .custom-dashed-border {
+        border-style: dashed;
+        border-color: #FF7128;
+        border-width: 1px;
+        /* Custom dash and gap sizes */
+        border-image: repeating-linear-gradient(
+            to right,
+            #FF7128 0,
+            #FF7128 10px, /* Dash size */
+            transparent 10px,
+            transparent 30px /* Gap size */
+        );
+        border-image-slice: 1;
+    }
+}
+
+
 @keyframes beep {
     0% {
         opacity: 0.3;
@@ -19,6 +38,21 @@ body {
     50% {
         opacity: 1;
         transform: scale(1.1);
+    }
+    100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+}
+
+@keyframes beepTwo {
+    0% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(.8);
     }
     100% {
         opacity: 0.3;
@@ -57,4 +91,8 @@ body {
     left: -8px;
     box-shadow: 0 0 8px rgba(255, 0, 0, 0.5);
     animation: beep 2s infinite;
+}
+
+.image-beep{
+ animation: beepTwo 4s infinite ease-in-out;
 }

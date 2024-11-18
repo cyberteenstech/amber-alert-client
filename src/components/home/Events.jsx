@@ -41,18 +41,21 @@ const Events = () => {
                             </div>
 
                             {/* Connector */}
-                            {idx !== 3 && (
-                                <div className="absolute flex items-center justify-center top-[14%] left-[69%]">
-                                    <div className="flex items-center">
-                                        {/* Dot */}
-                                        <div className="h-3 w-3 rounded-full bg-[#FF7128]"></div>
-                                        {/* Dotted Line */}
-                                        <div className="w-[200px] h-0 border-dashed border-t-2 border-[#FF7128] mx-1"></div>
-                                        {/* Dot */}
-                                        <div className="h-3 w-3 rounded-full bg-[#FF7128]"></div>
+                            <div className="md:block hidden">
+                                {idx !== 3 && (
+                                    <div className="absolute flex items-center justify-center top-[14%] left-[69%]">
+                                        <div className="flex items-center">
+                                            {/* Dot */}
+                                            <div className="h-3 w-3 rounded-full bg-[#FF7128]"></div>
+                                            {/* Dotted Line */}
+                                            <div className="w-[200px] h-0 border-dashed border-t-2 border-[#FF7128] mx-1"></div>
+                                            {/* Dot */}
+                                            <div className="h-3 w-3 rounded-full bg-[#FF7128]"></div>
+                                        </div>
                                     </div>
-                                </div>
-                            )}
+                                )}
+                            </div>
+                           
 
                             {/* Event Box */}
                             <div className="bg-white rounded-lg p-6 w-full">
@@ -66,9 +69,6 @@ const Events = () => {
                                 <div className="flex gap-2">
                                     <button className="bg-[#FF7128] text-white py-2 px-4 rounded-md text-sm hover:bg-[#e66323] transition">
                                         বিস্তারিত
-                                    </button>
-                                    <button className="border border-[#FF7128] text-[#FF7128] py-2 px-4 rounded-md text-sm hover:bg-[#FFE6D6] transition">
-                                        নিবন্ধন
                                     </button>
                                 </div>
                             </div>

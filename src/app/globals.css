@@ -6,6 +6,9 @@
 body {
    font-family: "Anek Bangla", sans-serif;
 }
+html {
+    scroll-behavior: smooth;
+}
 
 /* Add this CSS to your global styles or in the component's CSS module */
 /* Beep animation */

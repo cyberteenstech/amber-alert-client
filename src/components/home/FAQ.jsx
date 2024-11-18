@@ -1,13 +1,24 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios'
 
 // Define the structure of FAQ data
 const FAQ = () => {
-    const faqs = [
-        { question: "Amber Alert কী?", answer: "প্রতিবছর আমাদের দেশে হাজার হাজার শিশু নিখোঁজ হয়। তাদের অনেকেই পাচার, নির্যাতন, বা আরও গুরুতর বিপদের শিকার হয়। একটি শিশু নিখোঁজ হওয়ার পর প্রথম কয়েক ঘণ্টা অত্যন্ত গুরুত্বপূর্ণ, কারণ দ্রুত পদক্ষেপ নেওয়া গেলে অনেক শিশুকে উদ্ধার করা সম্ভব। দুর্ভাগ্যবশত, আমাদের দেশে এমন একটি সিস্টেমের অভাব রয়েছে যা নিখোঁজ শিশুদের দ্রুত খুঁজে পেতে সাহায্য করতে পারে।" },
-        { question: "আমরা কারা? ", answer: "আমেরিকা ও বিশ্বের অন্যান্য দেশে এই সিস্টেমের মাধ্যমে হাজারো শিশুর জীবন রক্ষা করা সম্ভব হয়েছে। বাংলাদেশেও এটি বাস্তবায়ন করা অত্যন্ত জরুরি।" },
-        { question: "আপনার সমর্থন কেন গুরুত্বপূর্ণ?", answer: "প্রতিটি শিশুর জীবন মূল্যবান। Amber Alert ব্যবস্থা চালু হলে নিখোঁজ শিশুদের দ্রুত উদ্ধার করা সম্ভব হবে। এটি শুধু একটি প্রযুক্তিগত পদক্ষেপ নয়, বরং একটি মানবিক উদ্যোগ, যা আমাদের ভবিষ্যৎ প্রজন্মকে সুরক্ষিত রাখবে।" },
-    ];
+    const [faqs, setFaqs] = useState([]);
+
+    // Fetch voter data
+    const getFaqsData = async () => {
+        try {
+            const res = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/faq`);
+            console.log(res);
+            setFaqs(res.data.data);
+        } catch (e) {
+            console.log(e);
+        }
+    };
+    useEffect(() => {
+        getFaqsData();
+    }, [])
     const [openIndex, setOpenIndex] = useState(null);
 
     const toggleFAQ = (index) => {
@@ -22,7 +33,7 @@ const FAQ = () => {
                 <span className="text-[#FF7128]">প্রশ্ন </span>
             </h2>
             <div className="space-y-4">
-                {faqs.map((faq, index) => (
+                {faqs.length > 0 && faqs.map((faq, index) => (
                     <div key={index} className="border-b border-[#E5E7EB] pb-4 bg-[#FCEFEE] rounded-lg px-4 py-2">
                         <button
                             onClick={() => toggleFAQ(index)}

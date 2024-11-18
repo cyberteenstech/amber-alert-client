@@ -19,7 +19,7 @@ const VideoSection = () => {
             </div>
             {/* Content */}
             <div className="max-w-[1440px] w-full mx-auto px-4 md:px-10 md:my-[120px] my-[60px]">
-                <h2 className="md:text-[40px] text-[20px] font-semibold text-[#072E75] text-center">
+                <h2 className="md:text-[40px] text-[24px] font-semibold text-[#072E75] text-center">
                     সরকারের <span className="text-[#FF7128] md:mb-[85px] mb-[24px]"> প্রতি বার্তা</span>
                 </h2>
 

@@ -43,7 +43,11 @@ const Navbar = () => {
                 </div>
 
                 <div className="hidden md:block">
-                    <button className="flex items-center gap-x-2 bg-[#FF7128] text-[#fff] px-4 py-2 rounded-lg "><IoDocumentTextOutline className="text-xl" /> চিঠি পড়ুন</button>
+                    <Link href="#letter-section" passHref>
+                        <button className="flex items-center gap-x-2 bg-[#FF7128] text-[#fff] px-4 py-2 rounded-lg">
+                            <IoDocumentTextOutline className="text-xl" /> চিঠি পড়ুন
+                        </button>
+                    </Link>
                 </div>
 
                 {/* Mobile Menu Toggle */}

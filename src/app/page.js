@@ -1,5 +1,6 @@
 import Banner from '@/components/home/Banner';
 import Events from '@/components/home/Events';
+import FAQ from '@/components/home/FAQ';
 import Letter from '@/components/home/Letter';
 import VideoSection from '@/components/home/VideoSection';
 import React from 'react';
@@ -10,7 +11,8 @@ const Home = () => {
       <Banner />
       <VideoSection />
       <Letter />
-      <Events/>
+      <Events />
+      <FAQ />
     </div>
   );
 };

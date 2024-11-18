@@ -1,3 +1,5 @@
+"use client";
+                                    
 import React from 'react';
 import { IoDocumentTextOutline } from 'react-icons/io5';
 import { RiVideoLine } from "react-icons/ri";

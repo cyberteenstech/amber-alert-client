@@ -1,5 +1,6 @@
 import Navbar from "@/components/shared/Navbar";
 import "./globals.css";
+import Footer from "@/components/shared/Footer";
 
 export const metadata = {
   title: "Amber Alert For Bangladesh",
@@ -14,6 +15,7 @@ export default function RootLayout({ children }) {
       >
         <Navbar/>
         {children}
+        <Footer/>
       </body>
     </html>
   );

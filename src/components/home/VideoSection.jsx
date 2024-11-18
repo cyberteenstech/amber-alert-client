@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState } from 'react';
-import ReactPlayer from 'react-player';
+import React, { useState } from "react";
+import ReactPlayer from "react-player";
 
 const VideoSection = () => {
     const [isPaused, setIsPaused] = useState(true);
@@ -11,19 +11,12 @@ const VideoSection = () => {
     };
 
     return (
-        <div>
+        <div className="relative">
             {/* Background */}
-            <div
-                className="absolute inset-0 -z-10 min-h-screen w-full"
-                style={{
-                    background: `
-                        radial-gradient(circle at top left, rgba(249, 216, 212, 0.6), transparent 70%),
-                        radial-gradient(circle at bottom right, rgba(248, 242, 255, 0.6), transparent 70%)
-                    `,
-                    backgroundColor: 'white',
-                }}
-            ></div>
-
+            <div className="absolute inset-0 -z-10 h-full w-full bg-white">
+                <div className="absolute top-[2%] left-[0%] h-[300px] w-[400px] -translate-x-1/2 rounded-full bg-gradient-to-r from-[#FF7128] to-[#FFD6BA] opacity-30 blur-[100px]"></div>
+                <div className="absolute top-[60%] left-[80%] h-[300px] w-[400px] -translate-x-1/2 rounded-full bg-gradient-to-r from-[#FF7128] to-[#FFD6BA] opacity-30 blur-[100px]"></div>
+            </div>
             {/* Content */}
             <div className="max-w-[1440px] w-full mx-auto px-4 md:px-10 md:my-[120px] my-[60px]">
                 <h2 className="md:text-[40px] text-[20px] font-semibold text-[#072E75] text-center">
@@ -31,7 +24,7 @@ const VideoSection = () => {
                 </h2>
 
                 {/* Video Section */}
-                <div className="relative w-full max-w-[1440px] mx-auto mt-10">
+                <div className="relative w-full max-w-[1000px] mx-auto mt-10">
                     {/* React Player */}
                     <div className="relative w-full h-0 pb-[56.25%] rounded-xl shadow-lg overflow-hidden">
                         <ReactPlayer
@@ -57,7 +50,7 @@ const VideoSection = () => {
                                 <button
                                     className="flex items-center justify-center rounded-full bg-red-500 text-white w-16 h-16 shadow-lg hover:scale-105 active:scale-95"
                                     style={{
-                                        animation: 'ripple 1.5s infinite',
+                                        animation: "ripple 1.5s infinite",
                                     }}
                                 >
                                     ▶

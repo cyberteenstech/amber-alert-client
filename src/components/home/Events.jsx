@@ -55,7 +55,7 @@ const Events = () => {
                                     </div>
                                 )}
                             </div>
-                           
+
 
                             {/* Event Box */}
                             <div className="bg-white rounded-lg p-6 w-full">

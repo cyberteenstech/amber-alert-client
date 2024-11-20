@@ -1,13 +1,5 @@
 import Image from 'next/image';
 import React from 'react';
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Navigation } from "swiper";
-
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
 
 const Organizations = () => {
     const logos = [
@@ -26,21 +18,18 @@ const Organizations = () => {
                 <span className="text-[#FF7128]">যাদের কাছে</span>
             </h2>
 
-            {/* Swiper for logos */}
-            <Swiper
-                modules={[Autoplay, Navigation]}
-                spaceBetween={50} // Space between slides
-                slidesPerView={5} // Number of logos visible at once
-                loop={true} // Infinite loop
-                autoplay={{ delay: 2000, disableOnInteraction: false }} // Autoplay with interval
-                navigation // Enable navigation buttons (optional)
-            >
-                {logos.map((logo, index) => (
-                    <SwiperSlide key={index}>
-                        <Image width={100} height={100} src={logo} alt={`Logo ${index + 1}`} className="max-w-[100px] mx-auto" />
-                    </SwiperSlide>
-                ))}
-            </Swiper>
+            <div className='flex overflow-x-scroll items-center'>
+
+                <div className="bg-white rounded-lg p-6 w-full">
+                    <h3 className="text-[#072E75] text-lg font-semibold mb-2">
+                        গোলটেবিল বৈঠক
+                    </h3>
+                    <p className="text-[#072E75] text-sm mb-4">
+                        শিশুদের নিরাপত্তার গুরুত্ব নিয়ে আলোচনা করবে।
+                    </p>
+                </div>
+            </div>
+
         </div>
     );
 };

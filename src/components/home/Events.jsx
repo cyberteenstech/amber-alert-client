@@ -1,82 +1,64 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 
 const Events = () => {
-    return (
-        <div className="relative">
-            {/* Background */}
-            <div className="absolute inset-0 -z-10 h-full w-full bg-gradient-to-b from-[#FFE8D6] to-[rgb(255,248,252)]"></div>
+    const [expandedId, setExpandedId] = useState(null);
+    const datas = [
+        {
+            id: 1,
+            title: "'এম্বার এলার্ট - বাংলাদেশ' এর যাত্রা ",
+            date: "২০ নভেম্বর, ২০২৪",
+            description: "'২০ নভেম্বর আন্তর্জাতিক শিশু দিবসে বাংলাদেশে 'এম্বার এলার্ট' এর আনুষ্ঠানিক যাত্রা শুরু হতে যাচ্ছে। শিশুদের নিরাপত্তায় যুগান্তকারী এই উদ্যোগে সরকার, আইনশৃঙ্খলা রক্ষাকারী বাহিনী, গণমাধ্যম, এবং সাধারণ জনগণকে একত্রিত করে কাজ করা হবে। আপনার অংশগ্রহণ একান্ত প্রয়োজন।'"
+        },
+        {
+            id: 2,
+            title: "লাইভ টক শো: বাংলাদেশে এম্বার এলার্টের প্রয়োজনীয়তা",
+            date: "২৫ নভেম্বর, ২০২৪",
+            description: "'বাংলাদেশে শিশু নিখোঁজ প্রতিরোধে 'এম্বার এলার্ট' এর গুরুত্ব এবং প্রাসঙ্গিকতা নিয়ে বিশেষজ্ঞদের অংশগ্রহণে একটি লাইভ টক শো। আমাদের সঙ্গে যুক্ত হয়ে জেনে নিন কীভাবে এই উদ্যোগ একটি নিরাপদ ভবিষ্যত গড়তে ভূমিকা রাখবে।'"
+        }
+    ];
 
-            {/* Content Container */}
-            <div className="max-w-[1440px] w-full mx-auto px-4 md:px-10 py-[60px] md:py-[120px]">
-                {/* Header */}
-                <h2 className="md:text-[40px] text-[24px] font-semibold text-[#072E75] text-center mb-[40px]">
+    return (
+        <section className="relative bg-gradient-to-b from-[#FFE8D6] to-[rgb(255,248,252)] py-16 md:py-24">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-[#072E75] text-center mb-16">
                     আমাদের আসন্ন{" "}
                     <span className="text-[#FF7128]">ইভেন্ট</span>
                 </h2>
 
-                {/* Timeline */}
-                <div className="flex flex-col md:flex-row items-center justify-between gap-10">
-                    {[...Array(4)].map((_, idx) => (
-                        <div
-                            key={idx}
-                            className="flex flex-col items-center justify-center relative gap-6"
-                        >
-                            {/* Date Box */}
-                            <div className="bg-white border border-dashed border-[#FF7128] rounded-lg py-4 px-6 text-center text-[#072E75] font-semibold">
-                                ২৫ <br />
-                                <span className="font-normal">নভেম্বর</span>
+                <div className="relative">
+                    <div className="absolute left-1/2 transform md:-translate-x-1/2 translate-x-[-10rem] h-full w-1 bg-[#FF7128]"></div>
 
-                                <div className="absolute top-[28%] left-[50%] -translate-x-1/2 w-[2px] h-[28px] bg-[#FF7128]"></div>
-
-                                {/* Ripple Effect */}
-                                <div className="absolute top-[20%] left-[50%] -translate-x-1/2 mt-[50px]">
-                                    <div className="relative h-3 w-3">
-                                        {/* Red Dot with Ripple Effect */}
-                                        <div className="absolute inset-0 h-3 w-3 bg-[#FF0000] rounded-full animate-pulse"></div>
-                                        <div className="absolute inset-0 h-4 w-4 bg-[#FF0000] rounded-full opacity-30 animate-ping"></div>
-                                    </div>
+                    {datas.map((data, idx) => (
+                        <div key={idx} className={`mb-16 ${idx % 2 === 0 ? 'md:ml-auto md:pl-8' : 'md:mr-auto md:pr-8'} md:w-1/2 relative`}>
+                            <div className="flex items-center mb-4">
+                                <div className="bg-white border-2 border-[#FF7128] rounded-full p-2 z-10">
+                                    <div className="bg-[#FF7128] h-4 w-4 rounded-full"></div>
+                                </div>
+                                <div className="ml-4 bg-white border border-[#FF7128] rounded-lg py-2 px-4 text-[#072E75] font-semibold">
+                                    {data.date}
                                 </div>
                             </div>
-
-                            {/* Connector */}
-                            <div className="md:block hidden">
-                                {idx !== 3 && (
-                                    <div className="absolute flex items-center justify-center top-[14%] left-[69%]">
-                                        <div className="flex items-center">
-                                            {/* Dot */}
-                                            <div className="h-3 w-3 rounded-full bg-[#FF7128]"></div>
-                                            {/* Dotted Line */}
-                                            <div className="w-[200px] h-0 border-dashed border-t-2 border-[#FF7128] mx-1"></div>
-                                            {/* Dot */}
-                                            <div className="h-3 w-3 rounded-full bg-[#FF7128]"></div>
-                                        </div>
-                                    </div>
-                                )}
-                            </div>
-
-
-                            {/* Event Box */}
-                            <div className="bg-white rounded-lg p-6 w-full">
-                                <h3 className="text-[#072E75] text-lg font-semibold mb-2">
-                                    গোলটেবিল বৈঠক
+                            <div className="bg-white rounded-lg p-6 shadow-md">
+                                <h3 className="text-[#072E75] text-xl font-semibold mb-3">
+                                    {data.title}
                                 </h3>
                                 <p className="text-[#072E75] text-sm mb-4">
-                                    শিশুদের নিরাপত্তার গুরুত্ব নিয়ে আলোচনা করবে।
+                                    {expandedId === data.id ? data.description : `${data.description.slice(0, 100)}...`}
                                 </p>
-                                {/* Buttons */}
-                                <div className="flex gap-2">
-                                    <button className="bg-[#FF7128] text-white py-2 px-4 rounded-md text-sm hover:bg-[#e66323] transition">
-                                        বিস্তারিত
-                                    </button>
-                                </div>
+                                <button
+                                    onClick={() => setExpandedId(expandedId === data.id ? null : data.id)}
+                                    className="bg-[#FF7128] text-white py-2 px-4 rounded-md text-sm hover:bg-[#e66323] transition"
+                                >
+                                    {expandedId === data.id ? 'সংক্ষিপ্ত করুন' : 'বিস্তারিত'}
+                                </button>
                             </div>
                         </div>
                     ))}
                 </div>
             </div>
-        </div>
+        </section>
     );
 };
 

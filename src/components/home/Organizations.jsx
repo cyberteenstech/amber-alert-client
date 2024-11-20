@@ -2,13 +2,14 @@ import Image from 'next/image';
 import React from 'react';
 
 const Organizations = () => {
-    const logos = [
-        '/cyberteens.png', // replace with your actual logo URLs
-        '/amberalert.png',
-        '/cyberteens.png', // replace with your actual logo URLs
-        '/amberalert.png',
-        '/cyberteens.png', // replace with your actual logo URLs
-        '/amberalert.png',
+    const data = [
+        'স্বরাষ্ট্র মন্ত্রণালয়', // replace with your actual logo URLs
+        'বাংলাদেশ টেলিযোগাযোগ নিয়ন্ত্রণ কমিশন',
+        'মহিলা ও শিশু বিষয়ক মন্ত্রণালয়', // replace with your actual logo URLs
+        'সমাজকল্যাণ মন্ত্রণালয়',
+        'জাতীয় মানবাধিকার কমিশন', // replace with your actual logo URLs
+        'প্রতিনিধি ইউনিসেফ বাংলাদেশ',
+        'ডাক টেলিযোগাযোগ ও তথ্যপ্রযুক্তি মন্ত্রণালয়',
     ];
 
     return (
@@ -18,16 +19,18 @@ const Organizations = () => {
                 <span className="text-[#FF7128]">যাদের কাছে</span>
             </h2>
 
-            <div className='flex overflow-x-scroll items-center'>
-
-                <div className="bg-white rounded-lg p-6 w-full">
-                    <h3 className="text-[#072E75] text-lg font-semibold mb-2">
-                        গোলটেবিল বৈঠক
-                    </h3>
-                    <p className="text-[#072E75] text-sm mb-4">
-                        শিশুদের নিরাপত্তার গুরুত্ব নিয়ে আলোচনা করবে।
-                    </p>
-                </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {data.map((item, index) => (
+                    <div
+                        key={index}
+                        className="bg-white rounded-lg shadow-md p-6 transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg"
+                    >
+                        <h3 className="text-blue-900 text-lg font-semibold mb-2">
+                            {item}
+                        </h3>
+                        <div className="w-16 h-1 bg-orange-500 rounded"></div>
+                    </div>
+                ))}
             </div>
 
         </div>

@@ -13,7 +13,7 @@ const Letter = () => {
             </div>
 
             {/* Content Container */}
-            <div className="max-w-[1000px] w-full mx-auto px-4 md:px-10 md:my-[120px] my-[60px]">
+            <div className="max-w-[1000px] w-full mx-auto px-4 md:px-10 md:my-[60px] my-[40px]">
                 {/* Header */}
                 <h2 className="md:text-[40px] text-[24px] font-semibold text-[#072E75] text-center">
                     Amber Alert{" "}

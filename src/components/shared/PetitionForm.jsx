@@ -5,7 +5,11 @@ import axios from 'axios';
 import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Share2 } from 'lucide-react';
+import { Share2, Facebook, Twitter, Linkedin } from 'lucide-react';
+import Modal from 'react-modal';
+
+// Set the root element for the modal
+// Modal.setAppElement('#__next');
 
 const PetitionForm = ({ setClicked }) => {
     const [showShare, setShowShare] = useState(false);
@@ -35,12 +39,13 @@ const PetitionForm = ({ setClicked }) => {
 
     const shareToSocialMedia = (platform) => {
         const text = encodeURIComponent("আমি একটি গুরুত্বপূর্ণ পিটিশনে সাক্ষর করেছি। আপনিও যোগ দিন এবং পরিবর্তন আনুন!");
-        const url = encodeURIComponent(window.location.href);
+        const url = encodeURIComponent(window.location.href); // Current page URL
 
         let shareUrl = '';
+
         switch (platform) {
             case 'facebook':
-                shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${text}`;
+                shareUrl = `https://www.facebook.com/sharer.php?u=${url}&quote=${text}`;
                 break;
             case 'twitter':
                 shareUrl = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
@@ -48,10 +53,13 @@ const PetitionForm = ({ setClicked }) => {
             case 'linkedin':
                 shareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${text}`;
                 break;
+            default:
+                break;
         }
 
         window.open(shareUrl, '_blank');
     };
+
 
     return (
         <div className="bg-[#ffd8c412] border-r-[1px] md:border-l-[0px] border-l-[1px] md:border-b-[0px] border-b-[1px] border-[#FF7128] border-dashed rounded-lg shadow-md p-5 relative">
@@ -94,28 +102,61 @@ const PetitionForm = ({ setClicked }) => {
                     </div>
                     <button
                         type="submit"
-                        className="w-full bg-orange-500 text-white font-semibold text-sm py-3 rounded-md hover:bg-orange-600"
+                        className="w-full bg-orange-500 text-white font-semibold text-sm py-3 rounded-md hover:bg-orange-600 transition duration-300"
                     >
                         সম্পন্ন করুন
                     </button>
                 </form>
             ) : (
-                <div className="text-center">
-                    <h4 className="text-lg font-semibold mb-4">পিটিশন সাক্ষর করার জন্য ধন্যবাদ!</h4>
-                    <p className="mb-4">এই পিটিশন শেয়ার করে আরও মানুষের কাছে পৌঁছে দিন:</p>
-                    <div className="flex justify-center space-x-4">
-                        <button onClick={() => shareToSocialMedia('facebook')} className="bg-blue-600 hover:bg-blue-700">
-                            <Share2 className="mr-2 h-4 w-4" /> Facebook
-                        </button>
-                        <button onClick={() => shareToSocialMedia('twitter')} className="bg-sky-500 hover:bg-sky-600">
-                            <Share2 className="mr-2 h-4 w-4" /> Twitter
-                        </button>
-                        <button onClick={() => shareToSocialMedia('linkedin')} className="bg-blue-700 hover:bg-blue-800">
-                            <Share2 className="mr-2 h-4 w-4" /> LinkedIn
-                        </button>
-                    </div>
+                <div className="text-center space-y-6">
+                    <h4 className="text-xl font-semibold text-gray-800">পিটিশন সাক্ষর করার জন্য ধন্যবাদ!</h4>
+                    <p className="text-gray-600">এই পিটিশন শেয়ার করে আরও মানুষের কাছে পৌঁছে দিন:</p>
+                    <button
+                        onClick={() => setShowShare(true)}
+                        className="flex items-center justify-center bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-md transition duration-300"
+                    >
+                        <Share2 className="mr-2 h-5 w-5" />
+                    </button>
                 </div>
             )}
+
+            {/* Modal for sharing options */}
+            <Modal
+                isOpen={showShare}
+                onRequestClose={() => setShowShare(false)}
+                contentLabel="Share Petition"
+                className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-md bg-white p-6 rounded-lg shadow-md"
+            >
+                <h4 className="text-xl font-semibold text-gray-800 mb-4">পিটিশন শেয়ার করুন</h4>
+                <p className="text-gray-600 mb-6">আপনার বন্ধুদের সাথে শেয়ার করুন:</p>
+                <div className="flex justify-center space-x-4 mb-6">
+                    <button
+                        onClick={() => shareToSocialMedia('facebook')}
+                        className="flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition duration-300"
+                    >
+                        <Facebook className="mr-2 h-5 w-5" />
+                    </button>
+                    <button
+                        onClick={() => shareToSocialMedia('twitter')}
+                        className="flex items-center justify-center bg-sky-500 hover:bg-sky-600 text-white font-medium py-2 px-4 rounded-md transition duration-300"
+                    >
+                        <Twitter className="mr-2 h-5 w-5" />
+                    </button>
+                    <button
+                        onClick={() => shareToSocialMedia('linkedin')}
+                        className="flex items-center justify-center bg-blue-700 hover:bg-blue-800 text-white font-medium py-2 px-4 rounded-md transition duration-300"
+                    >
+                        <Linkedin className="mr-2 h-5 w-5" />
+                    </button>
+                </div>
+                <button
+                    onClick={() => setShowShare(false)}
+                    className="w-full bg-red-500 text-white font-semibold py-2 px-4 rounded-md hover:bg-red-600 transition duration-300"
+                >
+                    বন্ধ করুন
+                </button>
+            </Modal>
+
             <ToastContainer />
         </div>
     );

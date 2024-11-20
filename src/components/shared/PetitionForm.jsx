@@ -6,7 +6,6 @@ import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Share2 } from 'lucide-react';
-import { Button } from "@/components/ui/button";
 
 const PetitionForm = ({ setClicked }) => {
     const [showShare, setShowShare] = useState(false);
@@ -105,15 +104,15 @@ const PetitionForm = ({ setClicked }) => {
                     <h4 className="text-lg font-semibold mb-4">পিটিশন সাক্ষর করার জন্য ধন্যবাদ!</h4>
                     <p className="mb-4">এই পিটিশন শেয়ার করে আরও মানুষের কাছে পৌঁছে দিন:</p>
                     <div className="flex justify-center space-x-4">
-                        <Button onClick={() => shareToSocialMedia('facebook')} className="bg-blue-600 hover:bg-blue-700">
+                        <button onClick={() => shareToSocialMedia('facebook')} className="bg-blue-600 hover:bg-blue-700">
                             <Share2 className="mr-2 h-4 w-4" /> Facebook
-                        </Button>
-                        <Button onClick={() => shareToSocialMedia('twitter')} className="bg-sky-500 hover:bg-sky-600">
+                        </button>
+                        <button onClick={() => shareToSocialMedia('twitter')} className="bg-sky-500 hover:bg-sky-600">
                             <Share2 className="mr-2 h-4 w-4" /> Twitter
-                        </Button>
-                        <Button onClick={() => shareToSocialMedia('linkedin')} className="bg-blue-700 hover:bg-blue-800">
+                        </button>
+                        <button onClick={() => shareToSocialMedia('linkedin')} className="bg-blue-700 hover:bg-blue-800">
                             <Share2 className="mr-2 h-4 w-4" /> LinkedIn
-                        </Button>
+                        </button>
                     </div>
                 </div>
             )}

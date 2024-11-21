@@ -8,11 +8,13 @@ import Progress from '../shared/Progress';
 import Image from 'next/image';
 import axios from 'axios';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 const Banner = () => {
     const [clicked, setClicked] = useState(false)
     const [voters, setVoters] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const router = useRouter();
 
     // Fetch voter data
     const getVotersData = async () => {
@@ -64,7 +66,11 @@ const Banner = () => {
 
     // Calculate progress as a percentage (assuming 100,000 is the goal)
     const progress = (voters.length / 100000) * 100;
-    console.log(recentVoters)
+
+    const openLinkToForm = () => {
+        //    open in new tab
+        window.open('https://docs.google.com/forms/d/e/1FAIpQLSc5FXjbnvaIV_0GtEEYeG-zDZgbvEczU-GmIcQgXinH-EDuXg/viewform', '_blank');
+    }
     return (
         <div className="relative">
             {/* Background Gradient */}
@@ -120,7 +126,7 @@ const Banner = () => {
                         <IoDocumentTextOutline className="md:text-xl text-lg" /> চিঠি পড়ুন
                     </button></Link>
                 
-                <button className="flex items-center gap-x-2 border-[#072E75] border-[1.5px] text-[#072E75] md:px-6 px-4 py-2 rounded-lg ">
+                <button onClick={() => openLinkToForm()} className="flex items-center gap-x-2 border-[#072E75] border-[1.5px] text-[#072E75] md:px-6 px-4 py-2 rounded-lg ">
                     <RiVideoLine className="md:text-xl text-lg" />ভিডিও পাঠান
                 </button>
             </div>

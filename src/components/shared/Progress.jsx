@@ -101,20 +101,25 @@ const Progress = ({ setClicked, clicked }) => {
                                 <div className="ml-auto h-4 bg-gray-300 rounded w-10"></div>
                             </li>
                         ))
-                    : recentVoters.map((voter, index) => (
-                        <li key={index} className="flex items-center">
-                            <div className="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center text-orange-500 font-bold">
-                                {index + 1}
-                            </div>
-                            <div className="ml-3">
-                                <p className="text-sm text-[#072E75] capitalize">{voter.name}</p>
-                                <p className="text-xs text-gray-500">বাংলাদেশ</p>
-                            </div>
-                            <span className="ml-auto text-sm text-[#072E75]">
-                                {timeAgo(voter.createdAt)}
-                            </span>
-                        </li>
-                    ))}
+                    : recentVoters.map((voter) => {
+                        // Find the serial number in the overall voters list
+                        const serialNumber = voters.findIndex((v) => v._id === voter._id) + 1;
+
+                        return (
+                            <li key={voter._id} className="flex items-center">
+                                <div className="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center text-orange-500 font-bold">
+                                    {toBangla(serialNumber)} {/* Convert serial number to Bangla */}
+                                </div>
+                                <div className="ml-3">
+                                    <p className="text-sm text-[#072E75] capitalize">{voter.name}</p>
+                                    <p className="text-xs text-gray-500">আপনাকে ধন্যবাদ সাইন করার জন্য</p>
+                                </div>
+                                <span className="ml-auto text-sm text-[#072E75]">
+                                    {timeAgo(voter.createdAt)}
+                                </span>
+                            </li>
+                        );
+                    })}
             </ul>
         </div>
     );

@@ -203,7 +203,7 @@ const Banner = () => {
             <div className='md:block hidden'>
                 <div className='flex justify-center items-center gap-x-4 mt-8 '>
                     <Image
-                        src="/child3.jpg"
+                        src="/child2.png"
                         alt="muntaha"
                         width={200}
                         height={200}
@@ -211,7 +211,7 @@ const Banner = () => {
                         style={{ animationDelay: '1s' }}
                     />
                     <Image
-                        src="/child4.jpg"
+                        src="/muntaha.png"
                         alt="muntaha"
                         width={200}
                         height={200}
@@ -219,7 +219,7 @@ const Banner = () => {
                         style={{ animationDelay: '1.8s' }}
                     />
                     <Image
-                        src="/child5.jpg"
+                        src="/child2.png"
                         alt="muntaha"
                         width={200}
                         height={200}

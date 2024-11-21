@@ -43,7 +43,7 @@ const VideoSection = () => {
                             <div
                                 className="absolute inset-0 bg-cover bg-center flex items-center justify-center cursor-pointer"
                                 style={{
-                                    backgroundImage: `url('/banner.jpg')`, // Replace with your poster image path
+                                    backgroundImage: `url('/thumb.jpg')`, // Replace with your poster image path
                                 }}
                                 onClick={handlePlayPause}
                             >

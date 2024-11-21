@@ -192,8 +192,8 @@ const Banner = () => {
                 </div>
 
                 <Image
-                    src="/muntaha.png"
-                    alt="muntaha"
+                    src="/child2.png"
+                    alt="child2"
                     width={200}
                     height={200}
                     className="rounded-lg image-beep md:w-[200px] w-[100px] md:block hidden"
@@ -203,7 +203,7 @@ const Banner = () => {
             <div className='md:block hidden'>
                 <div className='flex justify-center items-center gap-x-4 mt-8 '>
                     <Image
-                        src="/muntaha.png"
+                        src="/child3.jpg"
                         alt="muntaha"
                         width={200}
                         height={200}
@@ -211,7 +211,7 @@ const Banner = () => {
                         style={{ animationDelay: '1s' }}
                     />
                     <Image
-                        src="/muntaha.png"
+                        src="/child4.jpg"
                         alt="muntaha"
                         width={200}
                         height={200}
@@ -219,7 +219,7 @@ const Banner = () => {
                         style={{ animationDelay: '1.8s' }}
                     />
                     <Image
-                        src="/muntaha.png"
+                        src="/child5.jpg"
                         alt="muntaha"
                         width={200}
                         height={200}

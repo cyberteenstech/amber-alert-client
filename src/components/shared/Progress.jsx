@@ -58,7 +58,28 @@ const Progress = ({ setClicked, clicked }) => {
     };
 
     useEffect(() => {
+        // Initialize the socket connection
+        if (!socketRef.current) {
+            socketRef.current = io(process.env.NEXT_PUBLIC_SERVER);
+
+            // Listen for new votes
+            socketRef.current.on("newVote", (newVoter) => {
+                setVoters((prevVoters) => [newVoter, ...prevVoters]);
+            });
+
+            console.log("Socket connected.");
+        }
+
+        // Fetch initial voter data
         getVotersData();
+
+        // Cleanup socket on unmount
+        return () => {
+            if (socketRef.current) {
+                socketRef.current.disconnect();
+                socketRef.current = null;
+            }
+        };
     }, [clicked]);
 
     if (clicked === true) {

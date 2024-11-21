@@ -128,7 +128,7 @@ const PetitionForm = ({ setClicked }) => {
                 className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-md bg-white p-6 rounded-lg shadow-md"
             >
                 <h4 className="text-xl font-semibold text-gray-800 mb-4">পিটিশন শেয়ার করুন</h4>
-                <p className="text-gray-600 mb-6">আপনার বন্ধুদের সাথে শেয়ার করুন:</p>
+                <p className="text-gray-600 mb-6">আপনার সমর্থনের জন্য আমরা সত্যিই কৃতজ্ঞ। আপনার স্বাক্ষর বাংলাদেশের অ্যাম্বার অ্যালার্ট বাস্তবায়নের পথে একটি বড় পদক্ষেপ। এখন এটি আপনার বন্ধু ও পরিবারের সঙ্গে শেয়ার করে আরও মানুষকে যুক্ত করতে সাহায্য করুন।</p>
                 <div className="flex justify-center space-x-4 mb-6">
                     <button
                         onClick={() => shareToSocialMedia('facebook')}

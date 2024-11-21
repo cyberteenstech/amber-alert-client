@@ -1,8 +1,9 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
-
+import io from "socket.io-client";
 const Progress = ({ setClicked, clicked }) => {
+    const socketRef = useRef(null); 
     const [voters, setVoters] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -18,6 +19,10 @@ const Progress = ({ setClicked, clicked }) => {
         }
     };
 
+    if (!socketRef.current) {
+        console.log("Initializing socket..."); // Debug log
+        socketRef.current = io(`https://api.amberalert4bangladesh.org`);
+    }
     // Convert a number to Bangla
     const toBangla = (number) => {
         const banglaDigits = ["০", "১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯"];

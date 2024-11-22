@@ -26,13 +26,6 @@ const Navbar = () => {
                         width={50}
                         height={50} 
                     />
-                    <Image
-                        src="/cyberteens.png"
-                        alt="Logo"
-                        width={60}
-                        height={60} 
-                    />
-
 
                 </Link>
                 {/* Desktop Menu */}

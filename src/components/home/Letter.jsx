@@ -23,7 +23,7 @@ const Letter = () => {
                 </h2>
 
                 {/* Letter Body */}
-                <div className="p-6 md:p-10 relative mt-8 rounded-xl bg-transparent">
+                <div className="p-4 md:p-10 relative mt-8 rounded-xl bg-transparent">
                     {/* Container with Red and Blue Dashed Border with 1px Gap */}
                     <div
                         className="rounded-lg p-[.5px] md:p-[.5px] bg-transparent"
@@ -39,11 +39,11 @@ const Letter = () => {
                         <div className="bg-transparent md:py-[48px] md:px-[44px] p-[20px]">
                             {/* Content */}
                             <p className="text-[#072E75] text-base md:text-lg text-[12px] mb-4 font-medium">
-                                প্রিয়সম্মানিত নীতি-নির্ধারক,
+                                সম্মানিত নীতি-নির্ধারক,
                             </p>
                             <p className="text-[#072E75] text-base md:text-lg text-[12px] mb-4">
                                 আমরা, বাংলাদেশের জনগণ, শিশুদের নিরাপত্তা নিশ্চিত করার জন্য একটি জরুরি এবং কার্যকর পদক্ষেপ
-                                হিসাবে *Amber Alert* বাস্তবায়নের জন্য আপনার কাছে আহ্বান জানাচ্ছি।
+                                হিসাবে <span className="font-semibold">Amber Alert</span> বাস্তবায়নের জন্য আপনার কাছে আহ্বান জানাচ্ছি।
                             </p>
                             <p className="text-[#072E75] text-base md:text-lg text-[12px] mb-4">
                                 প্রতিবছর আমাদের দেশে হাজার হাজার শিশু নিখোঁজ হয়। তাদের অনেকেই পাচার, নির্যাতন, বা আরও গুরুতর বিপদের শিকার হয়। একটি শিশু নিখোঁজ হওয়ার পর প্রথম কয়েক ঘণ্টা অত্যন্ত গুরুত্বপূর্ণ, কারণ দ্রুত পদক্ষেপ নেওয়া গেলে অনেক শিশুকে উদ্ধার করা সম্ভব। দুর্ভাগ্যবশত, আমাদের দেশে এমন একটি সিস্টেমের অভাব রয়েছে যা নিখোঁজ শিশুদের দ্রুত খুঁজে পেতে সাহায্য করতে পারে।
@@ -86,7 +86,7 @@ const Letter = () => {
                             </p>
                             <p className="text-[#072E75] text-base md:text-lg text-[12px] mb-4">
                                 আপনার একটি স্বাক্ষর একটি শিশুর জীবন রক্ষা করতে পারে।
-                                #AmberAlertBD #ProtectOurChildren #ChildSafetyBangladesh
+                                #AmberAlertBD #ProtectOurChildren #Amberalert4bangladesh
                             </p>
                             {/* Button */}
                             {/* <div className="mt-6 text-start">

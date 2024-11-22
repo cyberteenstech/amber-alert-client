@@ -1,11 +1,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
 
 const Footer = () => {
     return (
         <div className='bg-[#F9DFDF]'>
             <div className='max-w-[1440px] mx-auto px-4 md:px-10 md:py-[110px] py-[56px] grid grid-cols-1 md:grid-cols-3 justify-around'>
+                {/* Logo and Description */}
                 <div>
                     <div className="flex items-center gap-x-2">
                         <Image
@@ -14,31 +16,41 @@ const Footer = () => {
                             width={50}
                             height={50}
                         />
-                        <Image
-                            src="/cyberteens.png"
-                            alt="Logo"
-                            width={60}
-                            height={60}
-                        />
                     </div>
-                    <p className='md:my-4 my-2 text-[#072E75] font-normal md:text-[16px] text-[14px]'>সাইবার সুরক্ষা, সাইবারের সঠিক ব্যবহার ও সাইবারের ভয়ানক দিক সম্পর্কে কিশোর-কিশোরীদের মধ্যে সচেতনতা সৃষ্টি ও সাইবার হয়রানীর শিকার হওয়া কিশোর কিশোরীদে পাশে দাঁড়ানোর লক্ষ্যে বাংলাদেশের ৬৪টি জেলা ও প্রতিটি উপজেলাতে “সাইবার অপরাধ প্রতিরোধ কমিটি” গঠন করা হয়।</p>
+                    <p className='md:my-4 my-2 text-[#072E75] font-normal md:text-[16px] text-[14px]'>
+                        সাইবার সুরক্ষা, সাইবারের সঠিক ব্যবহার ও সাইবারের ভয়ানক দিক সম্পর্কে কিশোর-কিশোরীদের মধ্যে সচেতনতা সৃষ্টি ও সাইবার হয়রানীর শিকার হওয়া কিশোর কিশোরীদের পাশে দাঁড়ানোর লক্ষ্যে বাংলাদেশের ৬৪টি জেলা ও প্রতিটি উপজেলাতে “সাইবার অপরাধ প্রতিরোধ কমিটি” গঠন করা হয়।
+                    </p>
                 </div>
+
+                {/* Site Map */}
                 <div className='flex md:justify-center md:mt-0 mt-4'>
-                <div className='flex flex-col '>
-                    <h2 className='text-[#072E75] font-semibold md:text-[20px] text-[16px] mb-4'>সাইট ম্যাপ</h2>
-                    <Link href="/goals" className='text-[#072E75] md:text-[16px] text-[14px]'>কমিটির লক্ষ্য</Link>
-                    <Link href="/contact" className='text-[#072E75] md:text-[16px] text-[14px] mt-2'>যোগাযোগ করুন</Link>
-                    <Link href="/about" className='text-[#072E75] md:text-[16px] text-[14px] mt-2'>আমাদের সম্পর্কে</Link>
+                    <div className='flex flex-col'>
+                        <h2 className='text-[#072E75] font-semibold md:text-[20px] text-[16px] mb-4'>সাইট ম্যাপ</h2>
+                        <Link href="/goals" className='text-[#072E75] md:text-[16px] text-[14px]'>কমিটির লক্ষ্য</Link>
+                        <Link href="/contact" className='text-[#072E75] md:text-[16px] text-[14px] mt-2'>যোগাযোগ করুন</Link>
+                        <Link href="/about" className='text-[#072E75] md:text-[16px] text-[14px] mt-2'>আমাদের সম্পর্কে</Link>
                     </div>
                 </div>
-                <div className='flex md:justify-end md:mt-0 mt-4'>
-                <div className='flex flex-col '>
+
+                {/* Contact and Social Media */}
+                <div className='flex flex-col md:items-end md:mt-0 mt-4'>
                     <h2 className='text-[#072E75] font-semibold md:text-[20px] text-[16px] mb-4'>আমাদের সাথে যোগাযোগ করুন</h2>
                     <Link href="/" className='text-[#072E75] md:text-[16px] text-[14px] mt-2'>হেল্পলাইন নাম্বার ১৩ ২ ১৯</Link>
+
+                    {/* Social Media Section */}
+                    <div className='flex gap-4 mt-4'>
+                        <Link href="https://www.facebook.com/amberalert4bangladesh" target="_blank" className='text-[#072E75]'>
+                            <FaFacebook size={24} />
+                        </Link>
+                        <Link href="https://www.facebook.com/amberalert4bangladeshm" target="_blank" className='text-[#072E75]'>
+                            <FaTwitter size={24} />
+                        </Link>
+                        <Link href="https://www.facebook.com/amberalert4bangladesh" target="_blank" className='text-[#072E75]'>
+                            <FaInstagram size={24} />
+                        </Link>
+                    </div>
                 </div>
             </div>
-
-            </div>            
         </div>
     );
 };

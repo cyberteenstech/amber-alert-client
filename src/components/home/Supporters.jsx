@@ -3,7 +3,6 @@ import React from 'react';
 
 const Supporters = () => {
     const datas = [
-        "https://i.ibb.co.com/wwqdB5w/large-charlie-min.png",
         "https://i.ibb.co.com/fMGGwy3/bigganchinta.png",
         "https://i.ibb.co.com/3CB0cq5/nctb.png"
     ];

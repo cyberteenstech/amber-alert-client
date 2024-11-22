@@ -1,10 +1,11 @@
+import Image from 'next/image';
 import React from 'react';
 
 const Supporters = () => {
     const datas = [
-        "বিজ্ঞানপ্রিয়",
-        "এনসিটিএফ",
-        "সেইভ দ্যা চিলড্রেন"
+        "https://i.ibb.co.com/wwqdB5w/large-charlie-min.png",
+        "https://i.ibb.co.com/fMGGwy3/bigganchinta.png",
+        "https://i.ibb.co.com/3CB0cq5/nctb.png"
     ];
 
     return (
@@ -14,19 +15,60 @@ const Supporters = () => {
                 <span className="text-[#FF7128]">সাপোর্টে</span>
             </h2>
             <div className="relative">
-                <div className="whitespace-nowrap animate-marquee text-2xl font-semibold text-[#072E75]">
+                <div className="whitespace-nowrap animate-marquee text-2xl font-semibold text-[#072E75] flex items-center gap-x-8">
                     {datas.map((data, index) => (
-                        <span key={index} className="mx-8 text-xl text-[#072E75]">{data}</span>
+                        <Image
+                            key={index}
+                            src={data}
+                            alt="logo"
+                            width={80}
+                            height={80}
+                        />
                     ))}
-                    {/* Repeat the content for smooth scrolling */}
                     {datas.map((data, index) => (
-                        <span key={`repeat-${index}`} className="mx-8 text-xl text-[#072E75]">{data}</span>
+                        <Image
+                            key={index}
+                            src={data}
+                            alt="logo"
+                            width={80}
+                            height={80}
+                        />
                     ))}
                     {datas.map((data, index) => (
-                        <span key={`repeatt-${index}`} className="mx-8 text-xl text-[#072E75]">{data}</span>
+                        <Image
+                            key={index}
+                            src={data}
+                            alt="logo"
+                            width={80}
+                            height={80}
+                        />
                     ))}
                     {datas.map((data, index) => (
-                        <span key={`repeattt-${index}`} className="mx-8 text-xl text-[#072E75]">{data}</span>
+                        <Image
+                            key={index}
+                            src={data}
+                            alt="logo"
+                            width={80}
+                            height={80}
+                        />
+                    ))}
+                    {datas.map((data, index) => (
+                        <Image
+                            key={index}
+                            src={data}
+                            alt="logo"
+                            width={80}
+                            height={80}
+                        />
+                    ))}
+                    {datas.map((data, index) => (
+                        <Image
+                            key={index}
+                            src={data}
+                            alt="logo"
+                            width={80}
+                            height={80}
+                        />
                     ))}
                 </div>
             </div>

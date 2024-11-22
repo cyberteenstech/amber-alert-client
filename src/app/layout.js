@@ -6,7 +6,7 @@ export const metadata = {
   title: "Amber Alert For Bangladesh",
   description: "Sign Petition to bring Amber Alert to Bangladesh to make a safer place for children",
   icons: {
-    icon: "/cyberteens.png", // Path to your favicon in the public folder
+    icon: "/amberalert.png", // Path to your favicon in the public folder
   },
 };
 

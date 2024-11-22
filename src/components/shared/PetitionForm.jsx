@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import axios from 'axios';
 import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from 'react-toastify';
@@ -20,6 +20,7 @@ const PetitionForm = ({ setClicked }) => {
         formState: { errors },
     } = useForm();
 
+    const alertAudioRef = useRef(null);
     const submitForm = async (data, e) => {
         e.preventDefault();
 
@@ -29,6 +30,10 @@ const PetitionForm = ({ setClicked }) => {
                 setClicked(true);
                 setShowShare(true);
                 toast.success('পিটিশন সাক্ষর সফল হয়েছে');
+                if (alertAudioRef.current) {
+                    alertAudioRef.current.play().catch(err => console.error("Audio playback error:", err));
+                }
+
             } else {
                 toast.error('একবারের বেশি সাক্ষর করা যাবে না');
             }
@@ -160,6 +165,7 @@ const PetitionForm = ({ setClicked }) => {
             </Modal>
 
             <ToastContainer />
+            <audio ref={alertAudioRef} src="/alert.mp3" preload="auto" />
         </div>
     );
 };

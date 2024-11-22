@@ -7,11 +7,15 @@ import Organizations from '@/components/home/Organizations';
 import VideoSection from '@/components/home/VideoSection';
 import React from 'react';
 import Supporters from '@/components/home/Supporters';
+import LatestVoters from '@/components/home/LatestVoters';
 
 const Home = () => {
   return (
     <div>
       <Banner />
+      <div className="md:hidden block">
+        <LatestVoters/>
+      </div>
       <VideoSection />
       <Letter />
       <Organizations />

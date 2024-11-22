@@ -150,7 +150,7 @@ const Banner = () => {
                         alt="hand"
                         width={1300}
                         height={800}
-                        className="absolute md:top-[27%] top-[57.5%] left-1/2 -translate-x-1/2"
+                        className="absolute md:top-[27%] top-[69.5%] left-1/2 -translate-x-1/2"
                     />
 
                     <div className="flex flex-col md:flex-row max-w-[600px] w-full mx-auto items-center md:bg-[#fff] md:border-[1px] rounded-lg border-dashed border-[#FF7128] md:mt-6 mt-0 relative">
@@ -163,6 +163,7 @@ const Banner = () => {
                                     প্রয়োজন <span className="text-[#FF7128] font-medium text-[12px]">১,০০,০০০</span>
                                 </span>
                             </div>
+                            
                             <div className="w-full bg-gray-200 h-2 rounded-full mb-4">
                                 <div
                                     className="bg-orange-500 h-2 rounded-full"
@@ -173,7 +174,7 @@ const Banner = () => {
                         <div className="w-[70%] md:w-1/2">
                             <PetitionForm setClicked={setClicked}/>
                         </div>
-                        <div className='md:hidden block w-full bg-white  mx-auto flex items-center justify-center'>
+                        {/* <div className='md:hidden block w-full bg-white  mx-auto flex items-center justify-center'>
                             <ul className="w-[70%] space-y-4 p-4  border-[1px] border-dashed border-[#FF7128] rounded-b-lg">
                                 {recentVoters.map((voter, index) => (
                                         <li key={index} className="flex items-center">
@@ -190,7 +191,7 @@ const Banner = () => {
                                         </li>
                                     ))}
                             </ul>
-                        </div>
+                        </div> */}
                         <div className="w-full md:w-1/2 md:block hidden">
                             <Progress 
                             setClicked={setClicked}

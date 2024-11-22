@@ -110,24 +110,15 @@ const Progress = ({ setClicked, clicked }) => {
     const progress = (voters.length / 10000) * 100;
 
     return (
-        <div className="bg-white p-4 rounded-lg ">
-            <div className="md:block hidden">
-            <div className="flex items-center justify-between mb-4 pt-4">
-                <h3 className="text-lg text-[#072E75]">
-                    <span className="font-semibold">{toBangla(voters.length)}</span> সাক্ষর
-                </h3>
-                <span className="text-[#072E75]">
-                    প্রয়োজন <span className="text-[#FF7128] font-semibold">১,০০,০০০</span>
-                </span>
-            </div>
-            </div>
-            <div className="w-full bg-gray-200 h-2 rounded-full mb-4">
-                <div
-                    className="bg-orange-500 h-2 rounded-full"
-                    style={{ width: `${progress}%` }}
-                ></div>
-            </div>
-            <ul className="space-y-4 py-4">
+         <div className="max-w-[1440px] w-full mx-auto px-4 md:px-10 py-[40px] md:py-[80px]">
+            <h2 className="md:text-[40px] text-[24px] font-semibold text-[#072E75] text-center mb-[40px]">
+                সর্বশেষ{" "}
+                <span className="text-[#FF7128]">ভোটার</span>
+            </h2>
+        <div className="bg-white p-4 rounded-lg shadow-lg w-[80%] mx-auto">
+            
+            
+            <ul className="space-y-4 py-4 ">
                 {isLoading
                     ? Array(5)
                         .fill(0)
@@ -161,6 +152,7 @@ const Progress = ({ setClicked, clicked }) => {
                         );
                     })}
             </ul>
+        </div>
         </div>
     );
 };

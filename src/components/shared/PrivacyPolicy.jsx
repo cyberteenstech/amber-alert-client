@@ -55,8 +55,7 @@ const PrivacyPolicy = () => {
                 <h2 className="text-2xl font-semibold mb-2">৬. আমাদের সাথে যোগাযোগ করুন</h2>
                 <p className="mb-4">যদি এই প্রাইভেসি পলিসি বা আপনার তথ্য ব্যবহারের বিষয়ে কোনো প্রশ্ন থাকে, আমাদের সাথে যোগাযোগ করুন:</p>
                 <ul className="list-none pl-6">
-                    <li><strong>ইমেইল:</strong> [ইমেইল ঠিকানা যোগ করুন]</li>
-                    <li><strong>ফোন নম্বর:</strong> [ফোন নম্বর যোগ করুন]</li>
+                    <li><strong>ইমেইল:</strong> amberalert@cyberteensfoundation.org</li>
                 </ul>
             </section>
 

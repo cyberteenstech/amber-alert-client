@@ -7,6 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Share2, Facebook, Twitter, Linkedin } from 'lucide-react';
 import Modal from 'react-modal';
+import Link from 'next/link';
 
 // Set the root element for the modal
 // Modal.setAppElement('#__next');
@@ -33,7 +34,7 @@ const PetitionForm = ({ setClicked }) => {
             }
         } catch (err) {
             console.error(err);
-            toast.error('একটি ত্রুটি ঘটেছে। অনুগ্রহ করে আবার চেষ্টা করুন।');
+            toast.warning('আপনি একটি ইমেইল দিয়ে একবার সাইন করতে পারবেন');
         }
     };
 
@@ -68,7 +69,7 @@ const PetitionForm = ({ setClicked }) => {
                 <span className="mr-2">📜</span> পিটিশন সাক্ষর করুন
             </h3>
             {!showShare ? (
-                <form onSubmit={handleSubmit(submitForm)}>
+                <form onSubmit={handleSubmit(submitForm)} className='w-full text-center'>
                     <div className="mb-3">
                         <input
                             type="text"
@@ -88,14 +89,14 @@ const PetitionForm = ({ setClicked }) => {
                     <div className="mb-3">
                         <input
                             type="tel"
-                            placeholder="মোবাইল"
+                            placeholder="মোবাইল (ঐচ্ছিক)"
                             className="w-full p-3 border border-gray-300 rounded-md bg-white text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-orange-400"
                             {...register("phone")}
                         />
                     </div>
                     <div className="mb-3">
                         <textarea
-                            placeholder="মন্তব্য"
+                            placeholder="মন্তব্য (ঐচ্ছিক)"
                             className="w-full p-3 border border-gray-300 rounded-md bg-white text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-orange-400"
                             rows={3}
                         ></textarea>
@@ -106,6 +107,7 @@ const PetitionForm = ({ setClicked }) => {
                     >
                         সম্পন্ন করুন
                     </button>
+                    <Link href="/privacy-policy" className='underline mt-2 text-sm text-center text-[#FF7128] w-full'>প্রাইভেসি পলিসি পড়ুন</Link>
                 </form>
             ) : (
                 <div className="text-center space-y-6">

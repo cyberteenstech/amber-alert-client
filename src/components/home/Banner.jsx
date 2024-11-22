@@ -126,9 +126,11 @@ const Banner = () => {
                         <IoDocumentTextOutline className="md:text-xl text-lg" /> চিঠি পড়ুন
                     </button></Link>
                 
-                <button onClick={() => openLinkToForm()} className="flex items-center gap-x-2 border-[#072E75] border-[1.5px] text-[#072E75] md:px-6 px-4 py-2 rounded-lg ">
-                    <RiVideoLine className="md:text-xl text-lg" />ভিডিও পাঠান
-                </button>
+                <Link href="#video-section" passHref>
+                <button className="flex items-center gap-x-2 border-[#072E75] border-[1.5px] text-[#072E75] md:px-6 px-4 py-2 rounded-lg ">
+                    <RiVideoLine className="md:text-xl text-lg" />ভিডিও দেখুন
+                    </button>
+                </Link>
             </div>
 
             <div className="flex items-center justify-around max-w-[1440px] w-full mx-auto">

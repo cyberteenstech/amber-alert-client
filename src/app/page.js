@@ -6,6 +6,7 @@ import OrganizedBy from '@/components/home/OrganizedBy';
 import Organizations from '@/components/home/Organizations';
 import VideoSection from '@/components/home/VideoSection';
 import React from 'react';
+import Supporters from '@/components/home/Supporters';
 
 const Home = () => {
   return (
@@ -13,7 +14,8 @@ const Home = () => {
       <Banner />
       <VideoSection />
       <Letter />
-      <Organizations/>
+      <Organizations />
+      <Supporters/>
       <Events />
       <FAQ />
       <OrganizedBy/>

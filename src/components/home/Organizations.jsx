@@ -8,12 +8,13 @@ const Organizations = () => {
         'মহিলা ও শিশু বিষয়ক মন্ত্রণালয়', // replace with your actual logo URLs
         'সমাজকল্যাণ মন্ত্রণালয়',
         'জাতীয় মানবাধিকার কমিশন', // replace with your actual logo URLs
-        'প্রতিনিধি ইউনিসেফ বাংলাদেশ',
+        'ইউনিসেফ বাংলাদেশ',
         'ডাক টেলিযোগাযোগ ও তথ্যপ্রযুক্তি মন্ত্রণালয়',
+        'আইন বিচার ও সংসদ বিষয়ক মন্ত্রণালয়',
     ];
 
     return (
-        <div className="max-w-[1440px] w-full mx-auto px-4 md:px-10 py-[60px] md:py-[120px]">
+        <div className="max-w-[1440px] w-full mx-auto px-4 md:px-10 py-[40px] md:py-[80px]">
             <h2 className="md:text-[40px] text-[24px] font-semibold text-[#072E75] text-center mb-[40px]">
                 আমাদের আবেদন পৌঁছে যাবে{" "}
                 <span className="text-[#FF7128]">যাদের কাছে</span>

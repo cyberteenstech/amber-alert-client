@@ -20,7 +20,7 @@ const Events = () => {
     ];
 
     return (
-        <section className="relative bg-gradient-to-b from-[#FFE8D6] to-[rgb(255,248,252)] py-16 md:py-24">
+        <section className="relative bg-gradient-to-b from-[#FFE8D6] to-[rgb(255,248,252)] py-[40px] md:py-[80px]">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-[#072E75] text-center mb-16">
                     আমাদের আসন্ন{" "}

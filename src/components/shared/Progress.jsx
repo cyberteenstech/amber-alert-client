@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import io from "socket.io-client";
 const Progress = ({ setClicked, clicked }) => {
-    const socketRef = useRef(null); 
+    const socketRef = useRef(null);
     const [voters, setVoters] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -19,10 +19,25 @@ const Progress = ({ setClicked, clicked }) => {
         }
     };
 
-    if (!socketRef.current) {
-        console.log("Initializing socket..."); // Debug log
-        socketRef.current = io(`https://api.amberalert4bangladesh.org`);
-    }
+    useEffect(() => {
+        if (!socketRef.current) {
+            socketRef.current = io(process.env.NEXT_PUBLIC_SERVER);
+
+            // Listen for real-time updates
+            socketRef.current.on("new_vote", (newVoter) => {
+                setVoters((prevVoters) => [newVoter, ...prevVoters]); // Prepend the new voter
+            });
+        }
+
+        getVotersData(); // Fetch initial data
+
+        return () => {
+            if (socketRef.current) {
+                socketRef.current.disconnect();
+                socketRef.current = null;
+            }
+        };
+    }, []);
     // Convert a number to Bangla
     const toBangla = (number) => {
         const banglaDigits = ["০", "১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯"];
@@ -37,10 +52,11 @@ const Progress = ({ setClicked, clicked }) => {
     const timeAgo = (createdAt) => {
         const now = new Date();
         const createdDate = new Date(createdAt);
-        const diffInSeconds = Math.floor((now - createdDate) / 1000);
+        const diffInSeconds = Math.max(0, Math.floor((now - createdDate) / 1000));
+
 
         if (diffInSeconds < 60) {
-            return `${diffInSeconds} সেকেন্ড.`;
+            return `${diffInSeconds} সে.`;
         }
 
         const diffInMinutes = Math.floor(diffInSeconds / 60);
@@ -56,44 +72,45 @@ const Progress = ({ setClicked, clicked }) => {
         const diffInDays = Math.floor(diffInHours / 24);
         return `${diffInDays} দিন.`;
     };
-
-    useEffect(() => {
-        // Initialize the socket connection
+    // useEffect(() => {
         if (!socketRef.current) {
-            socketRef.current = io(process.env.NEXT_PUBLIC_SERVER);
+            socketRef.current = io('https://api.amberalert4bangladesh.org');
 
             // Listen for new votes
-            socketRef.current.on("newVote", (newVoter) => {
+            socketRef.current.on("new_vote", (newVoter) => {
+                // console.log("Received new vote:", newVoter); // Debugging
                 setVoters((prevVoters) => [newVoter, ...prevVoters]);
             });
 
-            console.log("Socket connected.");
+            socketRef.current.on("connect_error", (error) => {
+                console.error("Socket connection error:", error);
+            });
         }
 
-        // Fetch initial voter data
-        getVotersData();
+        getVotersData(); // Fetch initial data
 
-        // Cleanup socket on unmount
-        return () => {
-            if (socketRef.current) {
-                socketRef.current.disconnect();
-                socketRef.current = null;
-            }
-        };
-    }, [clicked]);
+        // return () => {
+        //     if (socketRef.current) {
+        //         socketRef.current.disconnect();
+        //         socketRef.current = null;
+        //     }
+        // };
+    // }, []);
+
 
     if (clicked === true) {
         setClicked(false);
     }
 
     // Get the most recent 5 voters
-    const recentVoters = voters.slice(0, 5);
+    const recentVoters = voters.slice(0, 5); // Latest 5 voters
+    const totalVoters = voters.length;
 
     // Calculate progress as a percentage (assuming 100,000 is the goal)
     const progress = (voters.length / 10000) * 100;
 
     return (
-        <div className="bg-white p-4 rounded-lg shadow-md">
+        <div className="bg-white p-4 rounded-lg ">
             <div className="flex items-center justify-between mb-4 pt-4">
                 <h3 className="text-lg text-[#072E75]">
                     <span className="font-semibold">{toBangla(voters.length)}</span> সাক্ষর
@@ -122,9 +139,9 @@ const Progress = ({ setClicked, clicked }) => {
                                 <div className="ml-auto h-4 bg-gray-300 rounded w-10"></div>
                             </li>
                         ))
-                    : recentVoters.map((voter) => {
+                    : recentVoters.map((voter, index) => {
                         // Find the serial number in the overall voters list
-                        const serialNumber = voters.findIndex((v) => v._id === voter._id) + 1;
+                        const serialNumber = totalVoters - index;
 
                         return (
                             <li key={voter._id} className="flex items-center">

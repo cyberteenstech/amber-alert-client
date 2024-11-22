@@ -7,18 +7,18 @@ const VideoSection = () => {
     const [isPaused, setIsPaused] = useState(true);
 
     const handlePlayPause = () => {
-        setIsPaused(false);
+        setIsPaused(false);        
     };
 
     return (
-        <div className="relative">
+        <div id="video-section" className="relative">
             {/* Background */}
             <div className="absolute inset-0 -z-10 h-full w-full bg-white">
                 <div className="absolute top-[2%] left-[0%] h-[300px] w-[400px] -translate-x-1/2 rounded-full bg-gradient-to-r from-[#FF7128] to-[#FFD6BA] opacity-30 blur-[100px]"></div>
                 <div className="absolute top-[60%] left-[80%] md:h-[300px] h-[100px] md:w-[400px] w-[150px] -translate-x-1/2 rounded-full bg-gradient-to-r from-[#FF7128] to-[#FFD6BA] opacity-30 blur-[100px]"></div>
             </div>
             {/* Content */}
-            <div className="max-w-[1440px] w-full mx-auto px-4 md:px-10 md:my-[120px] my-[60px]">
+            <div className="max-w-[1440px] w-full mx-auto px-4 md:px-10 md:my-[80px] my-[40px]">
                 <h2 className="md:text-[40px] text-[24px] font-semibold text-[#072E75] text-center">
                     সরকারের <span className="text-[#FF7128] md:mb-[85px] mb-[24px]"> প্রতি বার্তা</span>
                 </h2>
@@ -28,7 +28,7 @@ const VideoSection = () => {
                     {/* React Player */}
                     <div className="relative w-full h-0 pb-[56.25%] rounded-xl shadow-lg overflow-hidden">
                         <ReactPlayer
-                            url="https://www.youtube.com/watch?v=sXEKFSaxGzE&ab_channel=AfnanFerdousi"
+                            url="https://www.youtube.com/watch?v=_bpM49puXMM&feature=youtu.be"
                             playing={!isPaused}
                             controls
                             width="100%"

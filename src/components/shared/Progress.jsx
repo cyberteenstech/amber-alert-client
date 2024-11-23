@@ -152,7 +152,9 @@ const Progress = ({ setClicked, clicked }) => {
                                 </div>
                                 <div className="ml-3">
                                     <p className="text-sm text-[#072E75] capitalize">{voter.name}</p>
-                                    <p className="text-xs text-gray-500">আপনাকে ধন্যবাদ সাইন করার জন্য</p>
+                                    <p className="text-xs text-gray-500">
+                                        {voter.email.slice(0, 3)}***
+                                    </p>
                                 </div>
                                 <span className="ml-auto text-sm text-[#072E75]">
                                     {timeAgo(voter.createdAt)}

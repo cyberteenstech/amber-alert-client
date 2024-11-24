@@ -39,12 +39,7 @@ const Navbar = () => {
                 </div>
 
                 <div className="hidden md:flex items-center gap-x-4">
-                    <button
-                        onClick={() => changeLanguage(language === "en" ? "bn" : "en")}
-                        className="text-[#FF7128] text-lg px-3 py-1 border border-[#FF7128] rounded-lg"
-                    >
-                        {language === "bn" ? "English" : "বাংলা"}
-                    </button>
+                   
                     <Link href="#letter-section" passHref>
                         <button className="flex items-center gap-x-2 bg-[#FF7128] text-[#fff] px-4 py-2 rounded-lg">
                             <IoDocumentTextOutline className="text-xl" />
@@ -56,6 +51,13 @@ const Navbar = () => {
                             {language === "bn" ? "যোগ দিন" : "Join Us"}
                         </button>
                     </Link>
+                     <button
+                        onClick={() => changeLanguage(language === "en" ? "bn" : "en")}
+                        className="text-[#FF7128] text-lg px-3 py-1 rounded-lg"
+                    >
+                        <span className={language === "en" ? "font-bold" : ""}>En/</span>
+                        <span className={language === "bn" ? "font-bold" : ""}>Bn</span>
+                    </button>
                 </div>
 
                 {/* Mobile Menu Toggle */}

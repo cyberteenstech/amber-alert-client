@@ -2,9 +2,11 @@
 
 import React, { useState } from "react";
 import ReactPlayer from "react-player";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const VideoSection = () => {
     const [isPaused, setIsPaused] = useState(true);
+    const { language, changeLanguage } = useLanguage();
 
     const handlePlayPause = () => {
         setIsPaused(false);        
@@ -20,7 +22,7 @@ const VideoSection = () => {
             {/* Content */}
             <div className="max-w-[1440px] w-full mx-auto px-4 md:px-10 md:my-[80px] my-[40px]">
                 <h2 className="md:text-[40px] text-[24px] font-semibold text-[#072E75] text-center">
-                    সরকারের <span className="text-[#FF7128] md:mb-[85px] my-[24px]"> প্রতি বার্তা</span>
+                   {language === "bn" ? "সরকারের" : "Message To"}  <span className="text-[#FF7128] md:mb-[85px] my-[24px]"> {language === "bn" ? "প্রতি বার্তা" : "Government"}</span>
                 </h2>
 
                 {/* Video Section */}
@@ -28,7 +30,7 @@ const VideoSection = () => {
                     {/* React Player */}
                     <div className="relative w-full h-0 pb-[56.25%] rounded-xl shadow-lg overflow-hidden">
                         <ReactPlayer
-                            url="https://youtu.be/CIF2cs48ELg"
+                            url="https://youtu.be/ONEBdKjN-2Q"
                             playing={!isPaused}
                             controls
                             width="100%"

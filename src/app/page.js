@@ -6,10 +6,10 @@ import Letter from '@/components/home/Letter';
 import Organizations from '@/components/home/Organizations';
 import VideoSection from '@/components/home/VideoSection';
 import React from 'react';
-// import Supporters from '@/components/home/Supporters';
+import Supporters from '@/components/home/Supporters';
 import LatestVoters from '@/components/home/LatestVoters';
 import News from '@/components/home/News';
-import OrganizedBy from '@/components/home/OrganizedBy';
+// import OrganizedBy from '@/components/home/OrganizedBy';
 
 const Home = () => {
   return (
@@ -22,10 +22,10 @@ const Home = () => {
       <VideoSection />
       <Letter />
       <Organizations />
-      {/* <Supporters/> */}
       <Events />
       <FAQ />
-      <OrganizedBy/>
+      <Supporters/>
+      {/* <OrganizedBy/> */}
     </div>
   );
 };

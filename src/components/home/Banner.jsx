@@ -9,12 +9,15 @@ import Image from 'next/image';
 import axios from 'axios';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useLanguage } from "@/contexts/LanguageContext";
+import TypingEffect from 'react-typing-effect';
 
 const Banner = () => {
     const [clicked, setClicked] = useState(false)
     const [voters, setVoters] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const router = useRouter();
+     const { language, changeLanguage } = useLanguage();
 
     // Fetch voter data
     const getVotersData = async () => {
@@ -91,21 +94,39 @@ const Banner = () => {
             {/* Main Banner Content */}
           
             <h2 className='!leading-[1.5] text-3xl md:text-5xl font-bold mt-20 text-[#072E75] text-center flex flex-col justify-center'>
-                <span className='text-sm md:text-base text-[#FF7128] text-center'>#every_child_matters</span>
-                বাংলাদেশে শিশু নিখোঁজ <br />
-                প্রতিরোধ করতে সামিল হোন আপনিও!
-            </h2>
+  <span className="text-sm md:text-base text-[#FF7128] text-center">
+  <TypingEffect 
+    text={['#EveryChildMatters', '#SaveMissingChildren', '#AmberAlertForBangladesh']} 
+    speed={100} 
+    eraseSpeed={50} 
+    typingDelay={500}
+    eraseDelay={1000}
+  />
+</span>
+    {language === "bn" ? (
+        <>
+            বাংলাদেশে শিশু নিখোঁজ <br />
+            প্রতিরোধ করতে সামিল হোন আপনিও!
+        </>
+    ) : (
+        <>
+            Join us In preventing<br />
+             child disappearances in Bangladesh!
+        </>
+    )}
+</h2>
 
             <div className='flex justify-center items-center mt-4 gap-x-4'>
                 <Link href="#letter-section" passHref>
                     <button className="flex items-center gap-x-2 bg-[#FF7128] border-[#FF7128] border-[1.5px] text-[#fff] md:px-6 px-4 py-2 rounded-lg ">
-                        <IoDocumentTextOutline className="md:text-xl text-lg" /> চিঠি পড়ুন
+                        <IoDocumentTextOutline className="md:text-xl text-lg" /> {language === "bn" ? "চিঠি পড়ুন" : "Read Letter"}
                     </button></Link>
                 
                 <Link href="#video-section" passHref _blank>
                     <button className="flex items-center gap-x-2 border-[#072E75] border-[1.5px] text-[#072E75] md:px-6 px-4 py-2 rounded-lg ">
                         <RiVideoLine className="md:text-xl text-lg" />
-                        ভিডিও দেখুন
+                        {language === "bn" ? "ভিডিও দেখুন" : "Watch Video"}
+                        
                     </button>
                 </Link>
             </div>
@@ -134,10 +155,11 @@ const Banner = () => {
                         <div className="md:hidden block w-[70%]">
                             <div className="flex items-center justify-between mb-2 w-full">
                                 <h3 className="text-[12px] text-[#072E75]">
-                                    <span className="font-medium text-[12px]">{toBangla(voters.length)}</span> সাক্ষর
+                                    <span className="font-medium text-[12px]">{toBangla(voters.length)}</span> {language === "bn" ? "সাক্ষর" : "Signs"}
                                 </h3>
                                 <span className="text-[#072E75] text-[12px]">
-                                    প্রয়োজন <span className="text-[#FF7128] font-medium text-[12px]">৫,০০,০০০</span>
+                                    {language === "bn" ? "প্রয়োজন" : "Need"}
+                                     <span className="text-[#FF7128] font-medium text-[12px]">{language === "৫,০০,০০০" ? "সাক্ষর" : "500000"}</span>
                                 </span>
                             </div>
                             

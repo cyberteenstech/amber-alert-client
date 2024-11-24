@@ -28,7 +28,7 @@ const VideoSection = () => {
                     {/* React Player */}
                     <div className="relative w-full h-0 pb-[56.25%] rounded-xl shadow-lg overflow-hidden">
                         <ReactPlayer
-                            url="https://www.youtube.com/watch?v=_bpM49puXMM&feature=youtu.be"
+                            url="https://youtu.be/CIF2cs48ELg"
                             playing={!isPaused}
                             controls
                             width="100%"

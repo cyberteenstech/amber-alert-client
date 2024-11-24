@@ -23,8 +23,8 @@ const Navbar = () => {
                     <Image
                         src="/amberalert.png"
                         alt="Logo"
-                        width={50}
-                        height={50} 
+                        width={80}
+                        height={80} 
                     />
 
                 </Link>

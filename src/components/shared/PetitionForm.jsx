@@ -8,12 +8,14 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Share2, Facebook, Twitter, Linkedin } from 'lucide-react';
 import Modal from 'react-modal';
 import Link from 'next/link';
+import ToastAlert from './ToastAlert'; // Import ToastAlert
 
 // Set the root element for the modal
 // Modal.setAppElement('#__next');
 
 const PetitionForm = ({ setClicked }) => {
     const [showShare, setShowShare] = useState(false);
+    const [showToast, setShowToast] = useState(false); 
     const {
         register,
         handleSubmit,
@@ -70,6 +72,11 @@ const PetitionForm = ({ setClicked }) => {
         if (alertAudioRef.current) {
             alertAudioRef.current.play().catch(err => console.error("Audio playback error:", err));
         }
+        setShowToast(true);
+
+        // Hide the ToastAlert after 5 seconds
+        setTimeout(() => setShowToast(false), 5000);
+
     };
 
 
@@ -79,63 +86,77 @@ const PetitionForm = ({ setClicked }) => {
             <h3 className="text-lg font-semibold text-orange-500 mb-4 flex items-center">
                 <span className="mr-2">📜</span> পিটিশন সাক্ষর করুন
             </h3>
-                <form onSubmit={handleSubmit(submitForm)} className='w-full text-center'>
-                    <div className="mb-3">
-                        <input
-                            type="text"
-                            placeholder="*আপনার নাম"
-                            className="w-full p-3 border border-gray-300 rounded-md bg-white text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-orange-400"
-                            {...register("name", { required: true })}
-                        />
-                    </div>
-                    <div className="mb-3">
-                        <input
-                            type="email"
-                            placeholder="*ইমেইল"
-                            className="w-full p-3 border border-gray-300 rounded-md bg-white text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-orange-400"
-                            {...register("email", { required: true })}
-                        />
-                    </div>
-                    <div className="mb-3">
-                        <input
-                            type="tel"
-                            placeholder="মোবাইল"
-                            className="w-full p-3 border border-gray-300 rounded-md bg-white text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-orange-400"
-                            {...register("phone", {
-                                required: true
-                            })}
-                        />
-                    </div>
-                    <div className="mb-3">
-                        <textarea
-                            placeholder="মন্তব্য (ঐচ্ছিক)"
-                            className="w-full p-3 border border-gray-300 rounded-md bg-white text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-orange-400"
-                            rows={3}
-                        ></textarea>
-                    </div>
-                    <button
-                        type="submit"
-                        className="w-full bg-orange-500 text-white font-semibold text-sm py-3 rounded-md hover:bg-orange-600 transition duration-300"
-                    >
-                        সম্পন্ন করুন
-                    </button>
-                    <Link href="/privacy-policy" className='underline mt-2 text-sm text-center text-[#FF7128] w-full'>প্রাইভেসি পলিসি পড়ুন</Link>
-                </form>
+            <form onSubmit={handleSubmit(submitForm)} className='w-full text-center'>
+                <div className="mb-3">
+                    <input
+                        type="text"
+                        placeholder="*আপনার নাম"
+                        className="w-full p-3 border border-gray-300 rounded-md bg-white text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-orange-400"
+                        {...register("name", { required: true })}
+                    />
+                </div>
+                <div className="mb-3">
+                    <input
+                        type="email"
+                        placeholder="*ইমেইল"
+                        className="w-full p-3 border border-gray-300 rounded-md bg-white text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-orange-400"
+                        {...register("email", { required: true })}
+                    />
+                </div>
+                <div className="mb-3">
+                    <input
+                        type="tel"
+                        placeholder="মোবাইল"
+                        className="w-full p-3 border border-gray-300 rounded-md bg-white text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-orange-400"
+                        {...register("phone")}
+                    />
+                </div>
+                <div className="mb-3">
+                    <textarea
+                        placeholder="মন্তব্য (ঐচ্ছিক)"
+                        className="w-full p-3 border border-gray-300 rounded-md bg-white text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-orange-400"
+                        rows={3}
+                    ></textarea>
+                </div>
+                <button
+                    type="submit"
+                    className="w-full bg-orange-500 text-white font-semibold text-sm py-3 rounded-md hover:bg-orange-600 transition duration-300"
+                >
+                    সম্পন্ন করুন
+                </button>
+                <Link href="/privacy-policy" className='underline mt-2 text-sm text-center text-[#FF7128] w-full'>প্রাইভেসি পলিসি পড়ুন</Link>
+            </form>
 
             {/* Modal for sharing options */}
             <Modal
                 isOpen={showShare}
                 onRequestClose={() => setShowShare(false)}
-                contentLabel="Share Petition"
+                contentLabel="Amber Alert Modal"
                 className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-md bg-white p-6 rounded-lg shadow-md border-none"
             >
-                <div className='flex gap-x-2'>
-                    <h4 className="text-xl font-semibold text-[#072E75] mb-4">Amber Alert এর অ্যালার্ট সাউন্ড শুনুন</h4>
-                    <button className='text-2xl mt-[-11px]' onClick={() => playAlertSound()}>🔊</button>
+                <div className="flex items-start mb-4">
+                    <span className="text-3xl text-yellow-500">⚠️</span>
+                    <div className="ml-3">
+                        <h4 className="text-2xl font-bold text-black">Amber Alert</h4>
+                        <p className="text-gray-600">Bangladesh AMBER Alert Sound</p>
+                    </div>
                 </div>
-                <p className="text-gray-600 mb-6">বাংলাদেশে অ্যাম্বার অ্যালার্ট বাস্তবায়নের পর এভাবেই বেজে উঠবে আপনার ফোন যখন কোন শিশু হারিয়ে যাবে</p>
-                <h4 className="text-xl font-semibold text-[#FF7128] mb-4">পিটিশন শেয়ার করুন</h4>
-                <p className="text-gray-600 mb-6">আপনার সমর্থনের জন্য আমরা সত্যিই কৃতজ্ঞ। আপনার স্বাক্ষর বাংলাদেশের অ্যাম্বার অ্যালার্ট বাস্তবায়নের পথে একটি বড় পদক্ষেপ। এখন এটি আপনার বন্ধু ও পরিবারের সঙ্গে শেয়ার করে আরও মানুষকে যুক্ত করতে সাহায্য করুন।</p>
+                <div className="flex items-center gap-2 mb-6">
+                    <button
+                        className="text-2xl text-blue-600"
+                        onClick={() => playAlertSound()}
+                    >
+                        🔊 Play Sound
+                    </button>
+                </div>
+                <p className="text-gray-700 mb-6">
+                    This is how the alert sound will play on your phone if an AMBER Alert
+                    is implemented in Bangladesh and a child goes missing.
+                </p>
+                <h4 className="text-xl font-semibold text-[#FF7128] mb-4">Share the Petition</h4>
+                <p className="text-gray-600 mb-6">
+                    আপনার সমর্থনের জন্য আমরা সত্যিই কৃতজ্ঞ। আপনার স্বাক্ষর বাংলাদেশের অ্যাম্বার অ্যালার্ট বাস্তবায়নের পথে একটি বড় পদক্ষেপ। এখন এটি আপনার বন্ধু ও পরিবারের সঙ্গে শেয়ার করে আরও মানুষকে যুক্ত করতে সাহায্য করুন।
+                </p>
                 <div className="flex justify-center space-x-4 mb-6">
                     <button
                         onClick={() => shareToSocialMedia('facebook')}
@@ -160,11 +181,13 @@ const PetitionForm = ({ setClicked }) => {
                     onClick={() => setShowShare(false)}
                     className="w-full bg-[#FF7128] text-white font-semibold py-2 px-4 rounded-md hover:bg-[#ff874b] transition duration-300"
                 >
-                    বন্ধ করুন
+                    Close
                 </button>
             </Modal>
 
+
             <ToastContainer />
+            {showToast && <ToastAlert />} {/* Conditionally render the ToastAlert */}
             <audio ref={alertAudioRef} src="/alert.mp3" preload="auto" />
         </div>
     );

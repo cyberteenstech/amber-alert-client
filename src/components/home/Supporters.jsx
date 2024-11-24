@@ -79,7 +79,7 @@ const Supporters = () => {
                     ))}
                 </div>
             </div>
-            <Link  href="https://forms.gle/JGMECekHC59HRwdT7" className="mt-2 underline">আমাদের সমর্থন করতে যুক্ত হোন</Link>
+            <Link href="https://forms.gle/JGMECekHC59HRwdT7" className="mt-2 underline w-full text-center text-[#FF7128]">আমাদের সমর্থন করতে যুক্ত হোন</Link>
         </div>
     );
 };

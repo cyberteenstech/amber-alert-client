@@ -89,7 +89,7 @@ const Letter = () => {
                             </p>
                             <p className="text-[#072E75] text-base md:text-lg text-[12px] mb-4">
                                 আপনার একটি স্বাক্ষর একটি শিশুর জীবন রক্ষা করতে পারে।
-                                #AmberAlertBD #ProtectOurChildren #Amberalert4bangladesh
+                               #EveryChildMatters #SaveMissingChildren #AmberAlertForBangladesh
                             </p>
                             {/* Button */}
                             {/* <div className="mt-6 text-start">
@@ -147,7 +147,7 @@ const Letter = () => {
                                     </p>
                                     <p className="text-[#072E75] text-base md:text-lg text-[12px] mb-4">
                                         Your signature can save a child&quot;s life.
-                                        #AmberAlertBD #ProtectOurChildren #Amberalert4bangladesh
+                                       #EveryChildMatters #SaveMissingChildren #AmberAlertForBangladesh
                                     </p>
                                 </div>
                         )}

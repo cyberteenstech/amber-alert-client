@@ -36,25 +36,29 @@ const News = () => {
                 <div className="flex animate-marquee whitespace-nowrap space-x-10">
                     {/* First news list */}
                     {newses.map((news) => (
-                        <div
+                        <a
                             key={news.id}
+                            href={news.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className="flex items-center space-x-3 cursor-pointer"
-                            onClick={() => window.open(news.link, "_blank")}
                         >
                             <div className="bg-red-500 w-3 h-3 rounded-full"></div>
                             <p className="text-lg ps-2">{news.title}</p>
-                        </div>
+                        </a>
                     ))}
                     {/* Second news list for seamless looping */}
                     {newses.map((news) => (
-                        <div
+                        <a
                             key={news.id + '-clone'}
+                            href={news.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className="flex items-center space-x-3 cursor-pointer"
-                            onClick={() => window.open(news.link, "_blank")}
                         >
                             <div className="bg-red-500 w-3 h-3 rounded-full"></div>
                             <p className="text-lg ps-2">{news.title}</p>
-                        </div>
+                        </a>
                     ))}
                 </div>
             </div>

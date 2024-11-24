@@ -99,3 +99,22 @@ html {
 .image-beep{
  animation: beepTwo 4s infinite ease-in-out;
 }
+
+
+.ripple-effect {
+   width: 10px;
+    height: 10px;
+    background-color: red;
+    border-radius: 50%;
+    position: absolute;
+    box-shadow: 0 0 8px rgba(255, 0, 0, 0.5);
+    animation: beep 2s infinite;
+}
+
+
+@keyframes ripple-animation {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}

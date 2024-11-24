@@ -4,6 +4,7 @@ import React from 'react';
 const Supporters = () => {
     const datas = [
         "https://i.ibb.co.com/f8mp9vV/image.png",
+        "https://i.ibb.co.com/VwwQwbM/images.png"
     ];
 
     return (

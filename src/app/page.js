@@ -8,6 +8,7 @@ import VideoSection from '@/components/home/VideoSection';
 import React from 'react';
 import Supporters from '@/components/home/Supporters';
 import LatestVoters from '@/components/home/LatestVoters';
+import News from '@/components/home/News';
 
 const Home = () => {
   return (
@@ -16,6 +17,7 @@ const Home = () => {
       <div className="md:hidden block">
         <LatestVoters/>
       </div>
+      <News/>
       <VideoSection />
       <Letter />
       <Organizations />

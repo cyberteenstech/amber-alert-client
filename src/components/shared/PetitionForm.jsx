@@ -9,12 +9,14 @@ import { Share2, Facebook, Twitter, Linkedin } from 'lucide-react';
 import Modal from 'react-modal';
 import Link from 'next/link';
 import ToastAlert from './ToastAlert'; // Import ToastAlert
+import { FaFacebookF, FaLinkedinIn, FaXTwitter } from "react-icons/fa6";
+import { FaFacebookMessenger, FaWhatsapp } from 'react-icons/fa';
 
 // Set the root element for the modal
 // Modal.setAppElement('#__next');
 
 const PetitionForm = ({ setClicked }) => {
-    const [showShare, setShowShare] = useState(false);
+    const [showShare, setShowShare] = useState(true);
     const [showToast, setShowToast] = useState(false); 
     const {
         register,
@@ -46,7 +48,7 @@ const PetitionForm = ({ setClicked }) => {
     };
 
     const shareToSocialMedia = (platform) => {
-        const text = encodeURIComponent("আমি একটি গুরুত্বপূর্ণ পিটিশনে সাক্ষর করেছি। আপনিও যোগ দিন এবং পরিবর্তন আনুন!");
+        const text = encodeURIComponent("বাংলাদেশে শিশুদের সুরক্ষায় Amber Alert চালুর দাবীতে আমি একটি গুরুত্বপূর্ণ পিটিশনে সাক্ষর করেছি। আপনিও স্বাক্ষর করুনঃ #Amberalert4bangladesh #Every_Child_Matters");
         const url = encodeURIComponent(window.location.href); // Current page URL
 
         let shareUrl = '';
@@ -61,6 +63,13 @@ const PetitionForm = ({ setClicked }) => {
             case 'linkedin':
                 shareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${text}`;
                 break;
+            case 'whatsapp':
+                shareUrl = `https://wa.me/?text=${text} ${url}`;
+                break;
+            case 'messenger':
+                shareUrl = `https://www.messenger.com/share/?link=${url}&quote=${text}`;
+                break;
+            
             default:
                 break;
         }
@@ -162,24 +171,36 @@ const PetitionForm = ({ setClicked }) => {
                         onClick={() => shareToSocialMedia('facebook')}
                         className="flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition duration-300"
                     >
-                        <Facebook className="mr-2 h-5 w-5" />
+                        <FaFacebookF className="text-2xl" />
                     </button>
                     <button
                         onClick={() => shareToSocialMedia('twitter')}
                         className="flex items-center justify-center bg-sky-500 hover:bg-sky-600 text-white font-medium py-2 px-4 rounded-md transition duration-300"
                     >
-                        <Twitter className="mr-2 h-5 w-5" />
+                        <FaXTwitter className="text-2xl" />
                     </button>
                     <button
                         onClick={() => shareToSocialMedia('linkedin')}
                         className="flex items-center justify-center bg-blue-700 hover:bg-blue-800 text-white font-medium py-2 px-4 rounded-md transition duration-300"
                     >
-                        <Linkedin className="mr-2 h-5 w-5" />
+                        <FaLinkedinIn className="text-2xl" />
+                    </button>
+                    <button
+                        onClick={() => shareToSocialMedia('whatsapp')}
+                        className="flex items-center justify-center bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded-md transition duration-300"
+                    >
+                        <FaWhatsapp className="text-2xl" />
+                    </button>
+                    <button
+                        onClick={() => shareToSocialMedia('messenger')}
+                        className="flex items-center justify-center bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-md transition duration-300"
+                    >
+                        <FaFacebookMessenger className="text-2xl" />
                     </button>
                 </div>
                 <button
                     onClick={() => setShowShare(false)}
-                    className="w-full bg-[#FF7128] text-white font-semibold py-2 px-4 rounded-md hover:bg-[#ff874b] transition duration-300"
+                    className="mt-4 w-full bg-gray-500 text-white py-3 rounded-md hover:bg-gray-600 transition duration-300"
                 >
                     Close
                 </button>

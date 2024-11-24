@@ -36,12 +36,20 @@ const Navbar = () => {
                 </div>
 
                 <div className="hidden md:block">
-                    <Link href="#letter-section" passHref>
-                        <button className="flex items-center gap-x-2 bg-[#FF7128] text-[#fff] px-4 py-2 rounded-lg">
-                            <IoDocumentTextOutline className="text-xl" /> চিঠি পড়ুন
-                        </button>
-                    </Link>
+                    <div className="flex items-center gap-x-4">
+                        <Link href="#letter-section" passHref>
+                            <button className="flex items-center gap-x-2 bg-[#FF7128] text-[#fff] px-4 py-2 rounded-lg">
+                                <IoDocumentTextOutline className="text-xl" /> চিঠি পড়ুন
+                            </button>
+                        </Link>
+                        <Link href="https://forms.gle/JGMECekHC59HRwdT7" passHref>
+                            <button className="flex items-center gap-x-2 border-[#FF7128] border-[2px] text-[#FF7128] px-4 py-2 rounded-lg">
+                                যোগ দিন
+                            </button>
+                        </Link>
+                    </div>
                 </div>
+              
 
                 {/* Mobile Menu Toggle */}
                 <div className="md:hidden">
@@ -56,6 +64,7 @@ const Navbar = () => {
                         <Link href="/about" onClick={() => setIsMenuOpen(false)}>আমাদের সম্পর্কে</Link>
                         <Link href="/goals" onClick={() => setIsMenuOpen(false)}>আমাদের লক্ষ</Link>
                         <Link href="/contact" onClick={() => setIsMenuOpen(false)}>যোগাযোগ</Link>
+                        <Link href="https://forms.gle/JGMECekHC59HRwdT7" onClick={() => setIsMenuOpen(false)}> যোগ দিন</Link>
                     </div>
                 )}
             </div>

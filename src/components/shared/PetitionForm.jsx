@@ -18,12 +18,21 @@ import { FaFacebookMessenger, FaWhatsapp } from 'react-icons/fa';
 const PetitionForm = ({ setClicked }) => {
     const [showShare, setShowShare] = useState(false);
     const [showToast, setShowToast] = useState(false); 
+    const [language, setLanguage] = useState("bn");
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm();
-    const language = localStorage.getItem("language");
+    useEffect(() => {
+        // Check if localStorage is available
+        if (typeof window !== "undefined") {
+            const storedLanguage = localStorage.getItem("language");
+            if (storedLanguage) {
+                setLanguage(storedLanguage);
+            }
+        }
+    }, []);
 
     const alertAudioRef = useRef(null);
     const submitForm = async (data, e) => {

@@ -1,10 +1,19 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaHandHoldingHeart } from "react-icons/fa";
 
 const Letter = () => {
-    const language = localStorage.getItem("language");
+    const [language, setLanguage] = useState("bn");
+    useEffect(() => {
+        // Check if localStorage is available
+        if (typeof window !== "undefined") {
+            const storedLanguage = localStorage.getItem("language");
+            if (storedLanguage) {
+                setLanguage(storedLanguage);
+            }
+        }
+    }, []);
     return (
         <div id="letter-section" className="relative">
             {/* Background */}

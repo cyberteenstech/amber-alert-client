@@ -94,7 +94,7 @@ const Banner = () => {
             {/* Main Banner Content */}
 
             <h2 className='!leading-[1.5] text-3xl md:text-5xl font-bold mt-20 text-[#072E75] text-center flex flex-col justify-center'>
-                <span className="text-sm md:text-base text-[#FF7128] text-center">
+                <span className="text-[16px] md:text-base text-[#FF7128] text-center">
                     <TypingEffect
                         text={['#EveryChildMatters', '#SaveMissingChildren', '#AmberAlertForBangladesh']}
                         speed={100}

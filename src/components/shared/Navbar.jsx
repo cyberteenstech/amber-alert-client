@@ -86,7 +86,6 @@ const Navbar = () => {
                             {language === "bn" ? "যোগ দিন" : "Join Us"}
                         </Link>
                         <button
-                            onClick={switchLanguage}
                             className="mt-4 text-[#FF7128] bg-white px-4 py-2 rounded-lg"
                         >
                             {language === "bn" ? "English" : "বাংলা"}

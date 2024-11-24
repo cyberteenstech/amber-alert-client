@@ -1,7 +1,10 @@
+"use client";
 import Image from 'next/image';
 import React from 'react';
 import Link from "next/link";
+import { useLanguage } from "@/contexts/LanguageContext";
 const Supporters = () => {
+    const { language, changeLanguage } = useLanguage();
     const datas = [
         "https://i.ibb.co.com/f8mp9vV/image.png",
         "https://i.ibb.co.com/VwwQwbM/images.png",
@@ -15,8 +18,8 @@ const Supporters = () => {
     return (
         <div className="max-w-[1440px] w-full mx-auto px-4 md:px-10 py-[40px] md:py-[60px] overflow-hidden">
             <h2 className="md:text-[40px] text-[24px] font-semibold text-[#072E75] text-center mb-[40px]">
-                শিশু নিখোঁজের বিরুদ্ধে{" "}
-                <span className="text-[#FF7128]">রুখে দাড়াই একসাথে</span>
+                {language === "bn" ? "শিশু নিখোঁজের বিরুদ্ধে" : "Let's stand together"}{" "}
+                <span className="text-[#FF7128]"> {language === "bn" ? "রুখে দাড়াই একসাথে" : "against child abductions"}</span>
             </h2>
             <div className="relative">
                 <div className="whitespace-nowrap animate-marquee text-2xl font-semibold text-[#072E75] flex items-center gap-x-8">

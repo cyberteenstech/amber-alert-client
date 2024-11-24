@@ -1,9 +1,11 @@
 "use client";
 
 import React, { useState } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Events = () => {
     const [expandedId, setExpandedId] = useState(null);
+    const { language, changeLanguage } = useLanguage();
     const datas = [
         {
             id: 1,
@@ -23,8 +25,8 @@ const Events = () => {
         <section className="relative bg-gradient-to-b from-[#FFE8D6] to-[rgb(255,248,252)] py-[40px] md:py-[80px]">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-[#072E75] text-center mb-16">
-                    আমাদের আসন্ন{" "}
-                    <span className="text-[#FF7128]">ইভেন্ট</span>
+                    {language === "bn" ? "আমাদের আসন্ন" : "Upcoming"}  {" "}
+                    <span className="text-[#FF7128]">{language === "bn" ? "ইভেন্ট" : "Events"}</span>
                 </h2>
 
                 <div className="relative">

@@ -1,11 +1,11 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import axios from 'axios'
-
+import { useLanguage } from "@/contexts/LanguageContext";
 // Define the structure of FAQ data
 const FAQ = () => {
     const [faqs, setFaqs] = useState([]);
-
+    const { language, changeLanguage } = useLanguage();
     // Fetch voter data
     const getFaqsData = async () => {
         try {
@@ -29,8 +29,8 @@ const FAQ = () => {
         <div className="max-w-[1440px] w-full mx-auto px-4 md:px-10 py-[40px] md:py-[80px]">
             
             <h2 className="md:text-[40px] text-[24px] font-semibold text-[#072E75] text-center mb-[40px]">
-                জিজ্ঞাসিত{" "}
-                <span className="text-[#FF7128]">প্রশ্ন </span>
+                {language === "bn" ? "জিজ্ঞাসিত" : "FA"}
+                <span className="text-[#FF7128]">{language === "bn" ? "প্রশ্ন" : "Q"} </span>
             </h2>
             <div className="space-y-4">
                 {faqs.length > 0 && faqs.map((faq, index) => (

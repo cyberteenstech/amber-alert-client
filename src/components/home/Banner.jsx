@@ -15,7 +15,6 @@ const Banner = () => {
     const [voters, setVoters] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const router = useRouter();
-    const language = localStorage.getItem("language");
 
     // Fetch voter data
     const getVotersData = async () => {

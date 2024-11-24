@@ -13,7 +13,7 @@ import Link from 'next/link';
 // Modal.setAppElement('#__next');
 
 const PetitionForm = ({ setClicked }) => {
-    const [showShare, setShowShare] = useState(false);
+    const [showShare, setShowShare] = useState(true);
     const {
         register,
         handleSubmit,
@@ -66,14 +66,19 @@ const PetitionForm = ({ setClicked }) => {
         window.open(shareUrl, '_blank');
     };
 
+    const playAlertSound = () => {
+        if (alertAudioRef.current) {
+            alertAudioRef.current.play().catch(err => console.error("Audio playback error:", err));
+        }
+    };
+
 
     return (
         <div className="bg-[#ffd8c412] border-r-[1px] md:border-l-[0px] border-l-[1px] md:border-b-[0px] border-b-[1px] border-[#FF7128] border-dashed rounded-lg shadow-md p-5 relative">
             <div className="absolute -top-2 left-0 right-0 h-4 bg-[#FF7128] rounded-t-lg"></div>
-            <h3 className="text-lg font-bold text-orange-500 mb-4 flex items-center">
+            <h3 className="text-lg font-semibold text-orange-500 mb-4 flex items-center">
                 <span className="mr-2">📜</span> পিটিশন সাক্ষর করুন
             </h3>
-            {!showShare ? (
                 <form onSubmit={handleSubmit(submitForm)} className='w-full text-center'>
                     <div className="mb-3">
                         <input
@@ -94,9 +99,11 @@ const PetitionForm = ({ setClicked }) => {
                     <div className="mb-3">
                         <input
                             type="tel"
-                            placeholder="মোবাইল (ঐচ্ছিক)"
+                            placeholder="মোবাইল"
                             className="w-full p-3 border border-gray-300 rounded-md bg-white text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-orange-400"
-                            {...register("phone")}
+                            {...register("phone", {
+                                required: true
+                            })}
                         />
                     </div>
                     <div className="mb-3">
@@ -114,27 +121,20 @@ const PetitionForm = ({ setClicked }) => {
                     </button>
                     <Link href="/privacy-policy" className='underline mt-2 text-sm text-center text-[#FF7128] w-full'>প্রাইভেসি পলিসি পড়ুন</Link>
                 </form>
-            ) : (
-                <div className="text-center space-y-6">
-                    <h4 className="text-xl font-semibold text-gray-800">পিটিশন সাক্ষর করার জন্য ধন্যবাদ!</h4>
-                    <p className="text-gray-600">এই পিটিশন শেয়ার করে আরও মানুষের কাছে পৌঁছে দিন:</p>
-                    <button
-                        onClick={() => setShowShare(true)}
-                        className="flex items-center justify-center bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-md transition duration-300"
-                    >
-                        <Share2 className="mr-2 h-5 w-5" />
-                    </button>
-                </div>
-            )}
 
             {/* Modal for sharing options */}
             <Modal
                 isOpen={showShare}
                 onRequestClose={() => setShowShare(false)}
                 contentLabel="Share Petition"
-                className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-md bg-white p-6 rounded-lg shadow-md"
+                className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-md bg-white p-6 rounded-lg shadow-md border-none"
             >
-                <h4 className="text-xl font-semibold text-gray-800 mb-4">পিটিশন শেয়ার করুন</h4>
+                <div className='flex gap-x-2'>
+                    <h4 className="text-xl font-semibold text-[#072E75] mb-4">Amber Alert এর অ্যালার্ট সাউন্ড শুনুন</h4>
+                    <button className='text-2xl mt-[-11px]' onClick={() => playAlertSound()}>🔊</button>
+                </div>
+                <p className="text-gray-600 mb-6">বাংলাদেশে অ্যাম্বার অ্যালার্ট বাস্তবায়নের পর এভাবেই বেজে উঠবে আপনার ফোন যখন কোন শিশু হারিয়ে যাবে</p>
+                <h4 className="text-xl font-semibold text-[#FF7128] mb-4">পিটিশন শেয়ার করুন</h4>
                 <p className="text-gray-600 mb-6">আপনার সমর্থনের জন্য আমরা সত্যিই কৃতজ্ঞ। আপনার স্বাক্ষর বাংলাদেশের অ্যাম্বার অ্যালার্ট বাস্তবায়নের পথে একটি বড় পদক্ষেপ। এখন এটি আপনার বন্ধু ও পরিবারের সঙ্গে শেয়ার করে আরও মানুষকে যুক্ত করতে সাহায্য করুন।</p>
                 <div className="flex justify-center space-x-4 mb-6">
                     <button
@@ -158,7 +158,7 @@ const PetitionForm = ({ setClicked }) => {
                 </div>
                 <button
                     onClick={() => setShowShare(false)}
-                    className="w-full bg-red-500 text-white font-semibold py-2 px-4 rounded-md hover:bg-red-600 transition duration-300"
+                    className="w-full bg-[#FF7128] text-white font-semibold py-2 px-4 rounded-md hover:bg-[#ff874b] transition duration-300"
                 >
                     বন্ধ করুন
                 </button>

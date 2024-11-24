@@ -153,7 +153,7 @@ const Progress = ({ setClicked, clicked }) => {
                                 <div className="ml-3">
                                     <p className="text-sm text-[#072E75] capitalize">{voter.name}</p>
                                     <p className="text-xs text-gray-500">
-                                        {voter.email.slice(0, 3)}***
+                                        আপনার পিটিশন সম্পন্ন হয়েছে
                                     </p>
                                 </div>
                                 <span className="ml-auto text-sm text-[#072E75]">

@@ -4,19 +4,14 @@ import Link from "next/link";
 import { FiMenu, FiX } from "react-icons/fi";
 import Image from "next/image";
 import { IoDocumentTextOutline } from "react-icons/io5";
-import Cookies from "js-cookie";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [language, setLanguage] = useState("bn"); // 'bn' for Bangla, 'en' for English
+    const { language, changeLanguage } = useLanguage();
 
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
-    const switchLanguage = () => {
-        setLanguage((prev) => (prev === "bn" ? "en" : "bn"));
-        
-        Cookies.set("language", language === "bn" ? "en" : "bn");
-    };
 
     return (
         <div className="py-6 px-10 bg-[#F9D8D4]">
@@ -45,7 +40,7 @@ const Navbar = () => {
 
                 <div className="hidden md:flex items-center gap-x-4">
                     <button
-                        onClick={switchLanguage}
+                        onClick={() => changeLanguage(language === "en" ? "bn" : "en")}
                         className="text-[#FF7128] text-lg px-3 py-1 border border-[#FF7128] rounded-lg"
                     >
                         {language === "bn" ? "English" : "বাংলা"}

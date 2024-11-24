@@ -11,7 +11,7 @@ import Link from 'next/link';
 import ToastAlert from './ToastAlert'; // Import ToastAlert
 import { FaFacebookF, FaLinkedinIn, FaXTwitter } from "react-icons/fa6";
 import { FaFacebookMessenger, FaWhatsapp } from 'react-icons/fa';
-import Cookies from 'js-cookie';
+import { useLanguage } from "@/contexts/LanguageContext";
 
 // Set the root element for the modal
 // Modal.setAppElement('#__next');
@@ -19,7 +19,7 @@ import Cookies from 'js-cookie';
 const PetitionForm = ({ setClicked }) => {
     const [showShare, setShowShare] = useState(false);
     const [showToast, setShowToast] = useState(false); 
-    const language = Cookies.get('language');
+    const { language, changeLanguage } = useLanguage();
     const {
         register,
         handleSubmit,

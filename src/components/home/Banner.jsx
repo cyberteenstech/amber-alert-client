@@ -149,7 +149,8 @@ const Banner = () => {
                             </div>
                         </div>
                         <div className="w-[70%] md:w-1/2">
-                            <PetitionForm setClicked={setClicked}/>
+                            <PetitionForm
+                                setClicked={setClicked} />
                         </div>
                         <div className="w-full md:w-1/2 md:block hidden">
                             <Progress 

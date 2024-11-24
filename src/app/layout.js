@@ -4,12 +4,13 @@ import Navbar from "@/components/shared/Navbar";
 import Footer from "@/components/shared/Footer";
 import Head from "next/head";
 import "./globals.css";
+import { LanguageProvider } from "@/contexts/LanguageContext";
 
 export const metadata = {
   title: "Amber Alert For Bangladesh",
   description: "Sign Petition to bring Amber Alert to Bangladesh to make a safer place for children",
   icons: {
-    icon: "/amberalert.png", // Path to your favicon in the public folder
+    icon: "/amberalert.png",
   },
 };
 
@@ -28,9 +29,11 @@ export default function RootLayout({ children }) {
         <meta name="twitter:image" content="https://i.ibb.co/7nybjs2/thumb.jpg" />
       </Head>
       <body className={`antialiased`}>
-        <Navbar />
-        {children}
-        <Footer />
+        <LanguageProvider>
+          <Navbar />
+          {children}
+          <Footer />
+        </LanguageProvider>
       </body>
     </html>
   );

@@ -1,10 +1,10 @@
 "use client";
 
 import React from "react";
-import Cookies from "js-cookie";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Letter = () => {
-    const language = Cookies.get("language");
+     const { language, changeLanguage } = useLanguage();
     return (
         <div id="letter-section" className="relative">
             {/* Background */}

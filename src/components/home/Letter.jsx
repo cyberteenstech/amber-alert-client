@@ -133,7 +133,7 @@ const Letter = () => {
                                         Why is Your Support Important?
                                     </p>
                                     <p className="text-[#072E75] text-base md:text-lg text-[12px] mb-4">
-                                        Every child’s life is valuable. Amber Alert can save lives and create a safer future for our children. Your leadership can make this system a reality and ensure no child is left behind.
+                                        Every child&quot;s life is valuable. Amber Alert can save lives and create a safer future for our children. Your leadership can make this system a reality and ensure no child is left behind.
 
                                     </p>
                                     <p className="text-[#072E75] text-base md:text-lg text-[12px] mb-4">
@@ -146,7 +146,7 @@ const Letter = () => {
                                         Cyber Teens Foundation
                                     </p>
                                     <p className="text-[#072E75] text-base md:text-lg text-[12px] mb-4">
-                                        "Your signature can save a child’s life."
+                                        Your signature can save a child&quot;s life.
                                         #AmberAlertBD #ProtectOurChildren #Amberalert4bangladesh
                                     </p>
                                 </div>

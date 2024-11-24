@@ -159,7 +159,7 @@ const Banner = () => {
                                 </h3>
                                 <span className="text-[#072E75] text-[12px]">
                                     {language === "bn" ? "প্রয়োজন " : "Need"}
-                                    <span className="text-[#FF7128] font-medium text-[12px]">{language === "৫,০০,০০০" ? "সাক্ষর" : "500000"}</span>
+                                    <span className="text-[#FF7128] font-medium text-[14px]">{language === "bn" ? "৫,০০,০০০" : "500000"}</span>
                                 </span>
                             </div>
 

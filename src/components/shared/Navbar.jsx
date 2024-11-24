@@ -12,9 +12,8 @@ const Navbar = () => {
 
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
-
     return (
-        <div className="py-6 px-10 bg-[#F9D8D4]">
+        <div className="py-6 px-10 bg-[#F9D8D4] relative">
             <div className="max-w-[1440px] flex items-center justify-between mx-auto">
                 <Link href="/" className="flex items-center gap-x-2">
                     <Image
@@ -39,11 +38,10 @@ const Navbar = () => {
                 </div>
 
                 <div className="hidden md:flex items-center gap-x-4">
-                   
                     <Link href="#letter-section" passHref>
                         <button className="flex items-center gap-x-2 bg-[#FF7128] text-[#fff] px-4 py-2 rounded-lg">
                             <IoDocumentTextOutline className="text-xl" />
-                            {language === "bn" ? "চিঠি পড়ুন" : "Read Letter"}
+                            {language === "bn" ? "চিঠি পড়ুন" : "Read Letter"}
                         </button>
                     </Link>
                     <Link href="https://forms.gle/JGMECekHC59HRwdT7" passHref>
@@ -51,7 +49,7 @@ const Navbar = () => {
                             {language === "bn" ? "যোগ দিন" : "Join Us"}
                         </button>
                     </Link>
-                     <button
+                    <button
                         onClick={() => changeLanguage(language === "en" ? "bn" : "en")}
                         className="text-[#FF7128] text-lg px-3 py-1 rounded-lg"
                     >
@@ -62,36 +60,65 @@ const Navbar = () => {
 
                 {/* Mobile Menu Toggle */}
                 <div className="md:hidden">
-                    <button onClick={toggleMenu} className="focus:outline-none z-[100]">
-                        {isMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+                    <button
+                        onClick={toggleMenu}
+                        className="relative z-50 text-black hover:text-gray-600 transition-colors"
+                        aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+                    >
+                        {isMenuOpen ? <FiX size={24} className="text-white" /> : <FiMenu size={24} />}
                     </button>
-                </div>
 
-                {/* Mobile Menu */}
-                {isMenuOpen && (
-                    <div className="fixed inset-0 bg-gray-800 bg-opacity-70 flex flex-col items-center space-y-6 pt-20 text-white md:hidden z-[1000]">
-                        <Link href="/about" onClick={() => setIsMenuOpen(false)}>
-                            {language === "bn" ? "আমাদের সম্পর্কে" : "About Us"}
-                        </Link>
-                        <Link href="/goals" onClick={() => setIsMenuOpen(false)}>
-                            {language === "bn" ? "আমাদের লক্ষ্য " : "Our Goals"}
-                        </Link>
-                        <Link href="/contact" onClick={() => setIsMenuOpen(false)}>
-                            {language === "bn" ? "যোগাযোগ" : "Contact"}
-                        </Link>
-                        <Link
-                            href="https://forms.gle/JGMECekHC59HRwdT7"
-                            onClick={() => setIsMenuOpen(false)}
-                        >
-                            {language === "bn" ? "যোগ দিন" : "Join Us"}
-                        </Link>
-                        <button
-                            className="mt-4 text-[#FF7128] bg-white px-4 py-2 rounded-lg"
-                        >
-                            {language === "bn" ? "English" : "বাংলা"}
-                        </button>
-                    </div>
-                )}
+                    {/* Mobile Menu Overlay */}
+                    {isMenuOpen && (
+                        <>
+                            {/* Backdrop */}
+                            <div className="fixed inset-0 bg-gray-800 bg-opacity-70 z-40" onClick={toggleMenu} />
+
+                            {/* Menu Content */}
+                            <div className="fixed inset-0 flex flex-col items-center pt-20 z-40">
+                                <div className="w-full max-w-sm space-y-6 text-center">
+                                    <Link
+                                        href="/about"
+                                        className="block text-white text-lg hover:text-gray-200 transition-colors"
+                                        onClick={() => setIsMenuOpen(false)}
+                                    >
+                                        {language === "bn" ? "আমাদের সম্পর্কে" : "About Us"}
+                                    </Link>
+                                    <Link
+                                        href="/goals"
+                                        className="block text-white text-lg hover:text-gray-200 transition-colors"
+                                        onClick={() => setIsMenuOpen(false)}
+                                    >
+                                        {language === "bn" ? "আমাদের লক্ষ্য " : "Our Goals"}
+                                    </Link>
+                                    <Link
+                                        href="/contact"
+                                        className="block text-white text-lg hover:text-gray-200 transition-colors"
+                                        onClick={() => setIsMenuOpen(false)}
+                                    >
+                                        {language === "bn" ? "যোগাযোগ" : "Contact"}
+                                    </Link>
+                                    <Link
+                                        href="https://forms.gle/JGMECekHC59HRwdT7"
+                                        className="block text-white text-lg hover:text-gray-200 transition-colors"
+                                        onClick={() => setIsMenuOpen(false)}
+                                    >
+                                        {language === "bn" ? "যোগ দিন" : "Join Us"}
+                                    </Link>
+                                    <button
+                                        onClick={() => {
+                                            changeLanguage(language === "en" ? "bn" : "en");
+                                            setIsMenuOpen(false);
+                                        }}
+                                        className="mt-4 text-[#FF7128] bg-white px-6 py-2 rounded-lg text-lg hover:bg-gray-100 transition-colors"
+                                    >
+                                        {language === "bn" ? "English" : "বাংলা"}
+                                    </button>
+                                </div>
+                            </div>
+                        </>
+                    )}
+                </div>
             </div>
         </div>
     );

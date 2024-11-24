@@ -11,7 +11,8 @@ const Supporters = () => {
         "/cyberteens.png",
         "/amberalert.png",
         "/13219.jpg",
-        "https://i.ibb.co.com/p03TcbZ/untitled-design-4-3-1.webp"
+        "https://i.ibb.co.com/p03TcbZ/untitled-design-4-3-1.webp",
+        "https://i.ibb.co.com/s6bN1dJ/e2c29835-5a58-415a-a637-e11f2ae129d7.jpg"
 
     ];
 

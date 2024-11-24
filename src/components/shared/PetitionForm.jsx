@@ -125,7 +125,7 @@ const PetitionForm = ({ setClicked }) => {
                 </div>
                 <div className="mb-3">
                     <textarea
-                        placeholder={language === "bn" ? "আপনার মন্তব্য" : "Your message"}
+                        placeholder={language === "bn" ? "এটি বাংলাদেশের জন্য খুব প্রয়োজনীয়": "This is very important for Bangladesh"}
                         className="w-full p-3 border border-gray-300 rounded-md bg-white text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-orange-400"
                         rows={3}
                     ></textarea>

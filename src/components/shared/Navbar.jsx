@@ -31,7 +31,7 @@ const Navbar = () => {
                         {language === "bn" ? "আমাদের সম্পর্কে" : "About Us"}
                     </Link>
                     <Link href="/goals" className="text-[#072E75] text-lg">
-                        {language === "bn" ? "আমাদের লক্ষ" : "Our Goals"}
+                        {language === "bn" ? "আমাদের লক্ষ্য " : "Our Goals"}
                     </Link>
                     <Link href="/contact" className="text-[#072E75] text-lg">
                         {language === "bn" ? "যোগাযোগ" : "Contact"}
@@ -74,7 +74,7 @@ const Navbar = () => {
                             {language === "bn" ? "আমাদের সম্পর্কে" : "About Us"}
                         </Link>
                         <Link href="/goals" onClick={() => setIsMenuOpen(false)}>
-                            {language === "bn" ? "আমাদের লক্ষ" : "Our Goals"}
+                            {language === "bn" ? "আমাদের লক্ষ্য " : "Our Goals"}
                         </Link>
                         <Link href="/contact" onClick={() => setIsMenuOpen(false)}>
                             {language === "bn" ? "যোগাযোগ" : "Contact"}

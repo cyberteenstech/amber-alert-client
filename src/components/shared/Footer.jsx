@@ -18,7 +18,7 @@ const Footer = () => {
                         />
                     </div>
                     <p className='md:my-4 my-2 text-[#072E75] font-normal md:text-[16px] text-[14px]'>
-                        সাইবার সুরক্ষা, সাইবারের সঠিক ব্যবহার ও সাইবারের ভয়ানক দিক সম্পর্কে কিশোর-কিশোরীদের মধ্যে সচেতনতা সৃষ্টি ও সাইবার হয়রানীর শিকার হওয়া কিশোর কিশোরীদের পাশে দাঁড়ানোর লক্ষ্যে বাংলাদেশের ৬৪টি জেলা ও প্রতিটি উপজেলাতে “সাইবার অপরাধ প্রতিরোধ কমিটি” গঠন করা হয়।
+                       Amber Alert for Bangladesh একটি জাতীয় উদ্যোগ, যার লক্ষ্য নিখোঁজ শিশুদের দ্রুত খুঁজে বের করার জন্য একটি জরুরি সতর্কতা ব্যবস্থা চালু করা। আন্তর্জাতিক সফল মডেল থেকে অনুপ্রাণিত হয়ে, আমরা সচেতনতা তৈরি, জনসমর্থন জোগাড় এবং সরকারের সঙ্গে কাজ করে প্রতিটি শিশুর সুরক্ষা নিশ্চিত করতে চাই।
                     </p>
                 </div>
 
@@ -35,7 +35,7 @@ const Footer = () => {
                 {/* Contact and Social Media */}
                 <div className='flex flex-col md:items-end md:mt-0 mt-4'>
                     <h2 className='text-[#072E75] font-semibold md:text-[20px] text-[16px] mb-4'>আমাদের সাথে যোগাযোগ করুন</h2>
-                    <Link href="/" className='text-[#072E75] md:text-[16px] text-[14px] mt-2'>হেল্পলাইন নাম্বার ১৩ ২ ১৯</Link>
+                    <Link href="/" className='text-[#072E75] md:text-[16px] text-[14px] mt-2'>ইমেইল: amberalert@13219.help</Link>
 
                     {/* Social Media Section */}
                     <div className='flex gap-4 mt-4'>

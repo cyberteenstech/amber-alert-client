@@ -1,6 +1,6 @@
 "use client";
-                                    
-import React, {useState, useEffect } from 'react';
+
+import React, { useState, useEffect } from 'react';
 import { IoDocumentTextOutline } from 'react-icons/io5';
 import { RiVideoLine } from "react-icons/ri";
 import PetitionForm from '../shared/PetitionForm';
@@ -17,7 +17,7 @@ const Banner = () => {
     const [voters, setVoters] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const router = useRouter();
-     const { language, changeLanguage } = useLanguage();
+    const { language, changeLanguage } = useLanguage();
 
     // Fetch voter data
     const getVotersData = async () => {
@@ -92,41 +92,41 @@ const Banner = () => {
             </div>
 
             {/* Main Banner Content */}
-          
+
             <h2 className='!leading-[1.5] text-3xl md:text-5xl font-bold mt-20 text-[#072E75] text-center flex flex-col justify-center'>
-  <span className="text-sm md:text-base text-[#FF7128] text-center">
-  <TypingEffect 
-    text={['#EveryChildMatters', '#SaveMissingChildren', '#AmberAlertForBangladesh']} 
-    speed={100} 
-    eraseSpeed={50} 
-    typingDelay={500}
-    eraseDelay={1000}
-  />
-</span>
-    {language === "bn" ? (
-        <>
-            বাংলাদেশে শিশু নিখোঁজ <br />
-            প্রতিরোধ করতে সামিল হোন আপনিও!
-        </>
-    ) : (
-        <>
-            Join us In preventing<br />
-             child disappearances in Bangladesh!
-        </>
-    )}
-</h2>
+                <span className="text-sm md:text-base text-[#FF7128] text-center">
+                    <TypingEffect
+                        text={['#EveryChildMatters', '#SaveMissingChildren', '#AmberAlertForBangladesh']}
+                        speed={100}
+                        eraseSpeed={50}
+                        typingDelay={500}
+                        eraseDelay={1000}
+                    />
+                </span>
+                {language === "bn" ? (
+                    <>
+                        বাংলাদেশে শিশু নিখোঁজ <br />
+                        প্রতিরোধ করতে সামিল হোন আপনিও!
+                    </>
+                ) : (
+                    <>
+                        Join us In preventing<br />
+                        child disappearances in Bangladesh!
+                    </>
+                )}
+            </h2>
 
             <div className='flex justify-center items-center mt-4 gap-x-4'>
                 <Link href="#letter-section" passHref>
                     <button className="flex items-center gap-x-2 bg-[#FF7128] border-[#FF7128] border-[1.5px] text-[#fff] md:px-6 px-4 py-2 rounded-lg ">
                         <IoDocumentTextOutline className="md:text-xl text-lg" /> {language === "bn" ? "চিঠি পড়ুন" : "Read Letter"}
                     </button></Link>
-                
+
                 <Link href="#video-section" passHref _blank>
                     <button className="flex items-center gap-x-2 border-[#072E75] border-[1.5px] text-[#072E75] md:px-6 px-4 py-2 rounded-lg ">
                         <RiVideoLine className="md:text-xl text-lg" />
                         {language === "bn" ? "ভিডিও দেখুন" : "Watch Video"}
-                        
+
                     </button>
                 </Link>
             </div>
@@ -159,10 +159,10 @@ const Banner = () => {
                                 </h3>
                                 <span className="text-[#072E75] text-[12px]">
                                     {language === "bn" ? "প্রয়োজন" : "Need"}
-                                     <span className="text-[#FF7128] font-medium text-[12px]">{language === "৫,০০,০০০" ? "সাক্ষর" : "500000"}</span>
+                                    <span className="text-[#FF7128] font-medium text-[12px]">{language === "৫,০০,০০০" ? "সাক্ষর" : "500000"}</span>
                                 </span>
                             </div>
-                            
+
                             <div className="w-full bg-gray-200 h-2 rounded-full mb-4">
                                 <div
                                     className="bg-orange-500 h-2 rounded-full"
@@ -175,9 +175,9 @@ const Banner = () => {
                                 setClicked={setClicked} />
                         </div>
                         <div className="w-full md:w-1/2 md:block hidden">
-                            <Progress 
-                            setClicked={setClicked}
-                            clicked={clicked}/>
+                            <Progress
+                                setClicked={setClicked}
+                                clicked={clicked} />
                         </div>
                     </div>
                 </div>
@@ -227,8 +227,8 @@ const Banner = () => {
                     />
                 </div>
             </div>
-            
-            
+
+
         </div>
 
 

@@ -1,9 +1,8 @@
 import Image from 'next/image';
 import React from 'react';
-import { useLanguage } from "@/contexts/LanguageContext";
 
 const Organizations = () => {
-    const { language, changeLanguage } = useLanguage();
+    
     const data = [
         'স্বরাষ্ট্র মন্ত্রণালয়', // replace with your actual logo URLs
         'বাংলাদেশ টেলিযোগাযোগ নিয়ন্ত্রণ কমিশন',
@@ -18,8 +17,8 @@ const Organizations = () => {
     return (
         <div className="max-w-[1440px] w-full mx-auto px-4 md:px-10 py-[40px] md:py-[80px]">
             <h2 className="md:text-[40px] text-[24px] font-semibold text-[#072E75] text-center mb-[40px]">
-              {language === "bn" ? "আমাদের আবেদন পৌঁছে যাবে" : "Our appeal will"}  {" "}
-                <span className="text-[#FF7128]">{language === "bn" ? "যাদের কাছে" : "reach those who matter"}</span>
+                আমাদের আবেদন পৌঁছে যাবে{" "}
+                <span className="text-[#FF7128]">যাদের কাছে</span>
             </h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

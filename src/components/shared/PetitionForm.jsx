@@ -13,7 +13,7 @@ import Link from 'next/link';
 // Modal.setAppElement('#__next');
 
 const PetitionForm = ({ setClicked }) => {
-    const [showShare, setShowShare] = useState(true);
+    const [showShare, setShowShare] = useState(false);
     const {
         register,
         handleSubmit,

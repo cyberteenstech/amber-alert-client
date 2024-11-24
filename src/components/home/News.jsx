@@ -26,7 +26,7 @@ const News = () => {
     ];
 
     return (
-        <div className="max-w-[1440px] w-full mx-auto px-4 md:px-10 py-[40px] md:pt-[80px] md:pb-[40px]">
+        <div className="max-w-[1440px] w-full mx-auto px-4 md:px-10 py-[40px] md:pt-[40px] md:pb-[40px]">
             <div className="overflow-hidden">
                 <div className="flex animate-marquee whitespace-nowrap space-x-10">
                     {/* First news list */}

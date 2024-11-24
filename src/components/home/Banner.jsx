@@ -158,7 +158,7 @@ const Banner = () => {
                                     <span className="font-medium text-[12px]">{toBangla(voters.length)}</span> {language === "bn" ? "সাক্ষর" : "Signs"}
                                 </h3>
                                 <span className="text-[#072E75] text-[12px]">
-                                    {language === "bn" ? "প্রয়োজন" : "Need"}
+                                    {language === "bn" ? "প্রয়োজন " : "Need"}
                                     <span className="text-[#FF7128] font-medium text-[12px]">{language === "৫,০০,০০০" ? "সাক্ষর" : "500000"}</span>
                                 </span>
                             </div>
@@ -202,7 +202,7 @@ const Banner = () => {
                         style={{ animationDelay: '1s' }}
                     />
                     <Image
-                        src="https://i.ibb.co.com/cvkd1gS/image.png"
+                        src="https://i.ibb.co.com/ts5jDPt/Group-127.png"
                         alt="muntaha"
                         width={200}
                         height={200}

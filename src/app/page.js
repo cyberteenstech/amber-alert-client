@@ -9,6 +9,7 @@ import React from 'react';
 import Supporters from '@/components/home/Supporters';
 import LatestVoters from '@/components/home/LatestVoters';
 import News from '@/components/home/News';
+import Connect from '@/components/home/Connect';
 // import OrganizedBy from '@/components/home/OrganizedBy';
 
 const Home = () => {
@@ -24,7 +25,8 @@ const Home = () => {
       <Organizations />
       <Events />
       <FAQ />
-      <Supporters/>
+      <Supporters />
+      <Connect/>
       {/* <OrganizedBy/> */}
     </div>
   );

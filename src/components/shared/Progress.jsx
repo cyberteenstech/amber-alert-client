@@ -117,7 +117,7 @@ const Progress = ({ setClicked, clicked }) => {
                     <span className="font-semibold">{toBangla(voters.length)}</span> সাক্ষর
                 </h3>
                 <span className="text-[#072E75]">
-                    প্রয়োজন <span className="text-[#FF7128] font-semibold">৫,০০,০০০</span>
+                    প্রয়োজন <span className="text-[#FF7128] font-semibold"> ৫,০০,০০০</span>
                 </span>
             </div>
             </div>

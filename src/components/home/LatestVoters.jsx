@@ -113,10 +113,9 @@ const Progress = ({ setClicked, clicked }) => {
          <div className="max-w-[1440px] w-full mx-auto px-4 md:px-10 py-[40px] md:py-[80px]">
             <h2 className="md:text-[40px] text-[24px] font-semibold text-[#072E75] text-center mb-[40px]">
                 সর্বশেষ{" "}
-                <span className="text-[#FF7128]">ভোটার</span>
+                <span className="text-[#FF7128]">স্বাক্ষরকারীরা</span>
             </h2>
         <div className="bg-white p-4 rounded-lg shadow-lg w-[80%] mx-auto">
-            
             
             <ul className="space-y-4 py-4 ">
                 {isLoading

@@ -1,6 +1,9 @@
+// app/layout.js
+
 import Navbar from "@/components/shared/Navbar";
-import "./globals.css";
 import Footer from "@/components/shared/Footer";
+import Head from "next/head";
+import "./globals.css";
 
 export const metadata = {
   title: "Amber Alert For Bangladesh",
@@ -13,12 +16,21 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`antialiased`}
-      >
-        <Navbar/>
+      <Head>
+        <meta property="og:title" content="Amber Alert For Bangladesh Petition" />
+        <meta
+          property="og:description"
+          content="Sign Petition to bring Amber Alert to Bangladesh to make a safer place for children"
+        />
+        <meta property="og:image" content="https://i.ibb.co/7nybjs2/thumb.jpg" />
+        <meta property="og:url" content="http://amberalert4bangladesh.org" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="https://i.ibb.co/7nybjs2/thumb.jpg" />
+      </Head>
+      <body className={`antialiased`}>
+        <Navbar />
         {children}
-        <Footer/>
+        <Footer />
       </body>
     </html>
   );

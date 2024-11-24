@@ -16,7 +16,7 @@ import { FaFacebookMessenger, FaWhatsapp } from 'react-icons/fa';
 // Modal.setAppElement('#__next');
 
 const PetitionForm = ({ setClicked }) => {
-    const [showShare, setShowShare] = useState(false);
+    const [showShare, setShowShare] = useState(true);
     const [showToast, setShowToast] = useState(false); 
     const {
         register,

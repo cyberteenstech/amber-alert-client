@@ -115,6 +115,7 @@ const Banner = () => {
             </div>
 
             {/* Main Banner Content */}
+            <p className='text-sm md:text-base text-[#FF7128] text-center'>#Every_Child_Matters</p>
             <h2 className='!leading-[1.5] text-3xl md:text-5xl font-bold mt-20 text-[#072E75] text-center'>
                 বাংলাদেশে শিশু নিখোঁজ <br />
                 প্রতিরোধ করতে সামিল হোন আপনিও!

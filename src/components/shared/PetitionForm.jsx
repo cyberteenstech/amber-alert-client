@@ -23,6 +23,7 @@ const PetitionForm = ({ setClicked }) => {
         handleSubmit,
         formState: { errors },
     } = useForm();
+    const language = localStorage.getItem("language");
 
     const alertAudioRef = useRef(null);
     const submitForm = async (data, e) => {
@@ -39,16 +40,16 @@ const PetitionForm = ({ setClicked }) => {
                 }
 
             } else {
-                toast.error('একবারের বেশি সাক্ষর করা যাবে না');
+                toast.error(`${language === "bn" ? "একবারের বেশি সাক্ষর করা যাবে না" : "You can only sign once"}`);
             }
         } catch (err) {
             console.error(err);
-            toast.warning('আপনি একটি ইমেইল দিয়ে একবার সাইন করতে পারবেন');
+            toast.warning(`${language === "bn" ? "আপনি একটি ইমেইল দিয়ে একবার সাইন করতে পারবেন" : "You can only sign once with one email"}`);;
         }
     };
 
     const shareToSocialMedia = (platform) => {
-        const text = encodeURIComponent("বাংলাদেশে শিশুদের সুরক্ষায় Amber Alert চালুর দাবীতে আমি একটি গুরুত্বপূর্ণ পিটিশনে সাক্ষর করেছি। আপনিও স্বাক্ষর করুনঃ #Amberalert4bangladesh #Every_Child_Matters");
+        const text = encodeURIComponent(`${language === "bn" ? "বাংলাদেশে শিশুদের সুরক্ষায় Amber Alert চালুর দাবীতে আমি একটি গুরুত্বপূর্ণ পিটিশনে সাক্ষর করেছি। আপনিও স্বাক্ষর করুনঃ #Amberalert4bangladesh #Every_Child_Matters" : "I signed a petition for the safety of children in Bangladesh. Sign your petition too: #Amberalert4bangladesh #Every_Child_Matters"}`);
         const url = encodeURIComponent(window.location.href); // Current page URL
 
         let shareUrl = '';
@@ -93,13 +94,13 @@ const PetitionForm = ({ setClicked }) => {
         <div className="bg-[#ffd8c412] border-r-[1px] md:border-l-[0px] border-l-[1px] md:border-b-[0px] border-b-[1px] border-[#FF7128] border-dashed rounded-lg shadow-md p-5 relative">
             <div className="absolute -top-2 left-0 right-0 h-4 bg-[#FF7128] rounded-t-lg"></div>
             <h3 className="text-lg font-semibold text-orange-500 mb-4 flex items-center">
-                <span className="mr-2">📜</span> পিটিশন সাক্ষর করুন
+                <span className="mr-2">📜</span> {language === "bn" ? "পিটিশন সাক্ষর করুন" : "Sign the petition"}
             </h3>
             <form onSubmit={handleSubmit(submitForm)} className='w-full text-center'>
                 <div className="mb-3">
                     <input
                         type="text"
-                        placeholder="*আপনার নাম"
+                        placeholder={language === "bn" ? "*আপনার নাম" : "*Name"}
                         className="w-full p-3 border border-gray-300 rounded-md bg-white text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-orange-400"
                         {...register("name", { required: true })}
                     />
@@ -107,7 +108,7 @@ const PetitionForm = ({ setClicked }) => {
                 <div className="mb-3">
                     <input
                         type="email"
-                        placeholder="*ইমেইল"
+                        placeholder={language === "bn" ? "*আপনার ইমেইল" : "*Email"}
                         className="w-full p-3 border border-gray-300 rounded-md bg-white text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-orange-400"
                         {...register("email", { required: true })}
                     />
@@ -115,14 +116,14 @@ const PetitionForm = ({ setClicked }) => {
                 <div className="mb-3">
                     <input
                         type="tel"
-                        placeholder="মোবাইল"
+                        placeholder={language === "bn" ? "ফোন নম্বর" : "Phone Number"}
                         className="w-full p-3 border border-gray-300 rounded-md bg-white text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-orange-400"
                         {...register("phone")}
                     />
                 </div>
                 <div className="mb-3">
                     <textarea
-                        placeholder="মন্তব্য (ঐচ্ছিক)"
+                        placeholder={language === "bn" ? "আপনার বার্তা" : "Your message"}
                         className="w-full p-3 border border-gray-300 rounded-md bg-white text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-orange-400"
                         rows={3}
                     ></textarea>
@@ -131,9 +132,9 @@ const PetitionForm = ({ setClicked }) => {
                     type="submit"
                     className="w-full bg-orange-500 text-white font-semibold text-sm py-3 rounded-md hover:bg-orange-600 transition duration-300"
                 >
-                    সম্পন্ন করুন
+                    {language === "bn" ? "সাক্ষর করুন" : "Sign"}
                 </button>
-                <Link href="/privacy-policy" className='underline mt-2 text-sm text-center text-[#FF7128] w-full'>প্রাইভেসি পলিসি পড়ুন</Link>
+                <Link href="/privacy-policy" className='underline mt-2 text-sm text-center text-[#FF7128] w-full'>{language === "bn" ? "প্রাইভেসি পলিসি পড়ুন" : "Read Privacy Policy"}</Link>
             </form>
 
             {/* Modal for sharing options */}
@@ -164,7 +165,7 @@ const PetitionForm = ({ setClicked }) => {
                 </p>
                 <h4 className="text-xl font-semibold text-[#FF7128] mb-4">Share the Petition</h4>
                 <p className="text-gray-600 mb-6">
-                    আপনার সমর্থনের জন্য আমরা সত্যিই কৃতজ্ঞ। আপনার স্বাক্ষর বাংলাদেশের অ্যাম্বার অ্যালার্ট বাস্তবায়নের পথে একটি বড় পদক্ষেপ। এখন এটি আপনার বন্ধু ও পরিবারের সঙ্গে শেয়ার করে আরও মানুষকে যুক্ত করতে সাহায্য করুন।
+                    {language === "bn" ? "আপনার সমর্থনের জন্য আমরা সত্যিই কৃতজ্ঞ। আপনার স্বাক্ষর বাংলাদেশের অ্যাম্বার অ্যালার্ট বাস্তবায়নের পথে একটি বড় পদক্ষেপ। এখন এটি আপনার বন্ধু ও পরিবারের সঙ্গে শেয়ার করে আরও মানুষকে যুক্ত করতে সাহায্য করুন।" : "We truly believe that your petition will be a step towards the implementation of Bangladesh AMBER Alert. Now, share it with your friends and family to help more people."}
                 </p>
                 <div className="flex justify-center space-x-4 mb-6">
                     <button

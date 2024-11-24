@@ -10,7 +10,7 @@ const News = () => {
         },
         {
             id: 2,
-            title: "সকালে শিশু নিখোঁজ বিকেলে মুক্তিপণ দাবি রাতে মিলল",
+            title: "সকালে শিশু নিখোঁজ বিকেলে মুক্তিপণ দাবি রাতে মিলল লাশ",
             link: "https://www.deshrupantor.com/552859/সকালে-শিশু-নিখোঁজ-বিকেলে-মুক্তিপণ-দাবি-রাতে-মিলল"
         },
         {
@@ -22,12 +22,7 @@ const News = () => {
             id: 4,
             title: "শিশুকন্যা নিখোঁজের পর মুক্তিপণ দাবি, লাশ মিলল পুকুরে",
             link: "https://www.jugantor.com/country-news/881197"
-        },
-        {
-            id: 5,
-            title: "শিশু সহায়তায় ফোন ১০৯৮",
-            link: "https://dss.gov.bd/site/page/bb38e6c2-e1b6-4798-82d5-9e261a7ea89b/1098-Child-Help-Line"
-        },
+        }
     ];
 
     return (

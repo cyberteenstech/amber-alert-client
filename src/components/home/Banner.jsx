@@ -15,6 +15,7 @@ const Banner = () => {
     const [voters, setVoters] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const router = useRouter();
+    const language = localStorage.getItem("language");
 
     // Fetch voter data
     const getVotersData = async () => {
@@ -31,28 +32,6 @@ const Banner = () => {
     useEffect(() => {
         getVotersData();
     }, []);
-    const timeAgo = (createdAt) => {
-        const now = new Date();
-        const createdDate = new Date(createdAt);
-        const diffInSeconds = Math.floor((now - createdDate) / 1000);
-
-        if (diffInSeconds < 60) {
-            return `${diffInSeconds} সেকেন্ড.`;
-        }
-
-        const diffInMinutes = Math.floor(diffInSeconds / 60);
-        if (diffInMinutes < 60) {
-            return `${diffInMinutes} মি.`;
-        }
-
-        const diffInHours = Math.floor(diffInMinutes / 60);
-        if (diffInHours < 24) {
-            return `${diffInHours} ঘণ্টা.`;
-        }
-
-        const diffInDays = Math.floor(diffInHours / 24);
-        return `${diffInDays} দিন.`;
-    };
     const toBangla = (number) => {
         const banglaDigits = ["০", "১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯"];
         return number
@@ -62,10 +41,8 @@ const Banner = () => {
             .join("");
     };
 
-    const recentVoters = voters.slice(0, 2);
-
     // Calculate progress as a percentage (assuming 100,000 is the goal)
-    const progress = (voters.length / 100000) * 100;
+    const progress = (voters.length / 500000) * 100;
 
     const openLinkToForm = () => {
         //    open in new tab
@@ -81,8 +58,6 @@ const Banner = () => {
                 }}
             ></div>
 
-            {/* Scattered Beeping Location Buttons - Left Side */}
-            {/* Scattered Beeping Location Buttons - Left Side */}
             <div className="absolute top-0 left-0 h-full flex flex-col p-4 w-[30vw] items-center">
                 <div className="relative mb-4 md:top-0 top-[-3%]">
                     <span className="alarm-indicator" style={{ animationDelay: '0s' }}></span>
@@ -163,7 +138,7 @@ const Banner = () => {
                                     <span className="font-medium text-[12px]">{toBangla(voters.length)}</span> সাক্ষর
                                 </h3>
                                 <span className="text-[#072E75] text-[12px]">
-                                    প্রয়োজন <span className="text-[#FF7128] font-medium text-[12px]">১,০০,০০০</span>
+                                    প্রয়োজন <span className="text-[#FF7128] font-medium text-[12px]">৫,০০,০০০</span>
                                 </span>
                             </div>
                             
@@ -177,24 +152,6 @@ const Banner = () => {
                         <div className="w-[70%] md:w-1/2">
                             <PetitionForm setClicked={setClicked}/>
                         </div>
-                        {/* <div className='md:hidden block w-full bg-white  mx-auto flex items-center justify-center'>
-                            <ul className="w-[70%] space-y-4 p-4  border-[1px] border-dashed border-[#FF7128] rounded-b-lg">
-                                {recentVoters.map((voter, index) => (
-                                        <li key={index} className="flex items-center">
-                                            <div className="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center text-orange-500 font-bold">
-                                                {index + 1}
-                                            </div>
-                                            <div className="ml-3">
-                                                <p className="text-sm text-[#072E75] capitalize">{voter.name}</p>
-                                                <p className="text-xs text-gray-500">বাংলাদেশ</p>
-                                            </div>
-                                            <span className="ml-auto text-sm text-[#072E75]">
-                                                {timeAgo(voter.createdAt)}
-                                            </span>
-                                        </li>
-                                    ))}
-                            </ul>
-                        </div> */}
                         <div className="w-full md:w-1/2 md:block hidden">
                             <Progress 
                             setClicked={setClicked}

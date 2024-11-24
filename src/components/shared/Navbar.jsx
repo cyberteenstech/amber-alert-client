@@ -1,20 +1,20 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
-import { FiMenu, FiX, FiChevronDown } from "react-icons/fi";
+import { FiMenu, FiX } from "react-icons/fi";
 import Image from "next/image";
 import { IoDocumentTextOutline } from "react-icons/io5";
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
-    const menuRef = useRef(null); // For mobile menu
-    const dropdownRef = useRef(null); // For dropdown menu
+    const [language, setLanguage] = useState("bn"); // 'bn' for Bangla, 'en' for English
 
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-    const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
 
+    const switchLanguage = () => {
+        setLanguage((prev) => (prev === "bn" ? "en" : "bn"));
+        localStorage.setItem("language", language === "bn" ? "en" : "bn");
+    };
 
     return (
         <div className="py-6 px-10 bg-[#F9D8D4]">
@@ -24,32 +24,42 @@ const Navbar = () => {
                         src="/amberalert.png"
                         alt="Logo"
                         width={80}
-                        height={80} 
+                        height={80}
                     />
-
                 </Link>
+
                 {/* Desktop Menu */}
                 <div className="hidden md:flex items-center gap-x-4">
-                    <Link href="/about" className="text-[#072E75] text-lg">আমাদের সম্পর্কে</Link>
-                    <Link href="/goals" className="text-[#072E75] text-lg">আমাদের লক্ষ</Link>
-                    <Link href="/contact" className="text-[#072E75] text-lg">যোগাযোগ</Link>
+                    <Link href="/about" className="text-[#072E75] text-lg">
+                        {language === "bn" ? "আমাদের সম্পর্কে" : "About Us"}
+                    </Link>
+                    <Link href="/goals" className="text-[#072E75] text-lg">
+                        {language === "bn" ? "আমাদের লক্ষ" : "Our Goals"}
+                    </Link>
+                    <Link href="/contact" className="text-[#072E75] text-lg">
+                        {language === "bn" ? "যোগাযোগ" : "Contact"}
+                    </Link>
                 </div>
 
-                <div className="hidden md:block">
-                    <div className="flex items-center gap-x-4">
-                        <Link href="#letter-section" passHref>
-                            <button className="flex items-center gap-x-2 bg-[#FF7128] text-[#fff] px-4 py-2 rounded-lg">
-                                <IoDocumentTextOutline className="text-xl" /> চিঠি পড়ুন
-                            </button>
-                        </Link>
-                        <Link href="https://forms.gle/JGMECekHC59HRwdT7" passHref>
-                            <button className="flex items-center gap-x-2 border-[#FF7128] border-[2px] text-[#FF7128] px-4 py-2 rounded-lg">
-                                যোগ দিন
-                            </button>
-                        </Link>
-                    </div>
+                <div className="hidden md:flex items-center gap-x-4">
+                    <button
+                        onClick={switchLanguage}
+                        className="text-[#FF7128] text-lg px-3 py-1 border border-[#FF7128] rounded-lg"
+                    >
+                        {language === "bn" ? "English" : "বাংলা"}
+                    </button>
+                    <Link href="#letter-section" passHref>
+                        <button className="flex items-center gap-x-2 bg-[#FF7128] text-[#fff] px-4 py-2 rounded-lg">
+                            <IoDocumentTextOutline className="text-xl" />
+                            {language === "bn" ? "চিঠি পড়ুন" : "Read Letter"}
+                        </button>
+                    </Link>
+                    <Link href="https://forms.gle/JGMECekHC59HRwdT7" passHref>
+                        <button className="flex items-center gap-x-2 border-[#FF7128] border-[2px] text-[#FF7128] px-4 py-2 rounded-lg">
+                            {language === "bn" ? "যোগ দিন" : "Join Us"}
+                        </button>
+                    </Link>
                 </div>
-              
 
                 {/* Mobile Menu Toggle */}
                 <div className="md:hidden">
@@ -60,11 +70,28 @@ const Navbar = () => {
 
                 {/* Mobile Menu */}
                 {isMenuOpen && (
-                    <div className="fixed inset-0 bg-gray-800 bg-opacity-70 flex flex-col items-center space-y-6 pt-20 text-white md:hidden z-[1000]" ref={menuRef}>
-                        <Link href="/about" onClick={() => setIsMenuOpen(false)}>আমাদের সম্পর্কে</Link>
-                        <Link href="/goals" onClick={() => setIsMenuOpen(false)}>আমাদের লক্ষ</Link>
-                        <Link href="/contact" onClick={() => setIsMenuOpen(false)}>যোগাযোগ</Link>
-                        <Link href="https://forms.gle/JGMECekHC59HRwdT7" onClick={() => setIsMenuOpen(false)}> যোগ দিন</Link>
+                    <div className="fixed inset-0 bg-gray-800 bg-opacity-70 flex flex-col items-center space-y-6 pt-20 text-white md:hidden z-[1000]">
+                        <Link href="/about" onClick={() => setIsMenuOpen(false)}>
+                            {language === "bn" ? "আমাদের সম্পর্কে" : "About Us"}
+                        </Link>
+                        <Link href="/goals" onClick={() => setIsMenuOpen(false)}>
+                            {language === "bn" ? "আমাদের লক্ষ" : "Our Goals"}
+                        </Link>
+                        <Link href="/contact" onClick={() => setIsMenuOpen(false)}>
+                            {language === "bn" ? "যোগাযোগ" : "Contact"}
+                        </Link>
+                        <Link
+                            href="https://forms.gle/JGMECekHC59HRwdT7"
+                            onClick={() => setIsMenuOpen(false)}
+                        >
+                            {language === "bn" ? "যোগ দিন" : "Join Us"}
+                        </Link>
+                        <button
+                            onClick={switchLanguage}
+                            className="mt-4 text-[#FF7128] bg-white px-4 py-2 rounded-lg"
+                        >
+                            {language === "bn" ? "English" : "বাংলা"}
+                        </button>
                     </div>
                 )}
             </div>

@@ -4,6 +4,7 @@ import React from "react";
 import { FaHandHoldingHeart } from "react-icons/fa";
 
 const Letter = () => {
+    const language = localStorage.getItem("language");
     return (
         <div id="letter-section" className="relative">
             {/* Background */}
@@ -18,7 +19,7 @@ const Letter = () => {
                 <h2 className="md:text-[40px] text-[24px] font-semibold text-[#072E75] text-center">
                     Amber Alert{" "}
                     <span className="text-[#FF7128] md:mb-[85px] mb-[24px]">
-                        বাস্তবায়নের জন্য আহ্বান
+                        {language === "bn" ? "বাস্তবায়নের জন্য আহ্বান" : "Letter of Faith"}
                     </span>
                 </h2>
 
@@ -36,6 +37,8 @@ const Letter = () => {
                             backgroundClip: "content-box, border-box",
                         }}
                     >
+                        {language === "bn" ? (                           
+                        
                         <div className="bg-transparent md:py-[48px] md:px-[44px] p-[20px]">
                             {/* Content */}
                             <p className="text-[#072E75] text-base md:text-lg text-[12px] mb-4 font-medium">
@@ -96,7 +99,58 @@ const Letter = () => {
                                 </button>
                             </div> */}
                         </div>
-                        
+                        ) : (
+                                <div className="bg-transparent md:py-[48px] md:px-[44px] p-[20px]">
+                                    {/* Content */}
+                                    <p className="text-[#072E75] text-base md:text-lg text-[12px] mb-4 font-medium">
+                                        Dear Policy Makers,
+                                    </p>
+                                    <p className="text-[#072E75] text-base md:text-lg text-[12px] mb-4">
+                                        We, the people of Bangladesh, request your support to introduce the <span className="font-semibold">Amber Alert</span> system to protect our children and ensure their safety.
+                                    </p>
+                                    <p className="text-[#072E75] text-base md:text-lg text-[12px] mb-4">
+                                        Every year, thousands of children go missing in Bangladesh. Many face trafficking, abuse, or worse. The first few hours after a child goes missing are critical, as quick action can save lives. However, our country lacks a system to locate and rescue missing children quickly.
+                                    </p>
+                                    <p className="text-[#072E75] text-base md:text-lg text-[12px] mb-4 font-medium">
+                                        What is Amber Alert?
+                                    </p>
+
+                                    <p className="text-[#072E75] text-base md:text-lg text-[12px] mb-4">
+                                        Amber Alert is an emergency system that helps find missing children by working with the government, police, media, and the public. This system has saved thousands of lives in other countries, and we believe it is urgently needed in Bangladesh.
+                                    </p>
+
+                                    <p className="text-[#072E75] text-base md:text-lg text-[12px] mb-4 font-medium">
+                                        Our Demands:
+                                    </p>
+                                    <ol className="text-[#072E75] text-base md:text-lg text-[12px] mb-4">
+                                        <li>1. Start the Amber Alert system in Bangladesh.</li>
+                                        <li>2. Create a central database for missing children.</li>
+                                        <li>3. Build a platform to connect police, media, and technology for quick action.</li>
+                                        <li>4. Engage the public through a digital network to search for missing children.</li>
+                                    </ol>
+
+                                    <p className="text-[#072E75] text-base md:text-lg text-[12px] mb-4 font-medium">
+                                        Why is Your Support Important?
+                                    </p>
+                                    <p className="text-[#072E75] text-base md:text-lg text-[12px] mb-4">
+                                        Every child’s life is valuable. Amber Alert can save lives and create a safer future for our children. Your leadership can make this system a reality and ensure no child is left behind.
+
+                                    </p>
+                                    <p className="text-[#072E75] text-base md:text-lg text-[12px] mb-4">
+                                        Let us work together to create a safe and secure Bangladesh for every child.
+                                    </p>
+                                    <p className="text-[#072E75] text-base md:text-lg text-[12px] mb-4 font-medium">
+                                        Sincerely,
+                                    </p>
+                                    <p className="text-[#072E75] text-base md:text-lg text-[12px] mb-4">
+                                        Cyber Teens Foundation
+                                    </p>
+                                    <p className="text-[#072E75] text-base md:text-lg text-[12px] mb-4">
+                                        "Your signature can save a child’s life."
+                                        #AmberAlertBD #ProtectOurChildren #Amberalert4bangladesh
+                                    </p>
+                                </div>
+                        )}
                     </div>
                 </div>
             </div>

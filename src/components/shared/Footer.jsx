@@ -26,7 +26,7 @@ const Footer = () => {
                 <div className='flex md:justify-center md:mt-0 mt-4'>
                     <div className='flex flex-col'>
                         <h2 className='text-[#072E75] font-semibold md:text-[20px] text-[16px] mb-4'>সাইট ম্যাপ</h2>
-                        <Link href="/goals" className='text-[#072E75] md:text-[16px] text-[14px]'>কমিটির লক্ষ্য</Link>
+                        <Link href="/goals" className='text-[#072E75] md:text-[16px] text-[14px]'>আমাদের লক্ষ্য</Link>
                         <Link href="/contact" className='text-[#072E75] md:text-[16px] text-[14px] mt-2'>যোগাযোগ করুন</Link>
                         <Link href="/about" className='text-[#072E75] md:text-[16px] text-[14px] mt-2'>আমাদের সম্পর্কে</Link>
                     </div>

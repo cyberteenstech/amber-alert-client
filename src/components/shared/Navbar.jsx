@@ -4,6 +4,7 @@ import Link from "next/link";
 import { FiMenu, FiX } from "react-icons/fi";
 import Image from "next/image";
 import { IoDocumentTextOutline } from "react-icons/io5";
+import Cookies from "js-cookie";
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -13,7 +14,8 @@ const Navbar = () => {
 
     const switchLanguage = () => {
         setLanguage((prev) => (prev === "bn" ? "en" : "bn"));
-        localStorage.setItem("language", language === "bn" ? "en" : "bn");
+        
+        Cookies.set("language", language === "bn" ? "en" : "bn");
     };
 
     return (

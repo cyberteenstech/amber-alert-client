@@ -180,7 +180,7 @@ const Banner = () => {
                         style={{ animationDelay: '1s' }}
                     />
                     <Image
-                        src="/muntaha.png"
+                        src="https://i.ibb.co.com/cvkd1gS/image.png"
                         alt="muntaha"
                         width={200}
                         height={200}

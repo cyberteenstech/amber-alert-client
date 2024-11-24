@@ -1,19 +1,10 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { FaHandHoldingHeart } from "react-icons/fa";
+import React from "react";
+import Cookies from "js-cookie";
 
 const Letter = () => {
-    const [language, setLanguage] = useState("bn");
-    useEffect(() => {
-        // Check if localStorage is available
-        if (typeof window !== "undefined") {
-            const storedLanguage = localStorage.getItem("language");
-            if (storedLanguage) {
-                setLanguage(storedLanguage);
-            }
-        }
-    }, []);
+    const language = Cookies.get("language");
     return (
         <div id="letter-section" className="relative">
             {/* Background */}

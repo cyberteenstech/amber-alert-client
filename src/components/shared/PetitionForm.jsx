@@ -11,6 +11,7 @@ import Link from 'next/link';
 import ToastAlert from './ToastAlert'; // Import ToastAlert
 import { FaFacebookF, FaLinkedinIn, FaXTwitter } from "react-icons/fa6";
 import { FaFacebookMessenger, FaWhatsapp } from 'react-icons/fa';
+import Cookies from 'js-cookie';
 
 // Set the root element for the modal
 // Modal.setAppElement('#__next');
@@ -18,21 +19,13 @@ import { FaFacebookMessenger, FaWhatsapp } from 'react-icons/fa';
 const PetitionForm = ({ setClicked }) => {
     const [showShare, setShowShare] = useState(false);
     const [showToast, setShowToast] = useState(false); 
-    const [language, setLanguage] = useState("bn");
+    const language = Cookies.get('language');
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm();
-    useEffect(() => {
-        // Check if localStorage is available
-        if (typeof window !== "undefined") {
-            const storedLanguage = localStorage.getItem("language");
-            if (storedLanguage) {
-                setLanguage(storedLanguage);
-            }
-        }
-    }, []);
+ 
 
     const alertAudioRef = useRef(null);
     const submitForm = async (data, e) => {

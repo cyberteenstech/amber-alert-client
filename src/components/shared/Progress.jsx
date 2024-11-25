@@ -107,7 +107,7 @@ const Progress = ({ setClicked, clicked }) => {
     const totalVoters = voters.length;
 
     // Calculate progress as a percentage (assuming 100,000 is the goal)
-    const progress = (voters.length / 50000) * 100;
+    const progress = (voters.length / 10000) * 100;
 
     return (
         <div className="bg-white p-4 rounded-lg ">
@@ -117,7 +117,7 @@ const Progress = ({ setClicked, clicked }) => {
                     <span className="font-semibold">{toBangla(voters.length)}</span> সাক্ষর
                 </h3>
                 <span className="text-[#072E75]">
-                    প্রয়োজন <span className="text-[#FF7128] font-semibold"> ৫,০০,০০০</span>
+                    প্রয়োজন <span className="text-[#FF7128] font-semibold"> ১,০০,০০০</span>
                 </span>
             </div>
             </div>

@@ -44,7 +44,7 @@ const Banner = () => {
     };
 
     // Calculate progress as a percentage (assuming 100,000 is the goal)
-    const progress = (voters.length / 500000) * 100;
+    const progress = (voters.length / 100000) * 100;
 
     const openLinkToForm = () => {
         //    open in new tab
@@ -159,7 +159,7 @@ const Banner = () => {
                                 </h3>
                                 <span className="text-[#072E75] text-[12px]">
                                     {language === "bn" ? "প্রয়োজন " : "Need"}
-                                    <span className="text-[#FF7128] font-medium text-[14px]">{language === "bn" ? "৫,০০,০০০" : "500000"}</span>
+                                    <span className="text-[#FF7128] font-medium text-[14px]">{language === "bn" ? "১০০,০০০" : "100000"}</span>
                                 </span>
                             </div>
 

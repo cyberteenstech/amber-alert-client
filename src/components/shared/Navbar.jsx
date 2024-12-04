@@ -44,9 +44,9 @@ const Navbar = () => {
                             {language === "bn" ? "চিঠি পড়ুন" : "Read Letter"}
                         </button>
                     </Link>
-                    <Link href="https://forms.gle/JGMECekHC59HRwdT7" passHref>
+                    <Link href="/ambassador/become-ambassador" passHref>
                         <button className="flex items-center gap-x-2 border-[#FF7128] border-[2px] text-[#FF7128] px-4 py-2 rounded-lg">
-                            {language === "bn" ? "যোগ দিন" : "Join Us"}
+                            {language === "bn" ? "অ্যাম্বাসেডর হোন" : "Become An Ambassador"}
                         </button>
                     </Link>
                     <button
@@ -99,11 +99,11 @@ const Navbar = () => {
                                         {language === "bn" ? "যোগাযোগ" : "Contact"}
                                     </Link>
                                     <Link
-                                        href="https://forms.gle/JGMECekHC59HRwdT7"
+                                        href="/ambassador/become-ambassador"
                                         className="block text-white text-lg hover:text-gray-200 transition-colors"
                                         onClick={() => setIsMenuOpen(false)}
                                     >
-                                        {language === "bn" ? "যোগ দিন" : "Join Us"}
+                                        {language === "bn" ? "অ্যাম্বাসেডর হোন" : "Become An Ambassador"}
                                     </Link>
                                     <button
                                         onClick={() => {

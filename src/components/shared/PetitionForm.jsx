@@ -135,7 +135,7 @@ const PetitionForm = ({ setClicked }) => {
                     type="submit"
                     className="w-full bg-orange-500 text-white font-semibold text-sm py-3 rounded-md hover:bg-orange-600 transition duration-300"
                 >
-                    {language === "bn" ? "সাক্ষর করুন" : "Sign"}
+                    {language === "bn" ? "স্বাক্ষর করুন" : "Sign"}
                 </button>
                 <Link href="/privacy-policy" className='underline mt-2 text-sm text-center text-[#FF7128] w-full'>{language === "bn" ? "প্রাইভেসি পলিসি পড়ুন" : "Read Privacy Policy"}</Link>
             </form>

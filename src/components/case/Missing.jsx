@@ -1,5 +1,5 @@
 "use client";
-import React from 'react';
+import { useEffect, useState } from "react";
 import Image from 'next/image';
 import { AlertTriangle, Clock, MapPin, Share2 } from 'lucide-react';
 import { missingDatas } from '../../../public/missing';
@@ -9,9 +9,13 @@ import { FacebookShareButton, TwitterShareButton, WhatsappShareButton, FacebookI
 
 const MissingCard = ({ data, language }) => {
     const { name, age, lastSeen, date, image } = data[language];
-    const shareUrl = window.location.href; // or any URL you want to share
     const title = `Missing Child: ${name}`; // Customize the title you want to share
-
+    const [shareUrl, setShareUrl] = useState("");
+    
+    useEffect(() => {
+        // This code will run only on the client side (browser)
+        setShareUrl(window.location.href);
+    }, []); // Empty dependency array ensures this runs only once after mount
     return (
         <div className="bg-white rounded-lg shadow-xl hover:shadow-2xl transition duration-300 transform hover:scale-105 overflow-hidden">
             <div className="relative">

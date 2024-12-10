@@ -10,6 +10,7 @@ import Supporters from '@/components/home/Supporters';
 import LatestVoters from '@/components/home/LatestVoters';
 import News from '@/components/home/News';
 import Connect from '@/components/home/Connect';
+import Comments from '@/components/home/Comments';
 // import OrganizedBy from '@/components/home/OrganizedBy';
 
 const Home = () => {
@@ -21,6 +22,7 @@ const Home = () => {
       </div>
       <News/>
       <VideoSection />
+      <Comments/>
       <Letter />
       <Organizations />
       <Events />

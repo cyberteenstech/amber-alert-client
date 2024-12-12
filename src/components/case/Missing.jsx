@@ -140,7 +140,7 @@ const MissingCard = ({ data, language }) => {
                                                 <span className="text-[#800020] font-semibold min-w-[120px]">
                                                     {language === 'bn' ? 'নিখোঁজের স্থানঃ' : 'Missing From:'}
                                                 </span>
-                                                <span>{lostDate}, {lostTime}</span>
+                                                <span>{lostDate} {`,`} {lostTime}</span>
                                             </p>
                                             <p className="flex gap-2">
                                                 <span className="text-[#800020] font-semibold min-w-[120px]">

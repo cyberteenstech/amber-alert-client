@@ -37,6 +37,9 @@ const Navbar = () => {
                     <Link href="/contact" className="text-[#072E75] text-lg">
                         {language === "bn" ? "যোগাযোগ" : "Contact"}
                     </Link>
+                    <Link href="/ambassador" className="text-[#072E75] text-lg">
+                        {language === "bn" ? "অ্যাম্বেসাডরস" : "Ambassadors"}
+                    </Link>
 
                     {/* Dropdown Menu */}
                     <div className="relative">

@@ -1,11 +1,9 @@
 "use client";
 
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Card, CardContent } from "@/components/ui/card";
-import { Facebook, Instagram, Twitter, Globe } from 'lucide-react';
+import { Facebook, Instagram, Twitter, Globe } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-
 
 const ambassadors = [
   {
@@ -94,7 +92,7 @@ const SocialIcon = ({ platform, url }) => {
       rel="noopener noreferrer"
       className="text-gray-600 hover:text-[#FF7128] transition-colors"
     >
-      <Icon className="w-5 h-5" />
+      <Icon className="w-6 h-6" />
     </Link>
   );
 };
@@ -110,38 +108,38 @@ export default function Ambassadors() {
 
   return (
     <div className="bg-gradient-to-b from-red-50 to-white min-h-screen py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-[1440px] mx-auto">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-[#072E75] mb-4">{pageTitle}</h1>
           <p className="text-xl text-gray-600">{pageSubtitle}</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
           {ambassadors.map((ambassador) => (
-            <Card
+            <div
               key={ambassador.id}
-              className="overflow-hidden hover:shadow-lg transition-shadow duration-300"
+              className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300"
             >
-              <div className="relative h-64 overflow-hidden">
+              <div className="relative h-56 overflow-hidden">
                 <Image
                   src={ambassador.image}
                   alt={ambassador.name[language]}
                   fill
-                  className="object-cover rounded-full transition-transform duration-300 hover:scale-105"
+                  className="object-cover hover:scale-110 transition-transform duration-300"
                 />
               </div>
-              <CardContent className="p-6">
-                <h3 className="text-2xl font-semibold text-gray-900 mb-1">
+              <div className="p-6 text-center">
+                <h3 className="text-2xl font-semibold text-gray-900 mb-2">
                   {ambassador.name[language]}
                 </h3>
-                <p className="text-[#FF7128] mb-4">{ambassador.title[language]}</p>
-                <div className="flex gap-4">
+                <p className="text-[#FF7128] text-lg mb-4">{ambassador.title[language]}</p>
+                <div className="flex justify-center gap-4">
                   {Object.entries(ambassador.social).map(([platform, url]) => (
                     <SocialIcon key={platform} platform={platform} url={url} />
                   ))}
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           ))}
         </div>
 

@@ -538,7 +538,7 @@ export const missingDatas = [
         "isFound": false,
         "isDead": false
     }
-}
+},
 {
     "id": 13,
     "en": {

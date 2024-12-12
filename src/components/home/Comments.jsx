@@ -68,7 +68,7 @@ const Comments = () => {
                             </div>
                             <div className="border-b-2 border-[#8b4513] pb-4 mb-4">
                                 <blockquote className="text-[#3a2921] md:text-lg text-[16px] italic leading-relaxed font-serif">
-                                    "{comment.comment}"
+                                    &quot;{comment.comment}&quot;
                                 </blockquote>
                             </div>
                             <div className="flex justify-between items-center">

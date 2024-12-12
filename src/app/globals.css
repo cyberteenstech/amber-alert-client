@@ -63,6 +63,13 @@ html {
     }
 }
 
+.swiper {
+    width: 100%;
+    height: auto;
+}
+
+
+
 /* Button styles */
 .outline-button {
     padding: 4px 16px;

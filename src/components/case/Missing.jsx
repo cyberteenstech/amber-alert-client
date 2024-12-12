@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import Image from 'next/image';
-import { AlertTriangle, Clock, MapPin, Share2 } from 'lucide-react';
+import { AlertTriangle, Clock, MapPin, Share2, Download, Eye } from 'lucide-react';
 import { missingDatas } from '../../../public/missing';
 import { useLanguage } from '@/contexts/LanguageContext';
 import Link from 'next/link';
@@ -9,32 +9,42 @@ import { FacebookShareButton, TwitterShareButton, WhatsappShareButton, FacebookI
 import html2canvas from "html2canvas";
 
 const MissingCard = ({ data, language }) => {
-    const { name, age, lastSeen, date, image } = data[language];
+    const { name, age, lostDate, lostPlace,lostTime, image, guardianContactNo } = data[language];
     const title = `Missing Child: ${name}`;
     const [shareUrl, setShareUrl] = useState("");
-    const [clicked, setClicked] = useState(false);
-    const [isModalOpen, setIsModalOpen] = useState(false); // New state for modal
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const posterRef = useRef(null);
 
     useEffect(() => {
         setShareUrl(window.location.href);
     }, []);
 
-    const downloadPoster = async () => {
-        setClicked(true);
+        const downloadPoster = async () => {
         const element = posterRef.current;
         if (element) {
+            const imgElement = element.querySelector('img');
+            if (imgElement) {
+              await new Promise((resolve) => {
+                if (imgElement.complete) {
+                  resolve();
+                } else {
+                  imgElement.onload = resolve;
+                }
+              });
+            }
+
             const canvas = await html2canvas(element, {
                 scale: 2,
-                width: element.offsetWidth,
-                height: element.offsetHeight
+                useCORS: true,
+                allowTaint: true,
             });
+
             canvas.toBlob((blob) => {
                 if (blob) {
                     const link = document.createElement("a");
                     const url = URL.createObjectURL(blob);
                     link.href = url;
-                    link.download = `missing_poster.png`;
+                    link.download = `missing_poster_${name}.png`;
                     link.click();
                     URL.revokeObjectURL(url);
                 } else {
@@ -47,85 +57,171 @@ const MissingCard = ({ data, language }) => {
     const toggleModal = () => setIsModalOpen(!isModalOpen);
 
     return (
-        <div className="bg-white rounded-lg shadow-xl hover:shadow-2xl transition duration-300 transform hover:scale-105 overflow-hidden">
-
+        <div className="bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl">
             <div className="relative">
-                <Image src={image} alt={name} width={500} height={500} className="w-full h-80 object-cover rounded-t-lg" />
-                <div className="absolute top-0 right-0 bg-red-500 text-white text-xs px-3 py-1 rounded-bl-lg">Urgent</div>
+                <Image src={image} alt={name} width={500} height={300} className="w-full h-64 object-cover" />
+                <div className="absolute top-0 right-0 bg-red-500 text-white text-xs px-3 py-1 rounded-bl-lg">
+                    {language === 'bn' ? 'জরুরি' : 'Urgent'}
+                </div>
             </div>
             <div className="p-6">
-                <div className="flex justify-between items-center mb-4">
-                    <div>
-                        <h3 className="text-2xl font-semibold text-gray-900">{name}</h3>
-                        <p className="text-lg text-gray-600">{age} years old</p>
-                    </div>
-                    <div className="flex space-x-3">
-                        <FacebookShareButton url={shareUrl} quote={title}>
-                            <FacebookIcon size={24} round />
-                        </FacebookShareButton>
-                        <TwitterShareButton url={shareUrl} title={title}>
-                            <TwitterIcon size={24} round />
-                        </TwitterShareButton>
-                        <WhatsappShareButton url={shareUrl} title={title}>
-                            <WhatsappIcon size={24} round />
-                        </WhatsappShareButton>
-                    </div>
-                </div>
+                <h3 className="text-2xl font-semibold text-gray-900 mb-2">{name}</h3>
+                <p className="text-lg text-gray-600 mb-4">{age} {language === 'bn' ? 'বছর বয়সী' : 'years old'}</p>
                 <div className="flex items-center mb-2">
                     <MapPin className="w-5 h-5 text-gray-500 mr-2" />
-                    <span className="text-gray-700">Last seen: {lastSeen}</span>
+                    <span className="text-gray-700">{language === 'bn' ? 'হারানোর জায়গা:' : 'Missing Place:'} {lostPlace}</span>
                 </div>
                 <div className="flex items-center mb-4">
                     <Clock className="w-5 h-5 text-gray-500 mr-2" />
-                    <span className="text-gray-700">Date: {date}</span>
+                    <span className="text-gray-700">{language === 'bn' ? 'হারানোর তারিখ:' : 'Missing From:'} {lostPlace}</span>
                 </div>
-                <div className="flex space-x-4">
+                <div className="flex space-x-2 mb-4">
+                    <FacebookShareButton url={shareUrl} quote={title}>
+                        <FacebookIcon size={32} round />
+                    </FacebookShareButton>
+                    <TwitterShareButton url={shareUrl} title={title}>
+                        <TwitterIcon size={32} round />
+                    </TwitterShareButton>
+                    <WhatsappShareButton url={shareUrl} title={title}>
+                        <WhatsappIcon size={32} round />
+                    </WhatsappShareButton>
+                </div>
+                <div className="flex space-x-2">
                     <button
                         onClick={toggleModal}
-                        className="bg-red-600 text-white py-2 px-6 rounded-md hover:bg-red-700 transition duration-300 w-full">
-                        Preview & Download Poster
+                        className="flex-1 bg-[#FF7128] text-white py-2 px-4 rounded-md hover:bg-[#FF7128] transition duration-300 flex items-center justify-center text-[15px]"
+                    >
+                        <Download className="w-5 h-5 mr-2" />
+                        {language === 'bn' ? 'পোস্টার ডাউনলোড' : 'Download Poster'}
                     </button>
+                    <Link href={`/cases/missing/${data.id}`} className="flex-1 border-[#FF7128] text-[#FF7128] py-2 px-4 rounded-md hover:bg-gray-300 transition duration-300 flex items-center justify-center text-[15px]">
+                        <Eye className="w-5 h-5 mr-2" />
+                        {language === 'bn' ? 'বিস্তারিত দেখুন' : 'View Details'}
+                    </Link>
                 </div>
             </div>
 
-            {isModalOpen && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-                    <div className="bg-white p-8 rounded-lg shadow-xl max-w-md w-full mx-auto">
-                        <h3 className="text-2xl font-semibold mb-4">Poster Preview</h3>
-                        <div ref={posterRef}>
-                            <div className="bg-white flex flex-col items-center p-8">
-                                <h1 className="text-red-600 text-6xl font-bold mb-4">MISSING</h1>
-                                <div className="w-full h-[300px] bg-gray-200 flex items-center justify-center mb-4">
-                                    <img src={image} alt={name} className="object-contain h-full" />
+                {isModalOpen && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+                    <div className="bg-white p-8 rounded-lg shadow-xl max-w-3xl w-full mx-auto max-h-[90vh] overflow-y-auto">
+                        <h3 className="text-2xl font-semibold mb-4">
+                            {language === 'bn' ? 'পোস্টার প্রিভিউ' : 'Poster Preview'}
+                        </h3>
+                        <div ref={posterRef} className="bg-[#800020] p-4 rounded-lg relative">
+                            {/* Yellow border */}
+                            <div className="border-4 border-yellow-400 p-2">
+                                {/* Top MISSING text */}
+                                <h1 className="text-yellow-400 text-4xl font-bold text-center mb-2">
+                                    {language === 'bn' ? 'নিখোঁজ' : 'MISSING'}
+                                </h1>
+                                
+                                {/* CAN YOU HELP? */}
+                                <h2 className="text-[#800020] text-2xl font-bold text-center mb-3 bg-white py-1">
+                                    {language === 'bn' ? 'আপনি কি সাহায্য করতে পারেন?' : 'CAN YOU HELP?'}
+                                </h2>
+
+                                {/* White content area */}
+                                <div className="bg-white p-3">
+                                    <div className="flex flex-col sm:flex-row gap-3">
+                                        {/* Photo section */}
+                                        <div className="w-full sm:w-1/3 h-48 sm:h-auto bg-gray-200 flex-shrink-0">
+                                            <img 
+                                                src={image} 
+                                                alt={name} 
+                                                className="w-full h-full object-cover" 
+                                                crossOrigin="anonymous"
+                                            />
+                                        </div>
+
+                                        {/* Details section */}
+                                        <div className="flex-1 space-y-1 text-sm">
+                                            <h3 className="text-xl font-serif mb-2">{name}</h3>
+                                            <p className="flex gap-2">
+                                                <span className="text-[#800020] font-semibold min-w-[120px]">
+                                                    {language === 'bn' ? 'নিখোঁজের স্থানঃ' : 'Missing From:'}
+                                                </span>
+                                                <span>{lostDate}, {lostTime}</span>
+                                            </p>
+                                            <p className="flex gap-2">
+                                                <span className="text-[#800020] font-semibold min-w-[120px]">
+                                                    {language === 'bn' ? 'নিখোঁজের তারিখঃ' : 'Missing Date:'}
+                                                </span>
+                                                <span>{date}</span>
+                                            </p>
+                                            <p className="flex gap-2">
+                                                <span className="text-[#800020] font-semibold min-w-[120px]">
+                                                    {language === 'bn' ? 'বয়সঃ' : 'Age:'}
+                                                </span>
+                                                <span>{age}</span>
+                                            </p>
+                                            <p className="flex gap-2">
+                                                <span className="text-[#800020] font-semibold min-w-[120px]">
+                                                    {language === 'bn' ? 'উচ্চতাঃ' : 'Height:'}
+                                                </span>
+                                                <span>{data[language].height || 'Not specified'}</span>
+                                            </p>
+                                            <p className="flex gap-2">
+                                                <span className="text-[#800020] font-semibold min-w-[120px]">
+                                                    {language === 'bn' ? 'ওজনঃ' : 'Weight:'}
+                                                </span>
+                                                <span>{data[language].weight || 'Not specified'}</span>
+                                            </p>
+                                            <p className="flex gap-2">
+                                                <span className="text-[#800020] font-semibold min-w-[120px]">
+                                                    {language === 'bn' ? 'চুলের রংঃ' : 'Hair:'}
+                                                </span>
+                                                <span>{data[language].hair || 'Not specified'}</span>
+                                            </p>
+                                            <p className="flex gap-2">
+                                                <span className="text-[#800020] font-semibold min-w-[120px]">
+                                                    {language === 'bn' ? 'চোখের রংঃ' : 'Eyes:'}
+                                                </span>
+                                                <span>{data[language].eyes || 'Not specified'}</span>
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    {/* Contact section */}
+                                    <div className="mt-3 text-center">
+                                        <p className="text-base mb-2">
+                                            {language === 'bn' 
+                                                ? 'আপনি যদি এই ব্যক্তিকে দেখে থাকেন তবে অনুগ্রহ করে কল করুন' 
+                                                : 'If you have seen this person? please call'}
+                                        </p>
+                                        <div className="text-[#800020] text-2xl font-bold mb-2">
+                                             {guardianContactNo}
+                                        </div>
+                                        <p className="text-xs">
+                                            {language === 'bn' 
+                                                ? 'অতিরিক্ত তথ্যঃ http://amberalert4bangladesh.org' 
+                                                : 'More Detail: http://amberalert4bangladesh.org'}
+                                        </p>
+                                    </div>
                                 </div>
-                                <div className="flex flex-col items-start w-full">
-                                    <p className="text-lg"><strong>Name:</strong> {name}</p>
-                                    <p className="text-lg"><strong>Age:</strong> {age}</p>
-                                    <p className="text-lg"><strong>Last Seen:</strong> {lastSeen}</p>
-                                    <p className="text-lg"><strong>Date:</strong> {date}</p>
-                                </div>
-                                <p className="mt-6 text-lg text-center">
-                                    If you have any information, please contact the authorities immediately.
-                                </p>
-                                <p className="underline mt-4 text-[#FF7128]">www.amberalert4bangladesh.org</p>
+
+                                {/* Bottom MISSING text */}
+                                <h1 className="text-yellow-400 text-4xl font-bold text-center mt-2">
+                                    {language === 'bn' ? 'নিখোঁজ' : 'MISSING'}
+                                </h1>
                             </div>
                         </div>
-                        <div className="text-center">
+                        <div className="mt-4 flex justify-center space-x-4">
                             <button
                                 onClick={downloadPoster}
-                                className="bg-red-600 text-white py-2 px-6 rounded-md hover:bg-red-700 transition duration-300 mb-4">
-                                Download Poster
+                                className="bg-[#800020] text-white py-2 px-4 rounded-md hover:bg-[#600018] transition duration-300"
+                            >
+                                {language === 'bn' ? 'ডাউনলোড' : 'Download'}
                             </button>
                             <button
                                 onClick={toggleModal}
-                                className="bg-gray-200 text-gray-800 py-2 px-6 rounded-md hover:bg-gray-300 transition duration-300">
-                                Close Preview
+                                className="bg-gray-200 text-gray-800 py-2 px-4 rounded-md hover:bg-gray-300 transition duration-300"
+                            >
+                                {language === 'bn' ? 'বন্ধ করুন' : 'Close'}
                             </button>
                         </div>
                     </div>
                 </div>
             )}
-
         </div>
     );
 };
@@ -173,3 +269,4 @@ const RecentMissing = () => {
 };
 
 export default RecentMissing;
+

@@ -107,108 +107,92 @@ const MissingCard = ({ data, language }) => {
                         <h3 className="text-2xl font-semibold mb-4">
                             {language === 'bn' ? 'পোস্টার প্রিভিউ' : 'Poster Preview'}
                         </h3>
-                        <div ref={posterRef} className="bg-[#800020] p-4 rounded-lg relative">
-                            {/* Yellow border */}
-                            <div className="border-4 border-yellow-400 p-2">
+                        {/* Poster Preview Section */}
+                        <div ref={posterRef} className="relative bg-[#f5f5f5] p-4 rounded-lg">
+                            {/* Yellow border with aspect ratio */}
+                            <div className="border-dashed border-[1px] rounder-lg border-t-solid border-t-[5px] border-[#FF7128]  aspect-w-16 aspect-h-9 p-2">
                                 {/* Top MISSING text */}
                                 <h1 className="text-yellow-400 text-4xl font-bold text-center mb-2">
                                     {language === 'bn' ? 'নিখোঁজ' : 'MISSING'}
                                 </h1>
-                                
-                                {/* CAN YOU HELP? */}
-                                <h2 className="text-[#800020] text-2xl font-bold text-center mb-3 bg-white py-1">
-                                    {language === 'bn' ? 'আপনি কি সাহায্য করতে পারেন?' : 'CAN YOU HELP?'}
-                                </h2>
+                                <Image
+                                    src="https://i.ibb.co.com/CBY5mGb/image-removebg-preview.png"
+                                    alt="missing"
+                                    width={100}
+                                    height={100}/>
 
-                                {/* White content area */}
+                                {/* Content Section */}
                                 <div className="bg-white p-3">
-                                    <div className="flex flex-col sm:flex-row gap-3">
-                                        {/* Photo section */}
-                                        <div className="w-full sm:w-1/3 h-48 sm:h-auto bg-gray-200 flex-shrink-0">
-                                            <img 
-                                                src={image} 
-                                                alt={name} 
-                                                className="w-full h-full object-cover" 
+                                    <div className="">
+                                        {/* Photo Section */}
+                                        <div className="w-full sm:w-1/3 h-auto bg-gray-200 flex-shrink-0">
+                                            <img
+                                                src={image}
+                                                alt={name}
+                                                className="w-full h-full object-cover mb-4"
                                                 crossOrigin="anonymous"
                                             />
                                         </div>
 
-                                        {/* Details section */}
-                                        <div className="flex-1 space-y-1 text-sm">
-                                            <h3 className="text-xl font-serif mb-2">{name}</h3>
-                                            <p className="flex gap-2">
-                                                <span className="text-[#800020] font-semibold min-w-[120px]">
-                                                    {language === 'bn' ? 'নিখোঁজের স্থানঃ' : 'Missing From:'}
-                                                </span>
-                                                <span>{lostPlace}</span>
-                                            </p>
-                                            <p className="flex gap-2">
-                                                <span className="text-[#800020] font-semibold min-w-[120px]">
-                                                    {language === 'bn' ? 'নিখোঁজের তারিখঃ' : 'Missing Date:'}
-                                                </span>
-                                                <span>{lostDate} {`,`} {lostTime}</span>
-                                            </p>
-                                            <p className="flex gap-2">
-                                                <span className="text-[#800020] font-semibold min-w-[120px]">
-                                                    {language === 'bn' ? 'বয়সঃ' : 'Age:'}
-                                                </span>
-                                                <span>{age}</span>
-                                            </p>
-                                            <p className="flex gap-2">
-                                                <span className="text-[#800020] font-semibold min-w-[120px]">
-                                                    {language === 'bn' ? 'উচ্চতাঃ' : 'Height:'}
-                                                </span>
-                                                <span>{data[language].height || 'Not specified'}</span>
-                                            </p>
-                                            <p className="flex gap-2">
-                                                <span className="text-[#800020] font-semibold min-w-[120px]">
-                                                    {language === 'bn' ? 'ওজনঃ' : 'Weight:'}
-                                                </span>
-                                                <span>{data[language].weight || 'Not specified'}</span>
-                                            </p>
-                                            <p className="flex gap-2">
-                                                <span className="text-[#800020] font-semibold min-w-[120px]">
-                                                    {language === 'bn' ? 'চুলের রংঃ' : 'Hair:'}
-                                                </span>
-                                                <span>{data[language].hair || 'Not specified'}</span>
-                                            </p>
-                                            <p className="flex gap-2">
-                                                <span className="text-[#800020] font-semibold min-w-[120px]">
-                                                    {language === 'bn' ? 'চোখের রংঃ' : 'Eyes:'}
-                                                </span>
-                                                <span>{data[language].eyes || 'Not specified'}</span>
-                                            </p>
+                                        {/* Details Section */}
+                                        <div className="flex-1 space-y-2 text-sm">
+                                            {name && (
+                                                <h3 className="text-xl font-serif mb-2 text-[#072e75] pb-2 border-b-[1px] border-[#FF7128]">{name}</h3>
+                                            )}
+                                            {lostPlace && (
+                                                <p className="flex gap-2">
+                                                    <span className="text-[#072e75] font-semibold min-w-[120px]">
+                                                        {language === 'bn' ? 'নিখোঁজের স্থানঃ' : 'Missing From:'}
+                                                    </span>
+                                                    <span className="text-[#FF7128]">{lostPlace}</span>
+                                                </p>
+                                            )}
+                                            {lostDate && (
+                                                <p className="flex gap-2">
+                                                    <span className="text-[#072e75] font-semibold min-w-[120px]">
+                                                        {language === 'bn' ? 'নিখোঁজের তারিখঃ' : 'Missing Date:'}
+                                                    </span>
+                                                    <span className="text-[#FF7128]">{lostDate} {lostTime && `, ${lostTime}`}</span>
+                                                </p>
+                                            )}
+                                            {age && (
+                                                <p className="flex gap-2">
+                                                    <span className="text-[#072e75] font-semibold min-w-[120px]">
+                                                        {language === 'bn' ? 'বয়সঃ' : 'Age:'}
+                                                    </span>
+                                                    <span className="text-[#FF7128]">{age}</span>
+                                                </p>
+                                            )}
+                                           
                                         </div>
                                     </div>
 
-                                    {/* Contact section */}
-                                    <div className="mt-3 text-center">
+                                    {/* Contact Section */}
+                                    <div className="mt-4 text-center">
                                         <p className="text-base mb-2">
-                                            {language === 'bn' 
-                                                ? 'আপনি যদি এই ব্যক্তিকে দেখে থাকেন তবে অনুগ্রহ করে কল করুন' 
-                                                : 'If you have seen this person? please call'}
+                                            {language === 'bn'
+                                                ? 'আপনি যদি এই ব্যক্তিকে দেখে থাকেন তবে অনুগ্রহ করে কল করুন'
+                                                : 'If you have seen this person, please call'}
                                         </p>
-                                        <div className="text-[#800020] text-2xl font-bold mb-2">
-                                             {guardianContactNo}
-                                        </div>
+                                        {guardianContactNo && (
+                                            <div className="text-[#072e75] text-2xl font-bold mb-2">
+                                                {guardianContactNo}
+                                            </div>
+                                        )}
                                         <p className="text-xs">
-                                            {language === 'bn' 
-                                                ? 'অতিরিক্ত তথ্যঃ http://amberalert4bangladesh.org' 
-                                                : 'More Detail: http://amberalert4bangladesh.org'}
+                                            {language === 'bn'
+                                                ? 'অতিরিক্ত তথ্যঃ http://amberalert4bangladesh.org'
+                                                : 'More Details: http://amberalert4bangladesh.org'}
                                         </p>
                                     </div>
                                 </div>
-
-                                {/* Bottom MISSING text */}
-                                <h1 className="text-yellow-400 text-4xl font-bold text-center mt-2">
-                                    {language === 'bn' ? 'নিখোঁজ' : 'MISSING'}
-                                </h1>
                             </div>
                         </div>
+
                         <div className="mt-4 flex justify-center space-x-4">
                             <button
                                 onClick={downloadPoster}
-                                className="bg-[#800020] text-white py-2 px-4 rounded-md hover:bg-[#600018] transition duration-300"
+                                className="bg-[#FF7128] text-white py-2 px-4 rounded-md hover:bg-[#FF7128] transition duration-300"
                             >
                                 {language === 'bn' ? 'ডাউনলোড' : 'Download'}
                             </button>

@@ -37,47 +37,19 @@ const Navbar = () => {
                     <Link href="/contact" className="text-[#072E75] text-lg">
                         {language === "bn" ? "যোগাযোগ" : "Contact"}
                     </Link>
-                    <Link href="/ambassador" className="text-[#072E75] text-lg">
+                    <Link href="/ambassador" className="text-[#072e75] text-lg">
                         {language === "bn" ? "অ্যাম্বেসাডরস" : "Ambassadors"}
                     </Link>
-
-                    {/* Dropdown Menu */}
-                    <div className="relative">
-                        <button
-                            onClick={toggleDropdown}
-                            className="text-[#072E75] text-lg focus:outline-none flex items-center gap-x-2"
-                        >
-                            {language === "bn" ? "কেইস" : "Cases"}
-                            <FiChevronDown
-                                className={`transition-transform duration-300 ${isDropdownOpen ? "rotate-180" : ""}`}
-                            />
-                        </button>
-                        {isDropdownOpen && (
-                            <div className="absolute top-full mt-2 bg-white shadow-lg rounded-lg w-[150px]">
-                                {/* <Link
-                                    href="/cases/successful"
-                                    className="block px-4 py-2 text-[#072E75] hover:bg-gray-100"
-                                >
-                                    {language === "bn" ? "সফল কেস" : "Amber Alert Successful Cases"}
-                                </Link> */}
-                                <Link
-                                    href="/cases/missing"
-                                    className="block px-4 py-2 text-[#072E75] hover:bg-gray-100"
-                                >
-                                    {language === "bn" ? "নিখোঁজ শিশু" : "Missing Kids"}
-                                </Link>
-                            </div>
-                        )}
-                    </div>
                 </div>
 
                 <div className="hidden md:flex items-center gap-x-4">
-                    <Link href="#letter-section" passHref>
-                        <button className="flex items-center gap-x-2 bg-[#FF7128] text-[#fff] px-4 py-2 rounded-lg">
-                            <IoDocumentTextOutline className="text-xl" />
-                            {language === "bn" ? "চিঠি পড়ুন" : "Read Letter"}
-                        </button>
+                    <Link href="/cases/missing" passHref>
+                        <div className="relative mb-4 md:top-0">
+                            <span className="alarm-indicator !top-[-3px] !left-[-4px]" style={{ animationDelay: '0s' }}></span>
+                            <button className="border-[2px] rounded px-4 py-2 border-[#FF7128] text-[#FF7128]" style={{ animationDelay: '0s' }}>{language === "bn" ? "নিখোঁজ শিশু" : "Missing Kids"}</button>
+                        </div>
                     </Link>
+                    
                     <button
                         onClick={() => changeLanguage(language === "en" ? "bn" : "en")}
                         className="text-[#FF7128] text-lg px-3 py-1 rounded-lg"

@@ -1,13 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@100..800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@100..800&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@property --border-angle {
+  inherits: false;
+  initial-value: 0deg;
+  syntax: "<angle>";
+}
 body {
-   font-family: "Anek Bangla", sans-serif;
+  font-family: "Anek Bangla", sans-serif;
 }
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 /* Add this CSS to your global styles or in the component's CSS module */
@@ -16,108 +20,103 @@ html {
 /* Beep animation */
 
 @layer utilities {
-    .custom-dashed-border {
-        border-style: dashed;
-        border-color: #FF7128;
-        border-width: 1px;
-        /* Custom dash and gap sizes */
-        border-image: repeating-linear-gradient(
-            to right,
-            #FF7128 0,
-            #FF7128 10px, /* Dash size */
-            transparent 10px,
-            transparent 30px /* Gap size */
-        );
-        border-image-slice: 1;
-    }
+  .custom-dashed-border {
+    border-style: dashed;
+    border-color: #ff7128;
+    border-width: 1px;
+    /* Custom dash and gap sizes */
+    border-image: repeating-linear-gradient(
+      to right,
+      #ff7128 0,
+      #ff7128 10px,
+      /* Dash size */ transparent 10px,
+      transparent 30px /* Gap size */
+    );
+    border-image-slice: 1;
+  }
 }
 
-
 @keyframes beep {
-    0% {
-        opacity: 0.3;
-        transform: scale(1);
-    }
-    50% {
-        opacity: 1;
-        transform: scale(1.1);
-    }
-    100% {
-        opacity: 0.3;
-        transform: scale(1);
-    }
+  0% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
 }
 
 @keyframes beepTwo {
-    0% {
-        opacity: 0.3;
-        transform: scale(1);
-    }
-    50% {
-        opacity: 1;
-        transform: scale(.8);
-    }
-    100% {
-        opacity: 0.3;
-        transform: scale(1);
-    }
+  0% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
 }
 
 .swiper {
-    width: 100%;
-    height: auto;
+  width: 100%;
+  height: auto;
 }
-
-
 
 /* Button styles */
 .outline-button {
-    padding: 4px 16px;
-    border: 1px solid #FF7128;
-    background-color: transparent;
-    color: #FF7128;
-    border-radius: 5px;
-    font-size: 12px;
-    font-weight: semibold;
-    text-transform: uppercase;
-    cursor: pointer;
-    animation: beep 2s infinite ease-in-out;
-    transition: background-color 0.3s, color 0.3s;
+  padding: 4px 16px;
+  border: 1px solid #ff7128;
+  background-color: transparent;
+  color: #ff7128;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: semibold;
+  text-transform: uppercase;
+  cursor: pointer;
+  animation: beep 2s infinite ease-in-out;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .outline-button:hover {
-    background-color: #FF7128;
-    color: white;
+  background-color: #ff7128;
+  color: white;
 }
 
 /* Red Alarm Indicator */
 .alarm-indicator {
-    width: 12px;
-    height: 12px;
-    background-color: red;
-    border-radius: 50%;
-    position: absolute;
-    top: -8px;
-    left: -8px;
-    box-shadow: 0 0 8px rgba(255, 0, 0, 0.5);
-    animation: beep 2s infinite;
+  width: 12px;
+  height: 12px;
+  background-color: red;
+  border-radius: 50%;
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  box-shadow: 0 0 8px rgba(255, 0, 0, 0.5);
+  animation: beep 2s infinite;
 }
 
-.image-beep{
- animation: beepTwo 4s infinite ease-in-out;
+.image-beep {
+  animation: beepTwo 4s infinite ease-in-out;
 }
-
 
 .ripple-effect {
-   width: 10px;
-    height: 10px;
-    background-color: red;
-    border-radius: 50%;
-    position: absolute;
-    box-shadow: 0 0 8px rgba(255, 0, 0, 0.5);
-    animation: beep 2s infinite;
+  width: 10px;
+  height: 10px;
+  background-color: red;
+  border-radius: 50%;
+  position: absolute;
+  box-shadow: 0 0 8px rgba(255, 0, 0, 0.5);
+  animation: beep 2s infinite;
 }
-
 
 @keyframes ripple-animation {
   to {

@@ -117,6 +117,7 @@ const MissingCard = ({ data, language }) => {
         <div className="flex space-x-2">
           <button
             onClick={toggleModal}
+            disabled
             className="flex-1 bg-[#FF7128] text-white py-2 px-4 rounded-md hover:bg-[#FF7128] transition duration-300 flex items-center justify-center text-[15px]"
           >
             <Download className="w-5 h-5 mr-2" />

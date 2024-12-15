@@ -1,14 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import {
-  AlertTriangle,
-  Clock,
-  MapPin,
-  Share2,
-  Download,
-  Eye,
-} from "lucide-react";
+import { AlertTriangle, Phone, Calendar, Clock, MapPin, Share2, Download, Eye } from 'lucide-react';
 import { missingDatas } from "../../../public/missing";
 import { useLanguage } from "@/contexts/LanguageContext";
 import Link from "next/link";
@@ -27,7 +20,6 @@ const MissingCard = ({ data, language }) => {
     data[language];
   const title = `Missing Child: ${name}`;
   const [shareUrl, setShareUrl] = useState("");
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const posterRef = useRef(null);
 
   useEffect(() => {
@@ -35,41 +27,123 @@ const MissingCard = ({ data, language }) => {
   }, []);
 
   const downloadPoster = async () => {
-    const element = posterRef.current;
-    if (element) {
-      const imgElement = element.querySelector("img");
-      if (imgElement) {
-        await new Promise((resolve) => {
-          if (imgElement.complete) {
-            resolve();
-          } else {
-            imgElement.onload = resolve;
-          }
-        });
+      const posterContent = `
+    <div style="width: 1200px; height: 628px; background-color: white; position: relative; font-family: Arial, sans-serif; display: flex; flex-direction: column;">
+      <!-- Header Banner -->
+      <div style="background-color: #DC2626; color: white; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center;">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+          <span style="font-weight: bold; font-size: 28px;">MISSING PERSON</span>
+        </div>
+        <div style="font-size: 28px; font-weight: bold;">নিখোঁজ ব্যক্তি</div>
+      </div>
+
+      <!-- Main Content -->
+      <div style="flex: 1; display: flex; padding: 24px; background: linear-gradient(to bottom, #FEF2F2, white);">
+        <div style="display: flex; gap: 32px; width: 100%; max-width: 1000px; margin: 0 auto;">
+          <!-- Left Column - Photo -->
+          <div style="flex: 0 0 45%;">
+            <div style="aspect-ratio: 3/4; border-radius: 8px; border: 4px solid #DC2626; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); overflow: hidden;">
+              <img src="${image}" alt="${name}" style="width: 100%; height: "600px"; object-fit: cover;" crossorigin="anonymous" />
+            </div>
+          </div>
+
+          <!-- Right Column - Details -->
+          <div style="flex: 1; display: flex; flex-direction: column;">
+            <div style="margin-bottom: 20px;">
+              <h2 style="font-size: 36px; font-weight: bold; color: #DC2626; margin: 0;">${name}</h2>
+              <p style="font-size: 24px; color: #4B5563; margin: 8px 0;">${age} ${language === "bn" ? "বছর বয়সী" : "years old"}</p>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+              <div style="display: flex; gap: 12px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#DC2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                <div>
+                  <p style="font-weight: 600; color: #4B5563; margin: 0;">${language === "bn" ? "নিখোঁজের স্থান" : "Last Seen Location"}</p>
+                  <p style="color: #111827; margin: 4px 0 0 0; font-size: 18px;">${lostPlace}</p>
+                </div>
+              </div>
+
+              <div style="display: flex; gap: 12px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#DC2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                <div>
+                  <p style="font-weight: 600; color: #4B5563; margin: 0;">${language === "bn" ? "নিখোঁজের তারিখ" : "Date Missing"}</p>
+                  <p style="color: #111827; margin: 4px 0 0 0; font-size: 18px;">${lostDate}</p>
+                </div>
+              </div>
+
+              <div style="display: flex; gap: 12px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#DC2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                <div>
+                  <p style="font-weight: 600; color: #4B5563; margin: 0;">${language === "bn" ? "নিখোঁজের সময়" : "Time Missing"}</p>
+                  <p style="color: #111827; margin: 4px 0 0 0; font-size: 18px;">${lostTime || "N/A"}</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Contact Box -->
+            <div style="background-color: #FEF2F2; padding: 16px; border-radius: 8px; border: 1px solid #FCA5A5; margin-top: auto;">
+              <p style="font-size: 18px; text-align: center; margin: 0 0 8px 0;">
+                ${language === "bn"
+                  ? "যদি আপনি এই ব্যক্তিকে দেখে থাকেন তবে অনুগ্রহ করে যোগাযোগ করুন"
+                  : "If you have any information, please contact"}
+              </p>
+              <div style="display: flex; justify-content: center; align-items: center; gap: 8px; font-size: 24px; font-weight: bold; color: #DC2626;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                <span>${guardianContactNo || "Emergency Hotline: 999"}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer with Amber Alert Logo -->
+      <div style="background-color: #F3F4F6; padding: 12px; display: flex; justify-content: center; align-items: center; gap: 16px;">
+        <img src="https://amberalert4bangladesh.org/wp-content/uploads/2023/11/cropped-amber-alert-logo-1.png" alt="Amber Alert Logo" style="height: 40px; width: auto;" crossorigin="anonymous" />
+        <div style="display: flex; flex-direction: column; align-items: center;">
+          <p style="margin: 0; font-size: 14px; color: #4B5563;">
+            ${language === "bn"
+              ? "অতিরিক্ত তথ্যের জন্য ভিজিট করুন"
+              : "For more information visit"}
+          </p>
+          <a href="http://amberalert4bangladesh.org" style="color: #DC2626; text-decoration: none; font-weight: 500; font-size: 16px;">
+            www.amberalert4bangladesh.org
+          </a>
+        </div>
+      </div>
+    </div>
+  `;
+  const tempDiv = document.createElement('div');
+  tempDiv.style.position = 'absolute';
+  tempDiv.style.left = '-9999px';
+  tempDiv.innerHTML = posterContent;
+  document.body.appendChild(tempDiv);
+
+  try {
+    const canvas = await html2canvas(tempDiv, {
+      scale: 2,
+      useCORS: true,
+      allowTaint: true,
+      width: 1200,
+      height: 628,
+    });
+
+    canvas.toBlob((blob) => {
+      if (blob) {
+        const link = document.createElement("a");
+        const url = URL.createObjectURL(blob);
+        link.href = url;
+        link.download = `missing_poster_${name}.png`;
+        link.click();
+        URL.revokeObjectURL(url);
+      } else {
+        console.error("Error: Failed to create blob.");
       }
-
-      const canvas = await html2canvas(element, {
-        scale: 2,
-        useCORS: true,
-        allowTaint: true,
-      });
-
-      canvas.toBlob((blob) => {
-        if (blob) {
-          const link = document.createElement("a");
-          const url = URL.createObjectURL(blob);
-          link.href = url;
-          link.download = `missing_poster_${name}.png`;
-          link.click();
-          URL.revokeObjectURL(url);
-        } else {
-          console.error("Error: Failed to create blob.");
-        }
-      }, "image/png");
-    }
-  };
-
-  const toggleModal = () => setIsModalOpen(!isModalOpen);
+    }, "image/png");
+  } finally {
+    document.body.removeChild(tempDiv);
+  }
+};
 
   return (
     <div className="bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl">
@@ -93,14 +167,14 @@ const MissingCard = ({ data, language }) => {
         <div className="flex items-center mb-2">
           <MapPin className="w-5 h-5 text-gray-500 mr-2" />
           <span className="text-gray-700">
-            {language === "bn" ? "হারানোর জায়গা:" : "Missing Place:"}{" "}
+            {language === "bn" ? "হারানোর জায়গা:" : "Missing Place:"}{" "}
             {lostPlace}
           </span>
         </div>
         <div className="flex items-center mb-4">
           <Clock className="w-5 h-5 text-gray-500 mr-2" />
           <span className="text-gray-700">
-            {language === "bn" ? "হারানোর তারিখ:" : "Missing From:"} {lostPlace}
+            {language === "bn" ? "হারানোর তারিখ:" : "Missing From:"} {lostDate}
           </span>
         </div>
         <div className="flex space-x-2 mb-4">
@@ -116,8 +190,7 @@ const MissingCard = ({ data, language }) => {
         </div>
         <div className="flex space-x-2">
           <button
-            onClick={toggleModal}
-            disabled
+            onClick={downloadPoster}
             className="flex-1 bg-[#FF7128] text-white py-2 px-4 rounded-md hover:bg-[#FF7128] transition duration-300 flex items-center justify-center text-[15px]"
           >
             <Download className="w-5 h-5 mr-2" />
@@ -132,123 +205,6 @@ const MissingCard = ({ data, language }) => {
           </Link>
         </div>
       </div>
-
-      {isModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white p-8 rounded-lg shadow-xl max-w-3xl w-full mx-auto max-h-[90vh] overflow-y-auto">
-            <h3 className="text-2xl font-semibold mb-4">
-              {language === "bn" ? "পোস্টার প্রিভিউ" : "Poster Preview"}
-            </h3>
-            {/* Poster Preview Section */}
-            <div
-              ref={posterRef}
-              className="relative bg-[#f5f5f5] p-4 rounded-lg"
-            >
-              {/* Yellow border with aspect ratio */}
-              <div className="border-dashed border-[1px] rounder-lg border-t-solid border-t-[5px] border-[#FF7128]  aspect-w-16 aspect-h-9 p-2">
-                {/* Top MISSING text */}
-                <h1 className="text-yellow-400 text-4xl font-bold text-center mb-2">
-                  {language === "bn" ? "নিখোঁজ" : "MISSING"}
-                </h1>
-                <Image
-                  src="https://i.ibb.co.com/CBY5mGb/image-removebg-preview.png"
-                  alt="missing"
-                  width={100}
-                  height={100}
-                />
-
-                {/* Content Section */}
-                <div className="bg-white p-3">
-                  <div className="">
-                    {/* Photo Section */}
-                    <div className="w-full sm:w-1/3 h-auto bg-gray-200 flex-shrink-0">
-                      <img
-                        src={image}
-                        alt={name}
-                        className="w-full h-full object-cover mb-4"
-                        crossOrigin="anonymous"
-                      />
-                    </div>
-
-                    {/* Details Section */}
-                    <div className="flex-1 space-y-2 text-sm">
-                      {name && (
-                        <h3 className="text-xl font-serif mb-2 text-[#072e75] pb-2 border-b-[1px] border-[#FF7128]">
-                          {name}
-                        </h3>
-                      )}
-                      {lostPlace && (
-                        <p className="flex gap-2">
-                          <span className="text-[#072e75] font-semibold min-w-[120px]">
-                            {language === "bn"
-                              ? "নিখোঁজের স্থানঃ"
-                              : "Missing From:"}
-                          </span>
-                          <span className="text-[#FF7128]">{lostPlace}</span>
-                        </p>
-                      )}
-                      {lostDate && (
-                        <p className="flex gap-2">
-                          <span className="text-[#072e75] font-semibold min-w-[120px]">
-                            {language === "bn"
-                              ? "নিখোঁজের তারিখঃ"
-                              : "Missing Date:"}
-                          </span>
-                          <span className="text-[#FF7128]">
-                            {lostDate} {lostTime && `, ${lostTime}`}
-                          </span>
-                        </p>
-                      )}
-                      {age && (
-                        <p className="flex gap-2">
-                          <span className="text-[#072e75] font-semibold min-w-[120px]">
-                            {language === "bn" ? "বয়সঃ" : "Age:"}
-                          </span>
-                          <span className="text-[#FF7128]">{age}</span>
-                        </p>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Contact Section */}
-                  <div className="mt-4 text-center">
-                    <p className="text-base mb-2">
-                      {language === "bn"
-                        ? "আপনি যদি এই ব্যক্তিকে দেখে থাকেন তবে অনুগ্রহ করে কল করুন"
-                        : "If you have seen this person, please call"}
-                    </p>
-                    {guardianContactNo && (
-                      <div className="text-[#072e75] text-2xl font-bold mb-2">
-                        {guardianContactNo}
-                      </div>
-                    )}
-                    <p className="text-xs">
-                      {language === "bn"
-                        ? "অতিরিক্ত তথ্যঃ http://amberalert4bangladesh.org"
-                        : "More Details: http://amberalert4bangladesh.org"}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-4 flex justify-center space-x-4">
-              <button
-                onClick={downloadPoster}
-                className="bg-[#FF7128] text-white py-2 px-4 rounded-md hover:bg-[#FF7128] transition duration-300"
-              >
-                {language === "bn" ? "ডাউনলোড" : "Download"}
-              </button>
-              <button
-                onClick={toggleModal}
-                className="bg-gray-200 text-gray-800 py-2 px-4 rounded-md hover:bg-gray-300 transition duration-300"
-              >
-                {language === "bn" ? "বন্ধ করুন" : "Close"}
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
@@ -307,3 +263,4 @@ const RecentMissing = () => {
 };
 
 export default RecentMissing;
+

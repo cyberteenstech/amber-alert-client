@@ -16,81 +16,9 @@ import {
   DialogContainer,
 } from "../ambassador/modal";
 import ReactPlayer from "react-player";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { ambassadorsData } from "../../../public/ambassadors.data";
 
-const ambassadors = [
-  {
-    id: 1,
-    name: { en: "Faatiha Aayat", bn: "Faatiha Aayat" },
-    title: { en: "Ambassador", bn: "Ambassador" },
-    image:
-      "https://i.ibb.co.com/RHjMqRd/466841916-1591761551464254-549539917158943319-n.jpg",
-    social: {
-      facebook: "https://www.facebook.com/FaatihaAayatOfficial?mibextid=ZbWKwL",
-    },
-    description: {
-      en: "Fatiha Ayat is a children's writer, poet and human rights activist. He has represented Bangladesh in United Nations and various international conferences. Apart from working on child education and rights, he is vocal on climate change and child protection.",
-      bn: "ফাতিহা আয়াত একজন শিশু লেখক, কবি এবং মানবাধিকার কর্মী। তিনি জাতিসংঘ এবং বিভিন্ন আন্তর্জাতিক সম্মেলনে বাংলাদেশকে প্রতিনিধিত্ব করেছেন। শিশুশিক্ষা ও অধিকার নিয়ে কাজ করার পাশাপাশি তিনি জলবায়ু পরিবর্তন ও শিশু সুরক্ষা নিয়ে সোচ্চার।",
-    },
-    quote: {
-      en: "Ensuring the safety of children is safeguarding our future. Amber Alert will play a remarkable role in this mission",
-      bn: "আমাদের শিশুদের সুরক্ষা নিশ্চিত করা মানেই আমাদের ভবিষ্যৎ রক্ষা করা। অ্যাম্বার অ্যালার্ট এই কাজে অসাধারণ ভূমিকা রাখবে।",
-    },
-  },
-  {
-    id: 2,
-    name: { en: "Subha Safayet Shizda", bn: "Subha Safayet Shizda" },
-    title: { en: "Ambassador", bn: "Ambassador" },
-    image:
-      "https://i.ibb.co.com/sKd1hwZ/436373231-401947945934402-4601529120016278882-n.jpg",
-    social: {
-      facebook: " https://www.facebook.com/shizdaofficial?mibextid=ZbWKwL",
-    },
-    description: {
-      en: "Shubha Safatiyat Shizdah is a young actress and social activist. She works on improving children's mental health and education. His interest in creating a safe environment for children has always been commendable.",
-      bn: "শুভা সাফাতিয়াত শিজদাহ একজন তরুণ অভিনেত্রী এবং সামাজিক কর্মী। তিনি শিশুদের মানসিক স্বাস্থ্যের উন্নতি এবং শিক্ষা নিয়ে কাজ করেন। শিশুদের জন্য নিরাপদ পরিবেশ তৈরিতে তার আগ্রহ বরাবরই প্রশংসনীয়।",
-    },
-    quote: {
-      en: "Amber Alert is a bold step toward every child's right to safety.",
-      bn: "অ্যাম্বার অ্যালার্ট প্রতিটি শিশুর অধিকার ও নিরাপত্তার জন্য একটি সাহসী পদক্ষেপ।",
-    },
-  },
-  {
-    id: 3,
-    name: { en: "Afnan Ferdousi", bn: "Afnan Ferdousi" },
-    title: { en: "Ambassador", bn: "Ambassador" },
-    image:
-      "https://i.ibb.co.com/fYZdYjm/400419849-350111167539354-6246448894793681613-n.jpg",
-    social: {
-      facebook: "https://www.facebook.com/afnanferdousi2006",
-    },
-    description: {
-      en: "Afnan Ferdowsi is an accomplished software developer and project manager. He has proven his talent in programming and technology at a very young age. Despite being in the process of migrating from Bangladesh to Canada, he is committed to working for the welfare of the country. His role in the technical development of the Amber Alert project was immense.",
-      bn: "আফনান ফেরদৌসি একজন দক্ষ সফটওয়্যার ডেভেলপার এবং প্রকল্প ব্যবস্থাপক। তিনি অত্যন্ত কম বয়সে প্রোগ্রামিং এবং টেকনোলজিতে নিজের প্রতিভা প্রমাণ করেছেন। বাংলাদেশ থেকে কানাডায় স্থানান্তরের পথে থাকা সত্ত্বেও, তিনি দেশের কল্যাণে কাজ করতে প্রতিশ্রুতিবদ্ধ। অ্যাম্বার অ্যালার্ট প্রকল্পের প্রযুক্তিগত উন্নয়নে তার ভূমিকা অপরিসীম।",
-    },
-    quote: {
-      en: "By combining technology and humanity, we can build a safer future for children. Amber Alert is a crucial step toward that goal.",
-      bn: "প্রযুক্তি এবং মানবতার মেলবন্ধনেই আমরা শিশুদের জন্য একটি নিরাপদ ভবিষ্যৎ গড়ে তুলতে পারি। অ্যাম্বার অ্যালার্ট সেই লক্ষ্য অর্জনের একটি গুরুত্বপূর্ণ পদক্ষেপ।",
-    },
-  },
-  {
-    id: 3,
-    name: { en: "Simrin Lubaba", bn: "Simrin Lubaba" },
-    title: { en: "Ambassador", bn: "Ambassador" },
-    image: "https://i.ibb.co.com/hYynV9W/image.png",
-    social: {
-      facebook: "https://www.facebook.com/simrin.lubaba.75?mibextid=ZbWKwL",
-    },
-    description: {
-      en: "Simrin Lubaba is a talented child model and actress. With her sweet smile and achievements, she is playing a pioneering role in spreading positive messages for children. He is deeply committed to protecting children and ensuring their rights.",
-      bn: "সিমরিন লুবাবা একজন প্রতিভাবান শিশু মডেল ও অভিনেত্রী। তার মিষ্টি হাসি এবং কৃতিত্বের মাধ্যমে তিনি শিশুদের জন্য ইতিবাচক বার্তা ছড়িয়ে দিতে অগ্রগামী ভূমিকা পালন করছেন। শিশুদের সুরক্ষা এবং তাদের অধিকার নিশ্চিত করার প্রতি তিনি গভীরভাবে প্রতিশ্রুতিবদ্ধ।",
-    },
-    quote: {
-      en: "Every child deserves to grow up safely. Amber Alert is a beacon of hope to ensure that safety",
-      bn: "প্রতিটি শিশু নিরাপদে বড় হওয়ার অধিকার রাখে। অ্যাম্বার অ্যালার্ট শিশুদের সেই নিরাপত্তা নিশ্চিত করার জন্য একটি আশার আলো।",
-    },
-  },
-];
 
 const SocialIcon = ({ platform, url }) => {
   const icons = {
@@ -114,6 +42,8 @@ export default function Ambassadors() {
   const { language } = useLanguage();
   const [isPaused, setIsPaused] = useState(true);
 
+  const [ambassadors, setAmbassadors] = useState([]);
+
   const handlePlayPause = () => {
     setIsPaused(false);
   };
@@ -126,6 +56,11 @@ export default function Ambassadors() {
       ? "এই মহৎ ব্যক্তিরা বাংলাদেশের শিশুদের নিরাপত্তার জন্য কাজ করছেন"
       : "These distinguished individuals are working to keep Bangladesh's children safe";
 
+       useEffect(() => {
+    // Shuffle the ambassadors array
+    const shuffled = [...ambassadorsData].sort(() => Math.random() - 0.5);
+    setAmbassadors(shuffled);
+  }, []);
   return (
     <div className="bg-gradient-to-b from-red-50 to-white min-h-screen py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-[1440px] mx-auto">
@@ -146,7 +81,7 @@ export default function Ambassadors() {
                 duration: 0.5,
               }}
             >
-              <DialogTrigger className="relative mt-4 h-[430px] group mx-auto bg-white border rounded-md text-black flex flex-col cursor-pointer">
+              <DialogTrigger className="relative mt-4 h-[430px] group mx-auto bg-white border rounded-md text-black flex flex-col cursor-pointer w-full mx-auto items-center max-w-[350px]">
                 <div className="w-full relative rounded-t-md h-[350px] group-hover:h-[410px] overflow-hidden transition-all duration-300">
                   <Image
                     src={ambassador.image}
@@ -167,15 +102,15 @@ export default function Ambassadors() {
                   </div>
                 </div>
                 <article className="relative overflow-hidden flex-grow">
-                  <div className="info p-2 translate-y-0 group-hover:-translate-y-20 transition-all duration-300">
-                    <p className="md:text-2xl font-semibold">
+                  <div className="info px-4 py-2 translate-y-0 group-hover:-translate-y-20 transition-all duration-300">
+                    <p className="md:text-2xl font-semibold text-[#072E75]">
                       {ambassador.name[language]}
                     </p>
                     <p className="sm:text-base text-sm">
                       {ambassador.title[language]}
                     </p>
                   </div>
-                  <button className="absolute h-10 -bottom-8 opacity-0 group-hover:opacity-100 cursor-pointer group-hover:bottom-3  text-3xl font-medium transition-all duration-300 w-full text-center">
+                  <button className="absolute h-10 -bottom-8 opacity-0 group-hover:opacity-100 cursor-pointer group-hover:bottom-3  text-3xl font-medium transition-all duration-300 w-full text-center text-[#072E75]">
                     {ambassador.title[language]}
                   </button>
                 </article>
@@ -188,10 +123,10 @@ export default function Ambassadors() {
                   <DialogImage
                     src={ambassador.image}
                     alt={ambassador.name[language]}
-                    className=" object-contain w-[60%] mx-auto rounded-lg my-12"
+                    className=" object-contain md:w-[60%] w-[90%] mx-auto rounded-lg my-12"
                   />
                   <div className="p-6">
-                    <DialogTitle className="text-xl lg:text-5xl text-zinc-950 ">
+                    <DialogTitle className="text-xl lg:text-5xl text-[#FF7128] ">
                       {ambassador.name[language]}
                     </DialogTitle>
                     <DialogDescription>
@@ -234,7 +169,7 @@ export default function Ambassadors() {
                           </p>
                         </div>
                       </blockquote>
-                      <div className="w-[40vw] mx-auto">
+                      <div className="md:w-[40vw] mx-auto">
                         <div className="relative w-full h-0 pb-[56.25%] rounded-xl shadow-lg overflow-hidden">
                           <ReactPlayer
                             url="https://youtu.be/ONEBdKjN-2Q"
@@ -257,7 +192,8 @@ export default function Ambassadors() {
                               onClick={handlePlayPause}
                             >
                               <button
-                                className="flex items-center justify-center rounded-full bg-red-500 text-white w-16 h-16 shadow-lg hover:scale-105 active:scale-95"
+                                className="flex items-center justify-center rounded-full bg-red-500 text-white md:w-16 md:h-16 w-12
+                                 h-12 shadow-lg hover:scale-105 active:scale-95"
                                 style={{
                                   animation: "ripple 1.5s infinite",
                                 }}

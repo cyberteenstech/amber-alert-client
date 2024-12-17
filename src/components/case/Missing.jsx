@@ -27,123 +27,126 @@ const MissingCard = ({ data, language }) => {
   }, []);
 
   const downloadPoster = async () => {
-      const posterContent = `
-    <div style="width: 1200px; height: 628px; background-color: white; position: relative; font-family: Arial, sans-serif; display: flex; flex-direction: column;">
-      <!-- Header Banner -->
-      <div style="background-color: #DC2626; color: white; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center;">
-        <div style="display: flex; align-items: center; gap: 12px;">
-          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
-          <span style="font-weight: bold; font-size: 28px;">MISSING PERSON</span>
-        </div>
-        <div style="font-size: 28px; font-weight: bold;">নিখোঁজ ব্যক্তি</div>
-      </div>
-
-      <!-- Main Content -->
-      <div style="flex: 1; display: flex; padding: 24px; background: linear-gradient(to bottom, #FEF2F2, white);">
-        <div style="display: flex; gap: 32px; width: 100%; max-width: 1000px; margin: 0 auto;">
-          <!-- Left Column - Photo -->
-          <div style="flex: 0 0 45%;">
-            <div style="aspect-ratio: 3/4; border-radius: 8px; border: 4px solid #DC2626; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); overflow: hidden;">
-              <img src="${image}" alt="${name}" style="width: 100%; height: "600px"; object-fit: cover;" crossorigin="anonymous" />
-            </div>
+    const posterContent = `
+      <div style="width: 1200px; height:100%; background-color: white; position: relative; font-family: system-ui, -apple-system, sans-serif;">
+        <!-- Header Banner -->
+        <div style="background: linear-gradient(to right, #DC2626, #991B1B); color: white; padding: 40px 45px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+          <div style="display: flex; align-items: center; gap: 16px;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+            <span style="font-weight: 800; font-size: 32px; letter-spacing: -0.025em; margin-top: -7%;">MISSING PERSON</span>
           </div>
-
-          <!-- Right Column - Details -->
-          <div style="flex: 1; display: flex; flex-direction: column;">
-            <div style="margin-bottom: 20px;">
-              <h2 style="font-size: 36px; font-weight: bold; color: #DC2626; margin: 0;">${name}</h2>
-              <p style="font-size: 24px; color: #4B5563; margin: 8px 0;">${age} ${language === "bn" ? "বছর বয়সী" : "years old"}</p>
-            </div>
-
-            <div style="display: flex; flex-direction: column; gap: 16px;">
-              <div style="display: flex; gap: 12px;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#DC2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                <div>
-                  <p style="font-weight: 600; color: #4B5563; margin: 0;">${language === "bn" ? "নিখোঁজের স্থান" : "Last Seen Location"}</p>
-                  <p style="color: #111827; margin: 4px 0 0 0; font-size: 18px;">${lostPlace}</p>
-                </div>
-              </div>
-
-              <div style="display: flex; gap: 12px;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#DC2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                <div>
-                  <p style="font-weight: 600; color: #4B5563; margin: 0;">${language === "bn" ? "নিখোঁজের তারিখ" : "Date Missing"}</p>
-                  <p style="color: #111827; margin: 4px 0 0 0; font-size: 18px;">${lostDate}</p>
-                </div>
-              </div>
-
-              <div style="display: flex; gap: 12px;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#DC2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                <div>
-                  <p style="font-weight: 600; color: #4B5563; margin: 0;">${language === "bn" ? "নিখোঁজের সময়" : "Time Missing"}</p>
-                  <p style="color: #111827; margin: 4px 0 0 0; font-size: 18px;">${lostTime || "N/A"}</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Contact Box -->
-            <div style="background-color: #FEF2F2; padding: 16px; border-radius: 8px; border: 1px solid #FCA5A5; margin-top: auto;">
-              <p style="font-size: 18px; text-align: center; margin: 0 0 8px 0;">
-                ${language === "bn"
-                  ? "যদি আপনি এই ব্যক্তিকে দেখে থাকেন তবে অনুগ্রহ করে যোগাযোগ করুন"
-                  : "If you have any information, please contact"}
-              </p>
-              <div style="display: flex; justify-content: center; align-items: center; gap: 8px; font-size: 24px; font-weight: bold; color: #DC2626;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                <span>${guardianContactNo || "Emergency Hotline: 999"}</span>
-              </div>
-            </div>
-          </div>
+          <div style="font-size: 32px; font-weight: 700; margin-top: -3%;">নিখোঁজ ব্যক্তি</div>
         </div>
-      </div>
 
-      <!-- Footer with Amber Alert Logo -->
-      <div style="background-color: #F3F4F6; padding: 12px; display: flex; justify-content: center; align-items: center; gap: 16px;">
-        <img src="https://amberalert4bangladesh.org/wp-content/uploads/2023/11/cropped-amber-alert-logo-1.png" alt="Amber Alert Logo" style="height: 40px; width: auto;" crossorigin="anonymous" />
-        <div style="display: flex; flex-direction: column; align-items: center;">
-          <p style="margin: 0; font-size: 14px; color: #4B5563;">
-            ${language === "bn"
-              ? "অতিরিক্ত তথ্যের জন্য ভিজিট করুন"
-              : "For more information visit"}
-          </p>
-          <a href="http://amberalert4bangladesh.org" style="color: #DC2626; text-decoration: none; font-weight: 500; font-size: 16px;">
-            www.amberalert4bangladesh.org
-          </a>
-        </div>
-      </div>
-    </div>
-  `;
-  const tempDiv = document.createElement('div');
-  tempDiv.style.position = 'absolute';
-  tempDiv.style.left = '-9999px';
-  tempDiv.innerHTML = posterContent;
-  document.body.appendChild(tempDiv);
+        <!-- Main Content -->
+        <div style="flex: 1; display: flex; padding: 32px; background: linear-gradient(135deg, #FEF2F2, white); height: 100%;">
+          <div style="display: flex; gap: 40px; width: 100%; max-width: 1100px; margin: 0 auto;">
+            <!-- Left Column - Photo -->
+            <div style="flex: 0 0 45%;">
+              <div style="border-radius: 12px; border: 5px solid #DC2626; box-shadow: 0 8px 16px rgba(220, 38, 38, 0.15); overflow: hidden; background: white;">
+                <img src="${image}" alt="${name}" style="width: 100%; height: 100%; max-height: 600px; object-fit: cover;" crossorigin="anonymous" />
+              </div>
+            </div>
 
-  try {
-    const canvas = await html2canvas(tempDiv, {
-      scale: 2,
-      useCORS: true,
-      allowTaint: true,
-      width: 1200,
-      height: 628,
-    });
+            <!-- Right Column - Details -->
+            <div style="flex: 1; display: flex; flex-direction: column; gap: 24px;">
+              <div>
+                <h2 style="font-size: 42px; font-weight: 800; color: #991B1B; margin: 0; line-height: 1.2;">${name}</h2>
+                <p style="font-size: 28px; color: #4B5563; margin: 8px 0; font-weight: 500;">${age} ${language === "bn" ? "বছর বয়সী" : "years old"
+      }</p>
+              </div>
 
-    canvas.toBlob((blob) => {
-      if (blob) {
-        const link = document.createElement("a");
-        const url = URL.createObjectURL(blob);
-        link.href = url;
-        link.download = `missing_poster_${name}.png`;
-        link.click();
-        URL.revokeObjectURL(url);
-      } else {
-        console.error("Error: Failed to create blob.");
+              <div style="display: flex; flex-direction: column; gap: 24px; background: white; padding: 24px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);">
+                <div style="display: flex; gap: 16px; align-items: flex-start;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#991B1B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                  <div>
+                    <p style="font-weight: 600; color: #374151; margin: 0; font-size: 20px;">${language === "bn" ? "নিখোঁজের স্থান" : "Last Seen Location"
+      }</p>
+                    <p style="color: #111827; margin: 4px 0 0 0; font-size: 24px; font-weight: 500;">${lostPlace}</p>
+                  </div>
+                </div>
+
+                <div style="display: flex; gap: 16px; align-items: flex-start;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#991B1B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                  <div>
+                    <p style="font-weight: 600; color: #374151; margin: 0; font-size: 20px;">${language === "bn" ? "নিখোঁজের তারিখ" : "Date Missing"
+      }</p>
+                    <p style="color: #111827; margin: 4px 0 0 0; font-size: 24px; font-weight: 500;">${lostDate}</p>
+                  </div>
+                </div>
+
+                <div style="display: flex; gap: 16px; align-items: flex-start;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#991B1B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                  <div>
+                    <p style="font-weight: 600; color: #374151; margin: 0; font-size: 20px;">${language === "bn" ? "নিখোঁজের সময়" : "Time Missing"
+      }</p>
+                    <p style="color: #111827; margin: 4px 0 0 0; font-size: 24px; font-weight: 500;">${lostTime || "N/A"
+      }</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Contact Box -->
+              <div style="background: linear-gradient(to right, #FEE2E2, #FEF2F2); padding: 24px; border-radius: 12px; border: 2px solid #FCA5A5; margin-top: auto;">
+                <p style="font-size: 20px; text-align: center; margin: 0 0 12px 0; color: #991B1B; font-weight: 500;">
+                  ${language === "bn"
+        ? "যদি আপনি এই ব্যক্তিকে দেখে থাকেন তবে অনুগ্রহ করে যোগাযোগ করুন"
+        : "If you have any information, please contact"
       }
-    }, "image/png");
-  } finally {
-    document.body.removeChild(tempDiv);
+                </p>
+                <div style="display: flex; justify-content: center; align-items: center; gap: 12px; font-size: 32px; font-weight: 700; color: #991B1B;">
+                  <svg style="margin-bottom: -5%" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                  <span >${guardianContactNo || "Emergency Hotline: 999"}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer with Amber Alert Logo -->
+        <div style="background-color: white; padding: 16px; display: flex; justify-content: space-between; align-items: center; gap: 24px; border-top: 1px solid #E5E7EB; width: 100%;">
+          <img src="https://i.ibb.co.com/tcqRM1B/amberalert.webp" alt="Amber Alert Logo" style="height: 80px; width: 100px;" crossorigin="anonymous" />
+          <div style="display: flex; flex-direction: column; align-items: center;">
+            <a href="http://amberalert4bangladesh.org" style="color: #991B1B; text-decoration: none; font-weight: 600; font-size: 18px; margin-top: -10%;">
+              www.amberalert4bangladesh.org
+            </a>
+          </div>
+        </div>
+      </div>
+    `
+
+    const tempDiv = document.createElement("div")
+    tempDiv.style.position = "absolute"
+    tempDiv.style.left = "-9999px"
+    tempDiv.innerHTML = posterContent
+    document.body.appendChild(tempDiv)
+
+    try {
+      const canvas = await html2canvas(tempDiv, {
+        scale: 2,
+        useCORS: true,
+        allowTaint: true,
+        width: 1200,
+        height: 900,
+      })
+
+      canvas.toBlob((blob) => {
+        if (blob) {
+          const link = document.createElement("a")
+          const url = URL.createObjectURL(blob)
+          link.href = url
+          link.download = `missing_poster_${name}.png`
+          link.click()
+          URL.revokeObjectURL(url)
+        } else {
+          console.error("Error: Failed to create blob.")
+        }
+      }, "image/png")
+    } finally {
+      document.body.removeChild(tempDiv)
+    }
   }
-};
+
 
   return (
     <div className="bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl">

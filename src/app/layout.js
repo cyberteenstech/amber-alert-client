@@ -1,10 +1,10 @@
 // app/layout.js
-
 import Navbar from "@/components/shared/Navbar";
 import Footer from "@/components/shared/Footer";
 import Head from "next/head";
 import "./globals.css";
 import { LanguageProvider } from "@/contexts/LanguageContext";
+import SplashScreen from "@/components/shared/SplashScreen";
 
 export const metadata = {
   title: "Amber Alert For Bangladesh",
@@ -15,6 +15,7 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+
   return (
     <html lang="en">
       <Head>
@@ -30,6 +31,7 @@ export default function RootLayout({ children }) {
       </Head>
       <body className={`antialiased`}>
         <LanguageProvider>
+         <SplashScreen />
           <Navbar />
           {children}
           <Footer />

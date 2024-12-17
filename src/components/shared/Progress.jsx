@@ -2,10 +2,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import io from "socket.io-client";
+import { useLanguage } from "@/contexts/LanguageContext";
+
 const Progress = ({ setClicked, clicked }) => {
     const socketRef = useRef(null);
     const [voters, setVoters] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const { language } = useLanguage(); // Get the current language
 
     // Fetch voter data
     const getVotersData = async () => {
@@ -38,6 +41,7 @@ const Progress = ({ setClicked, clicked }) => {
             }
         };
     }, []);
+
     // Convert a number to Bangla
     const toBangla = (number) => {
         const banglaDigits = ["০", "১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯"];
@@ -54,49 +58,23 @@ const Progress = ({ setClicked, clicked }) => {
         const createdDate = new Date(createdAt);
         const diffInSeconds = Math.max(0, Math.floor((now - createdDate) / 1000));
 
-
         if (diffInSeconds < 60) {
-            return `${diffInSeconds} সে.`;
+            return `${diffInSeconds} ${language === 'bn' ? 'সে.' : 'sec.'}`;
         }
 
         const diffInMinutes = Math.floor(diffInSeconds / 60);
         if (diffInMinutes < 60) {
-            return `${diffInMinutes} মি.`;
+            return `${diffInMinutes} ${language === 'bn' ? 'মি.' : 'min.'}`;
         }
 
         const diffInHours = Math.floor(diffInMinutes / 60);
         if (diffInHours < 24) {
-            return `${diffInHours} ঘণ্টা.`;
+            return `${diffInHours} ${language === 'bn' ? 'ঘণ্টা.' : 'hrs.'}`;
         }
 
         const diffInDays = Math.floor(diffInHours / 24);
-        return `${diffInDays} দিন.`;
+        return `${diffInDays} ${language === 'bn' ? 'দিন.' : 'days.'}`;
     };
-    // useEffect(() => {
-        if (!socketRef.current) {
-            socketRef.current = io('https://api.amberalert4bangladesh.org');
-
-            // Listen for new votes
-            socketRef.current.on("new_vote", (newVoter) => {
-                // console.log("Received new vote:", newVoter); // Debugging
-                setVoters((prevVoters) => [newVoter, ...prevVoters]);
-            });
-
-            socketRef.current.on("connect_error", (error) => {
-                console.error("Socket connection error:", error);
-            });
-        }
-
-        getVotersData(); // Fetch initial data
-
-        // return () => {
-        //     if (socketRef.current) {
-        //         socketRef.current.disconnect();
-        //         socketRef.current = null;
-        //     }
-        // };
-    // }, []);
-
 
     if (clicked === true) {
         setClicked(false);
@@ -112,14 +90,15 @@ const Progress = ({ setClicked, clicked }) => {
     return (
         <div className="bg-white p-4 rounded-lg ">
             <div className="md:block hidden">
-            <div className="flex items-center justify-between mb-4 pt-4">
-                <h3 className="text-lg text-[#072E75]">
-                    <span className="font-semibold">{toBangla(voters.length)}</span> সাক্ষর
-                </h3>
-                <span className="text-[#072E75]">
-                    প্রয়োজন <span className="text-[#FF7128] font-semibold"> ১,০০,০০০</span>
-                </span>
-            </div>
+                <div className="flex items-center justify-between mb-4 pt-4">
+                    <h3 className="text-lg text-[#072E75]">
+                        <span className="font-semibold">{toBangla(voters.length)}</span> {language === 'bn' ? 'স্বাক্ষর' : 'signatures'}
+                    </h3>
+                    <span className="text-[#072E75]">
+                        {language === 'bn' ? 'প্রয়োজন' : 'Required'} 
+                        <span className="text-[#FF7128] font-semibold"> ১,০০,০০০</span>
+                    </span>
+                </div>
             </div>
             <div className="w-full bg-gray-200 h-2 rounded-full mb-4">
                 <div
@@ -153,7 +132,7 @@ const Progress = ({ setClicked, clicked }) => {
                                 <div className="ml-3">
                                     <p className="text-sm text-[#072E75] capitalize">{voter.name}</p>
                                     <p className="text-xs text-gray-500">
-                                        আপনার পিটিশন সম্পন্ন হয়েছে
+                                        {language === 'bn' ? 'আপনার পিটিশন সম্পন্ন হয়েছে' : 'Your petition has been completed'}
                                     </p>
                                 </div>
                                 <span className="ml-auto text-sm text-[#072E75]">

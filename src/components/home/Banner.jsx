@@ -11,6 +11,8 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useLanguage } from "@/contexts/LanguageContext";
 import TypingEffect from 'react-typing-effect';
+import { ToastContainer, toast } from 'react-toastify';
+import ToastAlert from '../shared/ToastAlert'; 
 
 const Banner = () => {
     const [clicked, setClicked] = useState(false)
@@ -18,6 +20,7 @@ const Banner = () => {
     const [isLoading, setIsLoading] = useState(true);
     const router = useRouter();
     const { language, changeLanguage } = useLanguage();
+     const [showToast, setShowToast] = useState(false); 
 
     // Fetch voter data
     const getVotersData = async () => {
@@ -50,6 +53,29 @@ const Banner = () => {
         //    open in new tab
         window.open('https://docs.google.com/forms/d/e/1FAIpQLSc5FXjbnvaIV_0GtEEYeG-zDZgbvEczU-GmIcQgXinH-EDuXg/viewform', '_blank');
     }
+
+  useEffect(() => {
+    // Function to handle toast display and audio playback
+    const playAlert = () => {
+      const audio = new Audio('/alert.mp3'); // Path to your audio file
+      audio.play()
+        .then(() => {
+          console.log("Playing alert sound...");
+          setShowToast(true); // Show toast
+          // Hide toast after 2 seconds
+          setTimeout(() => setShowToast(false), 3000);
+        })
+        .catch((error) => {
+          console.error("Failed to play audio:", error);
+        });
+    };
+
+    // Play alert every 5 seconds
+ const intervalId = setInterval(playAlert, 120000);
+
+    // Clear the interval when the component unmounts
+    return () => clearInterval(interval);
+  }, []);
     return (
         <div className="relative">
             {/* Background Gradient */}
@@ -227,7 +253,8 @@ const Banner = () => {
                     />
                 </div>
             </div>
-
+  <ToastContainer />
+            {showToast && <ToastAlert />} 
 
         </div>
 

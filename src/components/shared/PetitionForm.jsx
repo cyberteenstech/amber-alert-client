@@ -13,6 +13,20 @@ import { FaFacebookF, FaLinkedinIn, FaXTwitter } from "react-icons/fa6";
 import { FaFacebookMessenger, FaWhatsapp } from 'react-icons/fa';
 import { useLanguage } from "@/contexts/LanguageContext";
 
+import {
+  FacebookShareButton,
+  TwitterShareButton,
+  WhatsappShareButton,
+  LinkedinShareButton,
+  EmailShareButton,
+} from "react-share";
+import {
+  FacebookIcon,
+  TwitterIcon,
+  WhatsappIcon,
+  LinkedinIcon,
+  EmailIcon,
+} from "react-share";
 // Set the root element for the modal
 // Modal.setAppElement('#__next');
 
@@ -20,6 +34,8 @@ const PetitionForm = ({ setClicked }) => {
     const [showShare, setShowShare] = useState(false);
     const [showToast, setShowToast] = useState(false); 
     const { language, changeLanguage } = useLanguage();
+    // const [text, setText] = useState("")
+    // const [url, setUrl] = useState("")
     const {
         register,
         handleSubmit,
@@ -51,34 +67,35 @@ const PetitionForm = ({ setClicked }) => {
     };
 
     const shareToSocialMedia = (platform) => {
-        const text = encodeURIComponent(`${language === "bn" ? "বাংলাদেশে শিশুদের সুরক্ষায় Amber Alert চালুর দাবীতে আমি একটি গুরুত্বপূর্ণ পিটিশনে সাক্ষর করেছি। আপনিও স্বাক্ষর করুনঃ #Amberalert4bangladesh #Every_Child_Matters" : "I signed a petition for the safety of children in Bangladesh. Sign your petition too: #Amberalert4bangladesh #Every_Child_Matters"}`);
-        const url = encodeURIComponent(window.location.href); // Current page URL
+       
 
-        let shareUrl = '';
+        let url = '';
 
         switch (platform) {
             case 'facebook':
-                shareUrl = `https://www.facebook.com/sharer.php?u=${url}&quote=${text}`;
+                url = `https://www.facebook.com/sharer.php?u=${url}&quote=${text}`;
                 break;
             case 'twitter':
-                shareUrl = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
+                url = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
                 break;
             case 'linkedin':
-                shareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${text}`;
+                url = `https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${text}`;
                 break;
             case 'whatsapp':
-                shareUrl = `https://wa.me/?text=${text} ${url}`;
+                url = `https://wa.me/?text=${text} ${url}`;
                 break;
             case 'messenger':
-                shareUrl = `https://www.messenger.com/share/?link=${url}&quote=${text}`;
+                url = `https://www.messenger.com/share/?link=${url}&quote=${text}`;
                 break;
             
             default:
                 break;
         }
 
-        window.open(shareUrl, '_blank');
+        window.open(url, '_blank');
     };
+ const text = encodeURIComponent(`${language === "bn" ? "বাংলাদেশে শিশুদের সুরক্ষায় Amber Alert চালুর দাবীতে আমি একটি গুরুত্বপূর্ণ পিটিশনে সাক্ষর করেছি। আপনিও স্বাক্ষর করুনঃ #Amberalert4bangladesh #Every_Child_Matters" : "I signed a petition for the safety of children in Bangladesh. Sign your petition too: #Amberalert4bangladesh #Every_Child_Matters"}`);
+        const url = "http://amberalert4bangladesh.org"; // Current page URL
 
     const playAlertSound = () => {
         if (alertAudioRef.current) {
@@ -171,36 +188,21 @@ const PetitionForm = ({ setClicked }) => {
                     {language === "bn" ? "আপনার সমর্থনের জন্য আমরা সত্যিই কৃতজ্ঞ। আপনার স্বাক্ষর বাংলাদেশের অ্যাম্বার অ্যালার্ট বাস্তবায়নের পথে একটি বড় পদক্ষেপ। এখন এটি আপনার বন্ধু ও পরিবারের সঙ্গে শেয়ার করে আরও মানুষকে যুক্ত করতে সাহায্য করুন।" : "We truly believe that your petition will be a step towards the implementation of Bangladesh AMBER Alert. Now, share it with your friends and family to help more people."}
                 </p>
                 <div className="flex justify-center space-x-4 mb-6">
-                    <button
-                        onClick={() => shareToSocialMedia('facebook')}
-                        className="flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition duration-300"
-                    >
-                        <FaFacebookF className="text-2xl" />
-                    </button>
-                    <button
-                        onClick={() => shareToSocialMedia('twitter')}
-                        className="flex items-center justify-center bg-sky-500 hover:bg-sky-600 text-white font-medium py-2 px-4 rounded-md transition duration-300"
-                    >
-                        <FaXTwitter className="text-2xl" />
-                    </button>
-                    <button
-                        onClick={() => shareToSocialMedia('linkedin')}
-                        className="flex items-center justify-center bg-blue-700 hover:bg-blue-800 text-white font-medium py-2 px-4 rounded-md transition duration-300"
-                    >
-                        <FaLinkedinIn className="text-2xl" />
-                    </button>
-                    <button
-                        onClick={() => shareToSocialMedia('whatsapp')}
-                        className="flex items-center justify-center bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded-md transition duration-300"
-                    >
-                        <FaWhatsapp className="text-2xl" />
-                    </button>
-                    <button
-                        onClick={() => shareToSocialMedia('messenger')}
-                        className="flex items-center justify-center bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-md transition duration-300"
-                    >
-                        <FaFacebookMessenger className="text-2xl" />
-                    </button>
+                <FacebookShareButton url={url} hashtag="#Amberalert4bangladesh #Every_Child_Matters">
+                <FacebookIcon size={32} round />
+              </FacebookShareButton>
+              <TwitterShareButton url={url} title={text}>
+                <TwitterIcon size={32} round />
+              </TwitterShareButton>
+              <WhatsappShareButton url={url} title={text}>
+                <WhatsappIcon size={32} round />
+              </WhatsappShareButton>
+              <LinkedinShareButton url={url} summary={text}>
+                <LinkedinIcon size={32} round />
+              </LinkedinShareButton>
+              <EmailShareButton url={url} subject={`Save Kids, Sign The Petition`} body={text}>
+                <EmailIcon size={32} round />
+              </EmailShareButton>
                 </div>
                 <button
                     onClick={() => setShowShare(false)}

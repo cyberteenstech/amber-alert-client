@@ -74,7 +74,7 @@ const Banner = () => {
  const intervalId = setInterval(playAlert, 120000);
 
     // Clear the interval when the component unmounts
-    return () => clearInterval(interval);
+    return () => clearInterval(intervalId);
   }, []);
     return (
         <div className="relative">

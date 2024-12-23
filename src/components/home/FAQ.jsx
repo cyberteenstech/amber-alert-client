@@ -9,9 +9,9 @@ const FAQ = () => {
     // Fetch voter data
     const getFaqsData = async () => {
         try {
-            const res = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/faq`);
+            const res = await axios.get(`/faq.data.json`);
             console.log(res);
-            setFaqs(res.data.data);
+            setFaqs(res.data);
         } catch (e) {
             console.log(e);
         }
@@ -39,7 +39,7 @@ const FAQ = () => {
                             onClick={() => toggleFAQ(index)}
                             className="w-full text-left flex justify-between items-center text-lg font-semibold text-[#1F2937] focus:outline-none"
                         >
-                            {faq.question}
+                            {faq.question[language]}
                             <span className="text-[#FF7128] text-xl">
                                 {openIndex === index ? '-' : '+'}
                             </span>
@@ -48,7 +48,7 @@ const FAQ = () => {
                             className={`overflow-hidden transition-all duration-300 ${openIndex === index ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'}`}
                         >
                             <p className="mt-2 text-sm text-[#6B7280]">
-                                {faq.answer}
+                                {faq.answer[language]}
                             </p>
                         </div>
                     </div>

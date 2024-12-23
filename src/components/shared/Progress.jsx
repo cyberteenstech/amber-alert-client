@@ -92,11 +92,11 @@ const Progress = ({ setClicked, clicked }) => {
             <div className="md:block hidden">
                 <div className="flex items-center justify-between mb-4 pt-4">
                     <h3 className="text-lg text-[#072E75]">
-                        <span className="font-semibold">{toBangla(voters.length)}</span> {language === 'bn' ? 'স্বাক্ষর' : 'signatures'}
+                        <span className="font-semibold"> {language === 'bn' ? `${toBangla(voters.length)}` : `${voters.length}`}</span> {language === 'bn' ? 'স্বাক্ষর' : 'signs'}
                     </h3>
                     <span className="text-[#072E75]">
                         {language === 'bn' ? 'প্রয়োজন' : 'Required'} 
-                        <span className="text-[#FF7128] font-semibold"> ১,০০,০০০</span>
+                        <span className="text-[#FF7128] font-semibold">  {language === 'bn' ? '১,০০,০০০' : '100000'}</span>
                     </span>
                 </div>
             </div>

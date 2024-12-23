@@ -81,7 +81,7 @@ export default function Ambassadors() {
                 duration: 0.5,
               }}
             >
-              <DialogTrigger className="relative mt-4 h-[430px] group mx-auto bg-white border rounded-md text-black flex flex-col cursor-pointer w-full mx-auto items-center max-w-[350px]">
+              <DialogTrigger className="relative mt-4 h-[430px] group bg-white border rounded-md text-black flex flex-col cursor-pointer w-full mx-auto items-center max-w-[350px]">
                 <div className="w-full relative rounded-t-md h-[350px] group-hover:h-[410px] overflow-hidden transition-all duration-300">
                   <Image
                     src={ambassador.image}

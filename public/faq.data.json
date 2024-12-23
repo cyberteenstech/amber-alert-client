@@ -1,0 +1,134 @@
+[
+    {
+        "id": 1,
+        "question": {
+            "en": "What is Amber Alert?",
+            "bn": "Amber Alert কী?"
+        },
+        "answer": {
+            "en": "Amber Alert is an emergency alert system that seeks public help in quickly finding missing children. It activates the public by spreading information about missing children via TV, radio, mobile notifications, and other media.",
+            "bn": "Amber Alert হলো একটি জরুরি সতর্কতা ব্যবস্থা যা নিখোঁজ শিশুদের দ্রুত খুঁজে বের করতে জনগণের সাহায্য চায়। এটি টিভি, রেডিও, মোবাইল নোটিফিকেশন এবং অন্যান্য মাধ্যমে নিখোঁজ শিশুর তথ্য ছড়িয়ে দিয়ে জনগণকে সক্রিয় করে তোলে।"
+        }
+    },
+    {
+        "id": 2,
+        "question": {
+            "en": "What happens when you sign the petition?",
+            "bn": "পিটিশন সাইন করলে কী হবে?"
+        },
+        "answer": {
+            "en": "Your signature sends a strong message in favor of initiating Amber Alert, showing that the people of Bangladesh support this initiative to protect children. It will put pressure on the government and help facilitate an effective system.",
+            "bn": "আপনার স্বাক্ষর Amber Alert চালুর জন্য একটি শক্তিশালী বার্তা পাঠাবে যে, বাংলাদেশের জনগণ শিশুদের সুরক্ষার জন্য এই উদ্যোগকে সমর্থন করে। এটি সরকারের ওপর চাপ সৃষ্টি করবে এবং একটি কার্যকর ব্যবস্থা গ্রহণে সহায়ক হবে।"
+        }
+    },
+    {
+        "id": 3,
+        "question": {
+            "en": "How long will it take to implement Amber Alert?",
+            "bn": "Amber Alert ব্যবস্থা বাস্তবায়নে কত সময় লাগবে?"
+        },
+        "answer": {
+            "en": "Implementing Amber Alert is a complex process. It requires government approval and coordination among various agencies. Public support can accelerate this process.",
+            "bn": "Amber Alert বাস্তবায়ন একটি জটিল প্রক্রিয়া। এটি সরকারের অনুমোদন এবং বিভিন্ন সংস্থার মধ্যে সমন্বয় সাপেক্ষে সম্পন্ন হবে। জনগণের সমর্থন বাড়লে এই প্রক্রিয়া দ্রুততর হতে পারে।"
+        }
+    },
+    {
+        "id": 4,
+        "question": {
+            "en": "How will children benefit if Amber Alert is launched?",
+            "bn": "Amber Alert চালু হলে শিশুরা কীভাবে উপকৃত হবে?"
+        },
+        "answer": {
+            "en": "If Amber Alert is launched:\n- Missing children can be quickly rescued.\n- Child trafficking, abuse, and abduction can be prevented.\n- Effective cooperation between the public and law enforcement can be achieved.\n- A safer society can be built.",
+            "bn": "Amber Alert চালু হলে:\n- নিখোঁজ শিশুদের দ্রুত উদ্ধার করা সম্ভব হবে।\n- শিশু পাচার, নির্যাতন, এবং অপহরণ প্রতিরোধ করা যাবে।\n- আইনশৃঙ্খলা রক্ষাকারী বাহিনীর সঙ্গে জনগণের কার্যকর সহযোগিতা সম্ভব হবে।\n- একটি নিরাপদ সমাজ গড়ে তোলা সম্ভব হবে।"
+        }
+    },
+    {
+        "id": 5,
+        "question": {
+            "en": "Why is Amber Alert necessary in Bangladesh?",
+            "bn": "বাংলাদেশে Amber Alert কেন প্রয়োজন?"
+        },
+        "answer": {
+            "en": "Thousands of children go missing in Bangladesh every year, many falling victim to trafficking, abuse, or even murder. An effective alert system can help rescue missing children promptly and enhance child safety.",
+            "bn": "বাংলাদেশে প্রতিবছর হাজারো শিশু নিখোঁজ হয়, যাদের অনেকেই পাচার, নির্যাতন, বা খুনের শিকার হয়। একটি কার্যকর সতর্কতা ব্যবস্থা চালু করা হলে নিখোঁজ শিশুদের দ্রুত উদ্ধার করা সম্ভব হবে এবং শিশু নিরাপত্তা বাড়বে।"
+        }
+    },
+    {
+        "id": 6,
+        "question": {
+            "en": "Who will work on implementing Amber Alert?",
+            "bn": "Amber Alert-এর জন্য কাদের সঙ্গে কাজ করা হবে?"
+        },
+        "answer": {
+            "en": "To implement Amber Alert, collaboration will occur with the following organizations:\n- Bangladesh Police and law enforcement agencies.\n- Ministry of Women and Children Affairs.\n- ICT Division.\n- National and local media.\n- NGOs and child rights organizations.",
+            "bn": "Amber Alert ব্যবস্থা বাস্তবায়নের জন্য নিম্নলিখিত সংস্থাগুলোর সঙ্গে কাজ করা হবে:\n- বাংলাদেশ পুলিশ ও আইনশৃঙ্খলা রক্ষাকারী বাহিনী।\n- মহিলা ও শিশু বিষয়ক মন্ত্রণালয়।\n- আইসিটি বিভাগ।\n- জাতীয় ও স্থানীয় মিডিয়া।\n- এনজিও ও শিশু অধিকার সংস্থা।"
+        }
+    },
+    {
+        "id": 7,
+        "question": {
+            "en": "What information is required to sign the petition?",
+            "bn": "পিটিশনে স্বাক্ষর করার জন্য কী ধরনের তথ্য প্রয়োজন?"
+        },
+        "answer": {
+            "en": "To sign the petition, your name, email address, and (optional) phone number are required. This information will be kept confidential and used only for the petition.",
+            "bn": "পিটিশনে স্বাক্ষর করার জন্য আপনার নাম, ইমেইল ঠিকানা, এবং ফোন নম্বর (ঐচ্ছিক) প্রয়োজন। এই তথ্য গোপন রাখা হবে এবং কেবলমাত্র পিটিশনের জন্য ব্যবহার করা হবে।"
+        }
+    },
+    {
+        "id": 8,
+        "question": {
+            "en": "Is Amber Alert applicable only to children?",
+            "bn": "Amber Alert শুধুমাত্র শিশুদের জন্য প্রযোজ্য?"
+        },
+        "answer": {
+            "en": "Yes, Amber Alert is a system specifically designed for missing children who are at risk of abduction, trafficking, or other dangers.",
+            "bn": "হ্যাঁ, Amber Alert শুধুমাত্র নিখোঁজ শিশুদের জন্য তৈরি একটি সিস্টেম। এটি এমন শিশুদের ক্ষেত্রে কার্যকর যারা অপহরণ, পাচার, বা অন্য কোনো বিপদের মুখে পড়েছে।"
+        }
+    },
+    {
+        "id": 9,
+        "question": {
+            "en": "How can I get more information about Amber Alert?",
+            "bn": "Amber Alert সম্পর্কে কীভাবে আরও তথ্য পাবো?"
+        },
+        "answer": {
+            "en": "Visit the 'Resources' or 'About Us' page on our website. For additional information, you can also contact us directly.",
+            "bn": "আমাদের ওয়েবসাইটের 'Resources' বা 'About Us' পেজ ভিজিট করুন। আরও তথ্যের জন্য আপনি আমাদের সাথে সরাসরি যোগাযোগও করতে পারেন।"
+        }
+    },
+    {
+        "id": 10,
+        "question": {
+            "en": "Where will the petition be submitted?",
+            "bn": "পিটিশন কোথায় জমা দেওয়া হবে?"
+        },
+        "answer": {
+            "en": "The collected petition will be submitted to the following organizations:\n- Ministry of Women and Children Affairs.\n- ICT Division.\n- Bangladesh Police.\n- National Child Rights Forum.",
+            "bn": "সংগৃহীত পিটিশন নিম্নলিখিত প্রতিষ্ঠানে জমা দেওয়া হবে:\n- মহিলা ও শিশু বিষয়ক মন্ত্রণালয়।\n- আইসিটি বিভাগ।\n- বাংলাদেশ পুলিশ।\n- জাতীয় শিশু অধিকার ফোরাম।"
+        }
+    },
+    {
+        "id": 11,
+        "question": {
+            "en": "How can I contribute to this initiative?",
+            "bn": "এই উদ্যোগে আমি কিভাবে সাহায্য করতে পারি?"
+        },
+        "answer": {
+            "en": "You can contribute in the following ways:\n- Sign the petition.\n- Share our initiative on social media.\n- Conduct local campaigns to raise awareness.\n- Participate in our events or roundtable discussions.",
+            "bn": "আপনি নিম্নলিখিত উপায়ে সাহায্য করতে পারেন:\n- পিটিশনে স্বাক্ষর করুন।\n- সোশ্যাল মিডিয়াতে আমাদের উদ্যোগ শেয়ার করুন।\n- সচেতনতা বৃদ্ধির জন্য স্থানীয় পর্যায়ে ক্যাম্পেইন চালান।\n- আমাদের ইভেন্ট বা গোলটেবিল আলোচনায় অংশগ্রহণ করুন।"
+        }
+    },
+    {
+        "id": 12,
+        "question": {
+            "en": "How does Amber Alert work?",
+            "bn": "Amber Alert কীভাবে কাজ করে?"
+        },
+        "answer": {
+            "en": "For Amber Alert to work, the following steps are followed:\n1. Law enforcement confirms the missing child incident.\n2. Information like the child's photo, age, and last location is collected.\n3. This information is disseminated to the public through various media (mobile notifications, TV, radio, billboards).\n4. The public helps law enforcement based on this information.",
+            "bn": "Amber Alert কার্যকর হতে হলে নিম্নলিখিত পদক্ষেপগুলি অনুসরণ করা হয়:\n1. শিশু নিখোঁজ হওয়ার ঘটনা আইনশৃঙ্খলা বাহিনী নিশ্চিত করে।\n2. নিখোঁজ শিশুর ছবি, বয়স, এবং শেষ অবস্থান সম্পর্কে তথ্য সংগ্রহ করা হয়।\n3. এই তথ্য বিভিন্ন মাধ্যম (মোবাইল নোটিফিকেশন, টিভি, রেডিও, বিলবোর্ড) ব্যবহার করে জনগণের কাছে পাঠানো হয়।\n4. জনগণ এই তথ্যের ভিত্তিতে আইনশৃঙ্খলা বাহিনীকে সহায়তা করে।"
+        }
+    }
+]

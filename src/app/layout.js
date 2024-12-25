@@ -4,7 +4,7 @@ import Footer from "@/components/shared/Footer";
 import Head from "next/head";
 import "./globals.css";
 import { LanguageProvider } from "@/contexts/LanguageContext";
-import SplashScreen from "@/components/shared/SplashScreen";
+// import SplashScreen from "@/components/shared/SplashScreen";
 
 export const metadata = {
   title: "Amber Alert For Bangladesh",
@@ -31,7 +31,7 @@ export default function RootLayout({ children }) {
       </Head>
       <body className={`antialiased`}>
         <LanguageProvider>
-         <SplashScreen />
+         {/* <SplashScreen /> */}
           <Navbar />
           {children}
           <Footer />

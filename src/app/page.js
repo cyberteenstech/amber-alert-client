@@ -11,11 +11,14 @@ import LatestVoters from '@/components/home/LatestVoters';
 import News from '@/components/home/News';
 import Connect from '@/components/home/Connect';
 import Comments from '@/components/home/Comments';
+import AlertModal from '@/components/shared/AlertModal';
 // import OrganizedBy from '@/components/home/OrganizedBy';
 
 const Home = () => {
   return (
     <div>
+      <AlertModal />
+
       <Banner />
       <div className="md:hidden block">
         <LatestVoters/>

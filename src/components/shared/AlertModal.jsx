@@ -26,40 +26,14 @@ const AlertBanner = () => {
           exit={{ y: -100, opacity: 0 }}
           transition={{ type: "spring", duration: 0.5 }}
           className="absolute top-0 left-0 right-0 z-50 bg-gradient-to-t to-[#f7f7f7] from-[#ffffff] shadow-lg h-screen flex items-center justify-center"
-            style={{
+          style={{
             backgroundImage: "url('/map.gif')", // Path to your map image
             backgroundPosition: "center", // Centers the image
             backgroundRepeat: "no-repeat", // Prevents tiling
-             opacity: 0.2, // Lower the opacity of the map
-              zIndex: -1, // Ensure it stays behind the content
+            opacity: 0.2, // Lower the opacity of the map
+            zIndex: -1, // Ensure it stays behind the content
           }}
         >
-       <div
-  className="absolute top-0 left-0 w-full h-full"
-  style={{
-    backgroundImage: "url('/map.gif')", // Path to your map image
-    backgroundPosition: "center", // Centers the image
-    backgroundRepeat: "no-repeat", // Prevents tiling
-    zIndex: -1, // Ensure it stays behind the content
-  }}
->
-  <style jsx>{`
-    .absolute {
-      position: absolute;
-    }
-    .absolute::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: inherit; /* Inherit the background image */
-      opacity: 0.4; /* Lower opacity for the background image */
-    }
-  `}</style>
-</div>
-
           <div
             className="absolute top-0 left-0 w-full h-full content-[''] z-10 pointer-events-none bg-[url('/noise.gif')]"
             style={{ opacity: 0.08 }}
@@ -73,6 +47,7 @@ const AlertBanner = () => {
             <GrClose size={20} />
           </button>
 
+          {/* Main Content */}
           <main className="relative rounded-lg w-full h-auto max-w-[1440px] p-6 flex flex-col lg:flex-row items-center justify-center gap-8">
             <section className="flex-1 text-center lg:text-left">
               <p className="text-[#FF7128] text-xl font-bold uppercase mb-2 tracking-wider">
@@ -104,7 +79,7 @@ const AlertBanner = () => {
               />
             </section>
           </main>
-          
+
           {/* Lottie Animation */}
           <div className="absolute bottom-[-40vh] left-1/2 transform -translate-x-1/2">
             <Lottie
@@ -112,6 +87,64 @@ const AlertBanner = () => {
               style={{ width: 1000, height: 1000 }}
               loop
             />
+          </div>
+
+          {/* Left Ribbon with Sliding Hashtags */}
+          <div
+            className="absolute top-0 left-0 w-16 h-full bg-[#FF7128] flex items-center justify-center z-30"
+            style={{
+              zIndex: 30,
+            }}
+          >
+            <motion.div
+              className="flex flex-col items-center justify-start space-y-28"
+              animate={{
+                y: ["0%", "80%"], // Scrolls the text vertically
+              }}
+              transition={{
+                repeat: Infinity,
+                repeatType: "reverse",
+                duration: 5,
+                ease: "easeInOut",
+              }}
+            >
+              <p
+                className="text-white text-sm font-semibold text-center transform rotate-90"
+                style={{ whiteSpace: "nowrap" }}
+              >
+                #AmberAlert
+              </p>
+              <p
+                className="text-white text-sm font-semibold text-center transform rotate-90"
+                style={{ whiteSpace: "nowrap" }}
+              >
+                #MissingChildren
+              </p>
+              <p
+                className="text-white text-sm font-semibold text-center transform rotate-90"
+                style={{ whiteSpace: "nowrap" }}
+              >
+                #SaveTheChildren
+              </p>
+              <p
+                className="text-white text-sm font-semibold text-center transform rotate-90"
+                style={{ whiteSpace: "nowrap" }}
+              >
+                #AmberAlert
+              </p>
+              <p
+                className="text-white text-sm font-semibold text-center transform rotate-90"
+                style={{ whiteSpace: "nowrap" }}
+              >
+                #MissingChildren
+              </p>
+              <p
+                className="text-white text-sm font-semibold text-center transform rotate-90"
+                style={{ whiteSpace: "nowrap" }}
+              >
+                #SaveTheChildren
+              </p>
+            </motion.div>
           </div>
         </motion.div>
       )}

@@ -3,8 +3,8 @@ import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import ReactPlayer from "react-player";
 import { GrClose } from "react-icons/gr";
-import Lottie from "lottie-react";
-import scrollArrowAnimation from "/public/scrolldown.json";
+// import Lottie from "lottie-react";
+// import scrollArrowAnimation from "/public/scrolldown.json";
 import Image from "next/image";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -17,7 +17,7 @@ const AlertBanner = ({setIsOpen, isOpen}) => {
     }, 5000);
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [setIsOpen]);
 
   return (
     <AnimatePresence>
@@ -91,7 +91,7 @@ const AlertBanner = ({setIsOpen, isOpen}) => {
           </main>
 
           {/* Lottie Animation */}
-          <div className="absolute bottom-[-40vh] left-1/2 transform -translate-x-1/2">
+          {/* <div className="absolute bottom-[-40vh] left-1/2 transform -translate-x-1/2">
             <Lottie
               animationData={scrollArrowAnimation}
               style={{
@@ -100,7 +100,7 @@ const AlertBanner = ({setIsOpen, isOpen}) => {
               }}
               loop
             />
-          </div>
+          </div> */}
 
           {/* Left Ribbon with Sliding Hashtags */}
           <div

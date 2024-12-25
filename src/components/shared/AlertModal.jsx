@@ -1,8 +1,8 @@
 "use client";
-import React, { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import ReactPlayer from "react-player";
-
+import { GrClose } from "react-icons/gr";
 const AlertModal = () => {
   const [isOpen, setIsOpen] = useState(true);
 
@@ -23,7 +23,7 @@ const AlertModal = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black bg-opacity-80 z-50 "
+            className="fixed inset-0 bg-black bg-opacity-80 z-50 backdrop-blur-md"
             onClick={() => setIsOpen(false)}
           />
 
@@ -33,56 +33,49 @@ const AlertModal = () => {
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.5, opacity: 0 }}
             transition={{ type: "spring", duration: 0.5 }}
-            className="fixed top-[10%] left-[20%] transform -translate-x-1/2 -translate-y-1/2 w-[90%] h-[85vh] max-w-6xl bg-white rounded-xl shadow-2xl z-50 overflow-hidden"
+            className="fixed inset-0 flex items-center justify-center p-4 z-50 rounded-lg"
           >
             {/* Red Alert Banner */}
-            <div className="bg-red-600 py-4 px-8">
-              <h2 className="text-white text-3xl font-bold tracking-wider">URGENT: PROTECT OUR CHILDREN</h2>
-            </div>
 
             {/* Content */}
-            <div className="grid grid-cols-1 md:grid-cols-2 h-[calc(100%-4rem)]">
-              {/* Left side - Message */}
-              <div className="p-8 flex flex-col justify-center">
-                <h3 className="text-4xl font-bold text-gray-800 mb-6">ENOUGH IS ENOUGH!</h3>
-                <p className="text-2xl text-gray-700 leading-relaxed mb-6">
-                  Every child in Bangladesh deserves to be safe.
-                  Every child deserves to come home.
-                </p>
-                <p className="text-xl text-red-600 font-semibold mb-8">
-                  We must act NOW to protect our children from going missing.
-                  Your support can make a difference.
-                </p>
-                <div className="flex space-x-4">
-                  <button
+            <main className="relative my-4  bg-gradient-to-t to-[#f7f7f7] from-[#ffffff] rounded-lg">
+              <div
+                className="rounded-t-3xl absolute top-0 left-0 w-full h-full content-[''] z-10 pointer-events-none bg-[url('/noise.gif')]"
+                style={{ opacity: 0.08 }}
+              ></div>
+              <section className="rounded-t-3xl  font-semibold 2xl::h-[600px] sm:h-[150px] h-[100px] bg-gradient-to-t to-[#f7f7f7] from-[#ffffff] flex flex-col items-center justify-center  text-black">
+                <div className="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_0.5px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_0.5px)] bg-[size:35px_34px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
+                <div className="flex items-center justify-between px-5 w-full">
+                  <p></p>
+                  <p className=" text-[#FF7128] font-semibold text-lg">
+                    #SaveTheChildren
+                  </p>
+                  <GrClose
+                    className=" text-3xl lg:text-4xl p-2 transition-all bg-gray-100 rounded-lg cursor-pointer hover:bg-gray-700 hover:text-white z-20"
                     onClick={() => setIsOpen(false)}
-                    className="px-6 py-3 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition-colors"
-                  >
-                    Close
-                  </button>
-                  <a
-                    href="/report"
-                    className="px-8 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-semibold"
-                  >
-                    Report Missing Child
-                  </a>
+                  />
+                </div>
+                <div className="p-2 items-center flex flex-col justify-center">
+                  <h3 className="text-xl md:text-2xl lg:text-4xl font-bold text-gray-800">
+                    ENOUGH IS MORE THAN ENOUGH!
+                  </h3>
+                </div>
+              </section>
+              <div className="px-2 lg:px-6  md:my-4 my-2 lg:my-6 mb-6 flex items-center justify-center ">
+                <div className="w-full z-[100] max-w-[1280px] min-w-[280px] md:min-w-[560px] lg:min-w-[720px] xl:min-w-[980px] lg:max-h-[56vh] xl:max-h-[65vh] max-h-[90vh] rounded-lg overflow-hidden">
+                  <ReactPlayer
+                    url="https://youtu.be/k_LgAfdeiBA?si=O-Y1YQyQyVanBX1O"
+                    controls
+                    width="100%"
+                    height="100%"
+                    style={{
+                      aspectRatio: "16 / 9", // Ensures proper ratio regardless of width/height.
+                    }}
+                  />
                 </div>
               </div>
-
-              {/* Right side - Video */}
-              <div className="bg-gray-100 p-8">
-                <div className="w-full h-full rounded-lg overflow-hidden">
-                    <ReactPlayer
-                            url="https://youtu.be/ONEBdKjN-2Q"
-                            // playing={!isPaused}
-                            controls
-                            className="absolute top-0 left-0"
-                            // onPause={() => setIsPaused(true)}
-                            // onPlay={() => setIsPaused(false)}
-                        />
-                </div>
-              </div>
-            </div>
+            </main>
+            {/* Right side - Video */}
           </motion.div>
         </>
       )}

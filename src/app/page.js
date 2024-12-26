@@ -16,7 +16,7 @@ import Navbar from "@/components/shared/Navbar";
 
 const Home = () => {
   const [alertBannerVisible, setAlertBannerVisible] = useState(false);
-   const [isOpen, setIsOpen] = useState(false);
+   const [isOpen, setIsOpen] = useState(true);
   const alertBannerRef = useRef(null);
 
   // Initially, set the alert banner to visible after 5 seconds

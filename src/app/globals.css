@@ -118,6 +118,13 @@ html {
   animation: beep 2s infinite;
 }
 
+.ribbon-container {
+  writing-mode: vertical-lr;
+  text-orientation: upright;
+  transform: rotate(180deg); /* Ensures text aligns properly */
+}
+
+
 @keyframes ripple-animation {
   to {
     transform: scale(4);

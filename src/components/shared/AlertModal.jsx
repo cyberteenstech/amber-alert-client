@@ -3,84 +3,149 @@ import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import ReactPlayer from "react-player";
 import { GrClose } from "react-icons/gr";
-const AlertModal = () => {
-  const [isOpen, setIsOpen] = useState(true);
+// import Lottie from "lottie-react";
+import scrollArrowAnimation from "/public/scrolldown.json";
+import Image from "next/image";
+import { useLanguage } from "@/contexts/LanguageContext";
+import TypingEffect from 'react-typing-effect';
+import Link from 'next/link';
+import { IoDocumentTextOutline } from 'react-icons/io5';
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+
+const AlertBanner = ({ setIsOpen, isOpen }) => {
+  const { language } = useLanguage();
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsOpen(true);
-    }, 3000);
+    }, 5000);
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [setIsOpen]);
 
   return (
     <AnimatePresence>
       {isOpen && (
-        <>
-          {/* Overlay */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black bg-opacity-80 z-50 backdrop-blur-md"
+        <motion.div
+          initial={{ y: -100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: -100, opacity: 0 }}
+          transition={{ type: "spring", duration: 0.5 }}
+          className="absolute top-0 left-0 right-0 z-50 bg-gradient-to-t to-[#f7f7f7] from-[#ffffff] shadow-lg h-screen flex items-center justify-center"
+        >
+          {/* Backgrounds */}
+          <div
+            className="absolute top-0 left-0 w-full h-full"
+            style={{
+              backgroundImage: "url('/map.gif')",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+              opacity: 0.2,
+              zIndex: -1,
+            }}
+          ></div>
+          <div
+            className="absolute top-0 left-0 w-full h-full content-[''] z-10 pointer-events-none bg-[url('/noise.gif')]"
+            style={{ opacity: 0.04 }}
+          ></div>
+
+          {/* Close Button */}
+          <button
+            className="absolute top-4 right-4 z-20 bg-white p-2 rounded-full shadow hover:shadow-lg transition-all"
             onClick={() => setIsOpen(false)}
-          />
-
-          {/* Modal */}
-          <motion.div
-            initial={{ scale: 0.5, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.5, opacity: 0 }}
-            transition={{ type: "spring", duration: 0.5 }}
-            className="fixed inset-0 flex items-center justify-center p-4 z-50 rounded-lg"
           >
-            {/* Red Alert Banner */}
+            <GrClose size={20} />
+          </button>
 
-            {/* Content */}
-            <main className="relative my-4  bg-gradient-to-t to-[#f7f7f7] from-[#ffffff] rounded-lg">
-              <div
-                className="rounded-t-3xl absolute top-0 left-0 w-full h-full content-[''] z-10 pointer-events-none bg-[url('/noise.gif')]"
-                style={{ opacity: 0.08 }}
-              ></div>
-              <section className="rounded-t-3xl  font-semibold 2xl::h-[600px] sm:h-[150px] h-[100px] bg-gradient-to-t to-[#f7f7f7] from-[#ffffff] flex flex-col items-center justify-center  text-black">
-                <div className="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_0.5px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_0.5px)] bg-[size:35px_34px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
-                <div className="flex items-center justify-between px-5 w-full">
-                  <p></p>
-                  <p className=" text-[#FF7128] font-semibold text-lg">
-                    #SaveTheChildren
-                  </p>
-                  <GrClose
-                    className=" text-3xl lg:text-4xl p-2 transition-all bg-gray-100 rounded-lg cursor-pointer hover:bg-gray-700 hover:text-white z-20"
-                    onClick={() => setIsOpen(false)}
-                  />
-                </div>
-                <div className="p-2 items-center flex flex-col justify-center">
-                  <h3 className="text-xl md:text-2xl lg:text-4xl font-bold text-gray-800">
-                    ENOUGH IS MORE THAN ENOUGH!
-                  </h3>
-                </div>
-              </section>
-              <div className="px-2 lg:px-6  md:my-4 my-2 lg:my-6 mb-6 flex items-center justify-center ">
-                <div className="w-full z-[100] max-w-[1280px] min-w-[280px] md:min-w-[560px] lg:min-w-[720px] xl:min-w-[980px] lg:max-h-[56vh] xl:max-h-[65vh] max-h-[90vh] rounded-lg overflow-hidden">
-                  <ReactPlayer
-                    url="https://youtu.be/k_LgAfdeiBA?si=O-Y1YQyQyVanBX1O"
-                    controls
-                    width="100%"
-                    height="100%"
-                    style={{
-                      aspectRatio: "16 / 9", // Ensures proper ratio regardless of width/height.
-                    }}
-                  />
-                </div>
+          {/* Main Content */}
+          <main className="relative rounded-lg w-full h-auto max-w-[1440px] p-6 flex flex-col lg:flex-row items-center justify-center gap-8">
+            <section className="flex-1 text-center lg:text-left flex flex-col md:justify-start justify-center md:items-start items-center md:ps-12">
+              <div className="flex items-center gap-2 flex-col md:flex-row ">
+                <Image src="/amberalert.png" alt="Logo" width={70} height={70} />
+                <p className="text-[#FF7128] text-xl font-bold uppercase mb-2 sm:mb-0 tracking-wider">
+                  #SaveMissingChildren
+                </p>
               </div>
-            </main>
-            {/* Right side - Video */}
-          </motion.div>
-        </>
+              <h1 className="text-4xl lg:text-6xl font-bold text-red-600 mb-4">
+                ENOUGH IS ENOUGH!
+              </h1>
+              <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-6">
+                {language == "bn" ? "আওয়াজ তুলুন" : "Stand For Change"}
+              </h2>
+              <p className="text-lg lg:text-xl text-gray-700 md:mb-8 mb-4">
+                {language == "bn"
+                  ? "বাংলাদেশে শিশু নিখোঁজ রোধে যুক্ত হন আমাদের সাথে, পরিবর্তন আসবে আপনাদের থেকেই"
+                  : "Join us in making a difference. Together, we can create a better future for children around the globe."}
+              </p>
+              <Link href="#banner" passHref>
+                <button className="flex items-center gap-x-2 bg-[#FF7128] border-[#FF7128] border-[1.5px] text-[#fff] md:px-6 px-4 py-3 rounded-lg z-30">
+                  <IoDocumentTextOutline className="md:text-xl text-lg" /> {language === "bn" ? "পিটিশন সাক্ষর করুন" : "Sign the petition"}
+                </button></Link>
+            </section>
+            <section className="flex-1 lg:max-w-[60%] w-full rounded-lg overflow-hidden z-30">
+              <ReactPlayer
+                url="https://www.youtube.com/watch?v=IVtDoVU0cCc&feature=youtu.be"
+                controls
+                width="100%"
+                height="100%"
+                style={{
+                  aspectRatio: "16 / 9",
+                }}
+              />
+            </section>
+          </main>
+
+
+
+          {/* Lottie Animation */}
+          <div className="absolute bottom-[-40vh] left-1/2 transform -translate-x-1/2">
+            <DotLottieReact
+              src={scrollArrowAnimation}
+              loop
+              autoplay
+            />
+          </div>
+
+          {/* Left Ribbon with Sliding Hashtags */}
+          <div
+            className="hidden lg:flex absolute top-0 left-0 md:w-16 w-10 h-full bg-[#FF7128] items-center justify-center z-30 overflow-hidden "
+          >
+            <div className="flex flex-col items-center justify-center h-full">
+              <div className="text-white text-sm font-bold tracking-wide leading-6 flex flex-col items-center">
+                <TypingEffect
+                  text={[
+                    "E\nv\ne\nr\ny\n\nS\ne\nc\no\nn\nd\n\nM\na\nt\nt\ne\nr\ns\n\nW\nh\ne\nn\n\n"
+                    + "A\n\nC\nh\ni\nl\nd\n\n"
+                    + "G\no\ne\ns\n\nM\ni\ns\ns\ni\nn\ng",
+                  ]}
+                  speed={75} // Typing speed per character
+                  eraseSpeed={50} // Erase speed per character
+                  typingDelay={500} // Delay before typing starts
+                  eraseDelay={3000} // Delay before erasing starts
+                  displayTextRenderer={(text, i) => {
+                    return (
+                      <>
+                        {text.split("\n").map((char, index) => (
+                          <span
+                            key={index}
+                            className={`${char === "" ? "mb-2" : "block"}`}
+                            style={{ marginBottom: char === "" ? "8px" : "-5px" }}
+                          >
+                            {char || "\u00A0"}
+                          </span>
+                        ))}
+                      </>
+                    );
+                  }}
+                />
+              </div>
+            </div>
+          </div>
+
+        </motion.div>
       )}
     </AnimatePresence>
   );
 };
 
-export default AlertModal;
+export default AlertBanner;

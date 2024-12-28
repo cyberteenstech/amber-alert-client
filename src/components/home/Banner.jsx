@@ -77,7 +77,7 @@ const Banner = () => {
     return () => clearInterval(intervalId);
   }, []);
     return (
-        <div className="relative">
+        <div id="banner" className="relative">
             {/* Background Gradient */}
             <div
                 className="absolute inset-0 -z-10 min-h-screen w-full bg-white"

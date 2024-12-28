@@ -1,5 +1,4 @@
 // app/layout.js
-import Navbar from "@/components/shared/Navbar";
 import Footer from "@/components/shared/Footer";
 import Head from "next/head";
 import "./globals.css";
@@ -32,7 +31,6 @@ export default function RootLayout({ children }) {
       <body className={`antialiased`}>
         <LanguageProvider>
          {/* <SplashScreen /> */}
-          <Navbar />
           {children}
           <Footer />
         </LanguageProvider>

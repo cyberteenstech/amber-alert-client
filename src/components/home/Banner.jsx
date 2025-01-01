@@ -12,7 +12,7 @@ import { useRouter } from 'next/navigation';
 import { useLanguage } from "@/contexts/LanguageContext";
 import TypingEffect from 'react-typing-effect';
 import { ToastContainer, toast } from 'react-toastify';
-import ToastAlert from '../shared/ToastAlert'; 
+import ToastAlert from '../shared/ToastAlert';
 
 const Banner = () => {
     const [clicked, setClicked] = useState(false)
@@ -20,7 +20,7 @@ const Banner = () => {
     const [isLoading, setIsLoading] = useState(true);
     const router = useRouter();
     const { language, changeLanguage } = useLanguage();
-     const [showToast, setShowToast] = useState(false); 
+    const [showToast, setShowToast] = useState(false);
 
     // Fetch voter data
     const getVotersData = async () => {
@@ -54,28 +54,28 @@ const Banner = () => {
         window.open('https://docs.google.com/forms/d/e/1FAIpQLSc5FXjbnvaIV_0GtEEYeG-zDZgbvEczU-GmIcQgXinH-EDuXg/viewform', '_blank');
     }
 
-  useEffect(() => {
-    // Function to handle toast display and audio playback
-    const playAlert = () => {
-      const audio = new Audio('/alert.mp3'); // Path to your audio file
-      audio.play()
-        .then(() => {
-          console.log("Playing alert sound...");
-          setShowToast(true); // Show toast
-          // Hide toast after 2 seconds
-          setTimeout(() => setShowToast(false), 3000);
-        })
-        .catch((error) => {
-          console.error("Failed to play audio:", error);
-        });
-    };
+    useEffect(() => {
+        // Function to handle toast display and audio playback
+        const playAlert = () => {
+            const audio = new Audio('/alert.mp3'); // Path to your audio file
+            audio.play()
+                .then(() => {
+                    console.log("Playing alert sound...");
+                    setShowToast(true); // Show toast
+                    // Hide toast after 2 seconds
+                    setTimeout(() => setShowToast(false), 3000);
+                })
+                .catch((error) => {
+                    console.error("Failed to play audio:", error);
+                });
+        };
 
-    // Play alert every 5 seconds
- const intervalId = setInterval(playAlert, 120000);
+        // Play alert every 5 seconds
+        const intervalId = setInterval(playAlert, 120000);
 
-    // Clear the interval when the component unmounts
-    return () => clearInterval(intervalId);
-  }, []);
+        // Clear the interval when the component unmounts
+        return () => clearInterval(intervalId);
+    }, []);
     return (
         <div id="banner" className="relative">
             {/* Background Gradient */}
@@ -181,7 +181,7 @@ const Banner = () => {
                         <div className="md:hidden block w-[70%]">
                             <div className="flex items-center justify-between mb-2 w-full">
                                 <h3 className="text-[12px] text-[#072E75]">
-                                    <span className="font-medium text-[12px]">{toBangla(voters.length)}</span> {language === "bn" ? "সাক্ষর" : "Signs"}
+                                    <span className="font-medium text-[12px]">{toBangla(voters.length)}</span> {language === "bn" ? "স্বাক্ষর" : "Signs"}
                                 </h3>
                                 <span className="text-[#072E75] text-[12px]">
                                     {language === "bn" ? "প্রয়োজন " : "Need"}
@@ -253,8 +253,8 @@ const Banner = () => {
                     />
                 </div>
             </div>
-  <ToastContainer />
-            {showToast && <ToastAlert />} 
+            <ToastContainer />
+            {showToast && <ToastAlert />}
 
         </div>
 

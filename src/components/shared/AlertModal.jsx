@@ -79,7 +79,7 @@ const AlertBanner = ({ setIsOpen, isOpen }) => {
               </p>
               <Link href="#banner" passHref>
                 <button className="flex items-center gap-x-2 bg-[#FF7128] border-[#FF7128] border-[1.5px] text-[#fff] md:px-6 px-4 py-3 rounded-lg z-30">
-                  <IoDocumentTextOutline className="md:text-xl text-lg" /> {language === "bn" ? "পিটিশন সাক্ষর করুন" : "Sign the petition"}
+                  <IoDocumentTextOutline className="md:text-xl text-lg" /> {language === "bn" ? "পিটিশন স্বাক্ষর করুন" : "Sign the petition"}
                 </button></Link>
             </section>
             <section className="flex-1 lg:max-w-[60%] w-full rounded-lg overflow-hidden z-30">

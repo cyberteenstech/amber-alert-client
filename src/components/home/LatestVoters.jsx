@@ -119,7 +119,7 @@ const Progress = ({ setClicked, clicked }) => {
             
             <ul className="space-y-4 py-4 ">
                 {isLoading
-                    ? Array(5)
+                    ? Array(10)
                         .fill(0)
                         .map((_, index) => (
                             <li key={index} className="flex items-center animate-pulse">

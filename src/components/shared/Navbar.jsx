@@ -32,9 +32,9 @@ const Navbar = () => {
           <Link href="/contact" className="text-[#072E75] text-lg">
             {language === "bn" ? "যোগাযোগ" : "Contact"}
           </Link>
-          <Link href="/ambassador" className="text-[#072e75] text-lg">
+          {/* <Link href="/ambassador" className="text-[#072e75] text-lg">
             {language === "bn" ? "অ্যাম্বেসাডরস" : "Ambassadors"}
-          </Link>
+          </Link> */}
         </div>
 
         <div className="hidden md:flex items-center gap-x-4">
@@ -106,13 +106,13 @@ const Navbar = () => {
                   >
                     {language === "bn" ? "যোগাযোগ" : "Contact"}
                   </Link>
-                  <Link
+                  {/* <Link
                     href="/ambassador"
                     className="block text-white text-lg hover:text-gray-200 transition-colors"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {language === "bn" ? "অ্যাম্বেসাডরস" : "Ambassadors"}
-                  </Link>
+                  </Link> */}
 
                   <div className="relative">
                     <button

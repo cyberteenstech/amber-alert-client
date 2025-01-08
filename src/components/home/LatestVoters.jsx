@@ -103,7 +103,7 @@ const Progress = ({ setClicked, clicked }) => {
     }
 
     // Get the most recent 5 voters
-    const recentVoters = voters.slice(0, 5); // Latest 5 voters
+    const recentVoters = voters.slice(0, 10); // Latest 5 voters
     const totalVoters = voters.length;
 
     // Calculate progress as a percentage (assuming 100,000 is the goal)

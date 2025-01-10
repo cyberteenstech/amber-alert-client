@@ -7,107 +7,69 @@ const Progress = ({ setClicked, clicked }) => {
     const [voters, setVoters] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
-    // Fetch voter data
-    const getVotersData = async () => {
+    // Fetch initial voter data
+    const fetchVotersData = async () => {
         try {
             const res = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/voter`);
             setVoters(res.data.data);
-        } catch (e) {
-            console.log(e);
+        } catch (error) {
+            console.error("Failed to fetch voter data:", error);
         } finally {
             setIsLoading(false);
         }
     };
 
+    // Initialize Socket.IO and fetch data
     useEffect(() => {
-        if (!socketRef.current) {
-            socketRef.current = io(process.env.NEXT_PUBLIC_SERVER);
+        socketRef.current = io(process.env.NEXT_PUBLIC_SERVER);
 
-            // Listen for real-time updates
-            socketRef.current.on("new_vote", (newVoter) => {
-                setVoters((prevVoters) => [newVoter, ...prevVoters]); // Prepend the new voter
-            });
-        }
+        // Listen for real-time updates
+        socketRef.current.on("new_vote", (newVoter) => {
+            setVoters((prevVoters) => [newVoter, ...prevVoters]); // Prepend the new voter
+        });
 
-        getVotersData(); // Fetch initial data
+        fetchVotersData(); // Fetch data on component mount
 
+        // Cleanup on unmount
         return () => {
             if (socketRef.current) {
                 socketRef.current.disconnect();
-                socketRef.current = null;
             }
         };
     }, []);
-    // Convert a number to Bangla
+
+    // Convert number to Bangla
     const toBangla = (number) => {
         const banglaDigits = ["০", "১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯"];
         return number
             .toString()
             .split("")
-            .map((digit) => banglaDigits[parseInt(digit)])
+            .map((digit) => banglaDigits[parseInt(digit, 10)])
             .join("");
     };
 
-    // Function to calculate time ago
+    // Calculate time ago
     const timeAgo = (createdAt) => {
         const now = new Date();
         const createdDate = new Date(createdAt);
         const diffInSeconds = Math.max(0, Math.floor((now - createdDate) / 1000));
 
+        if (diffInSeconds < 60) return `${diffInSeconds} সে.`;
+        if (diffInSeconds < 3600) return `${Math.floor(diffInSeconds / 60)} মি.`;
+        if (diffInSeconds < 86400) return `${Math.floor(diffInSeconds / 3600)} ঘণ্টা.`;
 
-        if (diffInSeconds < 60) {
-            return `${diffInSeconds} সে.`;
-        }
-
-        const diffInMinutes = Math.floor(diffInSeconds / 60);
-        if (diffInMinutes < 60) {
-            return `${diffInMinutes} মি.`;
-        }
-
-        const diffInHours = Math.floor(diffInMinutes / 60);
-        if (diffInHours < 24) {
-            return `${diffInHours} ঘণ্টা.`;
-        }
-
-        const diffInDays = Math.floor(diffInHours / 24);
-        return `${diffInDays} দিন.`;
+        return `${Math.floor(diffInSeconds / 86400)} দিন.`;
     };
-    // useEffect(() => {
-        if (!socketRef.current) {
-            socketRef.current = io('https://api.amberalert4bangladesh.org');
 
-            // Listen for new votes
-            socketRef.current.on("new_vote", (newVoter) => {
-                // console.log("Received new vote:", newVoter); // Debugging
-                setVoters((prevVoters) => [newVoter, ...prevVoters]);
-            });
+    // Mark clicked as false if it's true
+    if (clicked) setClicked(false);
 
-            socketRef.current.on("connect_error", (error) => {
-                console.error("Socket connection error:", error);
-            });
-        }
-
-        getVotersData(); // Fetch initial data
-
-        // return () => {
-        //     if (socketRef.current) {
-        //         socketRef.current.disconnect();
-        //         socketRef.current = null;
-        //     }
-        // };
-    // }, []);
-
-
-    if (clicked === true) {
-        setClicked(false);
-    }
-
-    // Get the most recent 5 voters
-    const recentVoters = voters.slice(0, 10); // Latest 5 voters
+    // Get the most recent 10 voters
+    const recentVoters = voters.slice(0, 10);
     const totalVoters = voters.length;
 
     // Calculate progress as a percentage (assuming 100,000 is the goal)
-    const progress = (voters.length / 10000) * 100;
+    const progress = (totalVoters / 100000) * 100;
 
     return (
          <div className="max-w-[1440px] w-full mx-auto px-4 md:px-10 py-[40px] md:py-[80px]">

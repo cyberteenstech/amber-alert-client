@@ -85,7 +85,7 @@ const Progress = ({ setClicked, clicked }) => {
     const totalVoters = voters.length;
 
     // Calculate progress as a percentage (assuming 100,000 is the goal)
-    const progress = (voters.length / 10000) * 100;
+    const progress = (voters.length / 100000) * 100;
 
     return (
         <div className="bg-white p-4 rounded-lg ">

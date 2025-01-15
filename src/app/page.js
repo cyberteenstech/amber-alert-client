@@ -9,6 +9,7 @@ import VideoSection from "@/components/home/VideoSection";
 import Supporters from "@/components/home/Supporters";
 import LatestVoters from "@/components/home/LatestVoters";
 import News from "@/components/home/News";
+import YourVoiceMatters from "@/components/home/YourVoiceMatters";
 import Connect from "@/components/home/Connect";
 import Comments from "@/components/home/Comments";
 import AlertBanner from "@/components/shared/AlertModal";
@@ -75,6 +76,8 @@ const Home = () => {
         <LatestVoters />
       </div>
       <News />
+      <YourVoiceMatters />
+
       <VideoSection />
       <Comments />
       <Letter />

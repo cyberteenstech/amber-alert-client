@@ -72,12 +72,16 @@ const Home = () => {
         <Navbar />
       </div>
       <Banner />
+       <div className="md:hidden block">
+        <YourVoiceMatters />
+      </div>
       <div className="md:hidden block">
         <LatestVoters />
       </div>
       <News />
-      <YourVoiceMatters />
-
+       <div className="md:block hidden">
+        <YourVoiceMatters />
+      </div>
       <VideoSection />
       <Comments />
       <Letter />

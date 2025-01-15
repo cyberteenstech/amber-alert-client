@@ -35,7 +35,7 @@ function YourVoiceMatters() {
           {videos.map((video) => (
             <div
               key={video.id}
-              className="w-[340px] h-[480px] cursor-pointer flex-shrink-0 snap-center"
+              className="w-[340px] md:h-[480px] h-[400px] cursor-pointer flex-shrink-0 snap-center"
             >
               <div
                 className="relative w-full h-full rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group bg-gray-900"

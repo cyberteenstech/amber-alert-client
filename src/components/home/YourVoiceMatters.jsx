@@ -12,10 +12,14 @@ const videos = [
   },
   {
     id: '3',
-    videoUrl: 'https://www.youtube.com/embed/QqA4hAeGqsA',
+    videoUrl: 'https://youtube.com/shorts/2t5b0TuA56U',
   },
   {
     id: '4',
+    videoUrl: 'https://www.youtube.com/shorts/QqA4hAeGqsA',
+  },
+  {
+    id: '5',
     videoUrl: 'https://www.youtube.com/shorts/qlZRa3MiCzA',
   },
 ];
@@ -31,11 +35,11 @@ function YourVoiceMatters() {
           <span className="text-[#FF7128]"> Matters</span>
         </h2>
         
-        <div className="flex md:justify-center gap-6 overflow-x-auto pb-6 snap-x snap-mandatory md:overflow-x-visible md:pb-0">
+        <div className="flex md:justify-center gap-6 overflow-x-auto pb-6 snap-x snap-mandatory lg:overflow-x-visible ">
           {videos.map((video) => (
             <div
               key={video.id}
-              className="w-[340px] md:h-[480px] h-[400px] cursor-pointer flex-shrink-0 snap-center"
+              className="md:w-[340px] w-[300px] md:h-[480px] h-[400px] cursor-pointer flex-shrink-0 snap-center"
             >
               <div
                 className="relative w-full h-full rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group bg-gray-900"

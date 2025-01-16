@@ -86,7 +86,7 @@ const Home = () => {
       <Comments />
       <Letter />
       <Organizations />
-      <Events />
+      {/* <Events /> */}
       <FAQ />
       <Supporters />
       <Connect />

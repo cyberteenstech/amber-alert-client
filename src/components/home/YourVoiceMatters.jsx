@@ -12,15 +12,15 @@ const videos = [
   },
   {
     id: '3',
-    videoUrl: 'https://youtube.com/shorts/2t5b0TuA56U',
+    videoUrl: 'https://youtube.com/embed/2t5b0TuA56U',
   },
   {
     id: '4',
-    videoUrl: 'https://www.youtube.com/shorts/QqA4hAeGqsA',
+    videoUrl: 'https://www.youtube.com/embed/QqA4hAeGqsA',
   },
   {
     id: '5',
-    videoUrl: 'https://www.youtube.com/shorts/qlZRa3MiCzA',
+    videoUrl: 'https://www.youtube.com/embed/qlZRa3MiCzA',
   },
 ];
 

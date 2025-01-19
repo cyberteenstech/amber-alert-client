@@ -79,7 +79,7 @@ function YourVoiceMatters() {
           breakpoints={{
             320: {
               slidesPerView: 1,
-              centeredSlides: false,
+              centeredSlides: true,
             },
             768: {
               slidesPerView: 2.5,

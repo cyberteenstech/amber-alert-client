@@ -209,7 +209,7 @@ const Banner = () => {
                 </div>
 
                 <Image
-                    src="/https://i.ibb.co.com/NNg8LfD/10522561-2.png"
+                    src="https://i.ibb.co.com/NNg8LfD/10522561-2.png"
                     alt="child2"
                     width={200}
                     height={200}

@@ -159,7 +159,7 @@ const Banner = () => {
 
             <div className="flex items-center justify-around max-w-[1440px] w-full mx-auto">
                 <Image
-                    src="/muntaha.png"
+                    src="https://i.ibb.co.com/pbSTMRZ/10522561-4.png"
                     alt="muntaha"
                     width={200}
                     height={200}
@@ -209,7 +209,7 @@ const Banner = () => {
                 </div>
 
                 <Image
-                    src="/child2.png"
+                    src="/https://i.ibb.co.com/NNg8LfD/10522561-2.png"
                     alt="child2"
                     width={200}
                     height={200}
@@ -236,7 +236,7 @@ const Banner = () => {
                         style={{ animationDelay: '1.8s' }}
                     />
                     <Image
-                        src="/child2.png"
+                        src="https://i.ibb.co.com/ZdgNkzt/10522561-3.png"
                         alt="muntaha"
                         width={200}
                         height={200}

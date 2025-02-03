@@ -5,7 +5,7 @@ import io from "socket.io-client";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const Progress = ({ voters, setVoters, setClicked, clicked, isLoading, setIsLoading}) => {
-    console.log(voters)
+    console.log(isLoading)
     const socketRef = useRef(null);
     const { language } = useLanguage(); // Get the current language
 
@@ -92,7 +92,20 @@ const Progress = ({ voters, setVoters, setClicked, clicked, isLoading, setIsLoad
                 ></div>
             </div>
             <ul className="space-y-4 py-4">
-                {recentVoters.map((voter, index) => {
+                {isLoading
+                    ? Array(5)
+                        .fill(0)
+                        .map((_, index) => (
+                            <li key={index} className="flex items-center animate-pulse">
+                                <div className="w-10 h-10 bg-gray-300 rounded-full"></div>
+                                <div className="ml-3 flex-1">
+                                    <div className="h-4 bg-gray-300 rounded w-2/3 mb-2"></div>
+                                    <div className="h-3 bg-gray-300 rounded w-1/3"></div>
+                                </div>
+                                <div className="ml-auto h-4 bg-gray-300 rounded w-10"></div>
+                            </li>
+                        ))
+                    : recentVoters.map((voter, index) => {
                         // Find the serial number in the overall voters list
                         const serialNumber = totalVoters - index;
 

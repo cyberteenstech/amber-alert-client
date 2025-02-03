@@ -9,7 +9,7 @@ const VideoSection = () => {
     const { language, changeLanguage } = useLanguage();
 
     const handlePlayPause = () => {
-        setIsPaused(false);        
+        setIsPaused(!isPaused);        
     };
 
     return (
@@ -29,6 +29,7 @@ const VideoSection = () => {
                 <div className="relative w-full max-w-[1000px] mx-auto mt-10">
                     {/* React Player */}
                     <div className="relative w-full h-0 pb-[56.25%] rounded-xl shadow-lg overflow-hidden">
+                        {!isPaused && 
                         <ReactPlayer
                             url="https://youtu.be/ONEBdKjN-2Q"
                             playing={!isPaused}
@@ -39,7 +40,7 @@ const VideoSection = () => {
                             onPause={() => setIsPaused(true)}
                             onPlay={() => setIsPaused(false)}
                         />
-
+                        }
                         {/* Poster */}
                         {isPaused && (
                             <div

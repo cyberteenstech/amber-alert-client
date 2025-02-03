@@ -7,6 +7,11 @@ const nextConfig = {
                 hostname: "i.ibb.co.com",
                 pathname: "/**",
             },
+            {
+                protocol: "https",
+                hostname: "img.youtube.com",
+                pathname: "/**",
+            },
         ],
         minimumCacheTTL: 31536000, // Cache images for 1 year
     },

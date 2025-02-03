@@ -14,8 +14,7 @@ import TypingEffect from 'react-typing-effect';
 import { ToastContainer, toast } from 'react-toastify';
 import ToastAlert from '../shared/ToastAlert';
 
-const Banner = ({voters, setVoters, isLoading, setIsLoading}) => {
-    console.log(isLoading)
+const Banner = ({voters, setVoters, isLoading, setIsLoading, votes}) => {
     const [clicked, setClicked] = useState(false)
     const router = useRouter();
     const { language, changeLanguage } = useLanguage();
@@ -29,8 +28,11 @@ const Banner = ({voters, setVoters, isLoading, setIsLoading}) => {
             .join("");
     };
 
+    const voteLenght= Number(votes)
     // Calculate progress as a percentage (assuming 100,000 is the goal)
-    const progress = (voters.length / 100000) * 100;
+    const progress = (voteLenght / 100000) * 100;
+
+    console.log(voteLenght)
 
     useEffect(() => {
         // Function to handle toast display and audio playback
@@ -161,7 +163,7 @@ const Banner = ({voters, setVoters, isLoading, setIsLoading}) => {
                         <div className="md:hidden block w-[70%]">
                             <div className="flex items-center justify-between mb-2 w-full">
                                 <h3 className="text-[12px] text-[#072E75]">
-                                    <span className="font-medium text-[12px]">{toBangla(voters.length)}</span> {language === "bn" ? "স্বাক্ষর" : "Signs"}
+                                    <span className="font-medium text-[12px]">{toBangla(voteLenght)}</span> {language === "bn" ? "স্বাক্ষর" : "Signs"}
                                 </h3>
                                 <span className="text-[#072E75] text-[12px]">
                                     {language === "bn" ? "প্রয়োজন " : "Need"}
@@ -187,7 +189,8 @@ const Banner = ({voters, setVoters, isLoading, setIsLoading}) => {
                                 setClicked={setClicked}
                                 clicked={clicked}
                                 isLoading={isLoading}
-                            setIsLoading={setIsLoading} />
+                            setIsLoading={setIsLoading}
+                            votes={votes} />
                         </div>
                     </div>
                 </div>

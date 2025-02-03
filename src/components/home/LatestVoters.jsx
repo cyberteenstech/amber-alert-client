@@ -15,7 +15,7 @@ const TIME_UNITS = Object.freeze({
     days: 'দিন.'
 });
 
-const Progress = ({voters,setVoters, setClicked, clicked, isLoading, setIsLoading }) => {
+const Progress = ({voters,setVoters, setClicked, clicked, isLoading, setIsLoading, votes }) => {
     const socketRef = useRef(null);
     // Socket connection and initial data fetch
     useEffect(() => {
@@ -73,7 +73,7 @@ const Progress = ({voters,setVoters, setClicked, clicked, isLoading, setIsLoadin
 
     // Memoize derived values
     const recentVoters = useMemo(() => voters.slice(0, 10), [voters]);
-    const totalVoters = voters.length;
+    const totalVoters = Number(votes)
 
     // Memoize loading skeleton
     const LoadingSkeleton = useMemo(() => (

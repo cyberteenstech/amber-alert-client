@@ -4,7 +4,7 @@ import axios from "axios";
 import io from "socket.io-client";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-const Progress = ({ voters, setVoters, setClicked, clicked, isLoading, setIsLoading}) => {
+const Progress = ({ voters, setVoters, setClicked, clicked, isLoading, setIsLoading, votes}) => {
     console.log(isLoading)
     const socketRef = useRef(null);
     const { language } = useLanguage(); // Get the current language
@@ -67,17 +67,17 @@ const Progress = ({ voters, setVoters, setClicked, clicked, isLoading, setIsLoad
 
     // Get the most recent 5 voters
     const recentVoters = voters.slice(0, 5); // Latest 5 voters
-    const totalVoters = voters.length;
+    const totalVoters = Number(votes)
 
     // Calculate progress as a percentage (assuming 100,000 is the goal)
-    const progress = (voters.length / 100000) * 100;
+    const progress = (totalVoters / 100000) * 100;
 
     return (
         <div className="bg-white p-4 rounded-lg ">
             <div className="md:block hidden">
                 <div className="flex items-center justify-between mb-4 pt-4">
                     <h3 className="text-lg text-[#072E75]">
-                        <span className="font-semibold"> {language === 'bn' ? `${toBangla(voters.length)}` : `${voters.length}`}</span> {language === 'bn' ? 'স্বাক্ষর' : 'signs'}
+                        <span className="font-semibold"> {language === 'bn' ? `${toBangla(totalVoters)}` : `${totalVoters}`}</span> {language === 'bn' ? 'স্বাক্ষর' : 'signs'}
                     </h3>
                     <span className="text-[#072E75]">
                         {language === 'bn' ? 'প্রয়োজন' : 'Required'} 

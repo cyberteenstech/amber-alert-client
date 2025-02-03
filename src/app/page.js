@@ -20,6 +20,7 @@ const Home = () => {
    const [isOpen, setIsOpen] = useState(false);
   const alertBannerRef = useRef(null);
     const [voters, setVoters] = useState([]);
+    const [votes, setVotes] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
 
    const getVotersData = async () => {
@@ -28,6 +29,7 @@ const Home = () => {
             console.log(res.data.data)
             setIsLoading(false)
             setVoters(res.data.data.voters);
+            setVotes(res.data.data.totalVotes);
         } catch (e) {
             console.log(e);
         } finally {
@@ -81,7 +83,6 @@ const Home = () => {
     console.log("Alert banner visible:", alertBannerVisible); // Log updated state
   }, [alertBannerVisible]);
 
-  console.log(isLoading)
   return (
     <div>
       <AlertBanner ref={alertBannerRef} setIsOpen={setIsOpen} isOpen={isOpen}/>
@@ -91,7 +92,8 @@ const Home = () => {
       <Banner voters={voters}
                             setVoters={setVoters}
                             isLoading={isLoading}
-                            setIsLoading={setIsLoading}/>
+                            setIsLoading={setIsLoading}
+                            votes={votes}/>
        <div className="md:hidden block">
         <YourVoiceMatters />
       </div>
@@ -99,7 +101,8 @@ const Home = () => {
         <LatestVoters voters={voters}
                             setVoters={setVoters} 
                              isLoading={isLoading}
-                            setIsLoading={setIsLoading}/>
+                            setIsLoading={setIsLoading}
+                            votes={votes}/>
       </div>
       <News />
        <div className="md:block hidden">

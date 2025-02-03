@@ -9,50 +9,25 @@ import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
 
 const videos = [
-  {
-    id: '1',
-    videoUrl: 'https://www.youtube.com/embed/4zpUOu3wJFg',
-  },
-  {
-    id: '2',
-    videoUrl: 'https://www.youtube.com/embed/4OTpEl5RTac',
-  },
-  {
-    id: '3',
-    videoUrl: 'https://youtube.com/embed/2t5b0TuA56U',
-  },
-  {
-    id: '4',
-    videoUrl: 'https://www.youtube.com/embed/QqA4hAeGqsA',
-  },
-  {
-    id: '5',
-    videoUrl: 'https://www.youtube.com/embed/qlZRa3MiCzA',
-  },
-  {
-    id: '6',
-    videoUrl: 'https://www.youtube.com/embed/e9c-_uw8Si0',
-  },
-  {
-    id: '7',
-    videoUrl: 'https://www.youtube.com/embed/n0M49khlZKM',
-  },
-  {
-    id: '8',
-    videoUrl: 'https://www.youtube.com/embed/7PpCF6UkVOU',
-  },
-  {
-    id: '9',
-    videoUrl: 'https://www.youtube.com/embed/Fd4a0jBkhN4',
-  },
-  {
-    id: '10',
-    videoUrl: 'https://www.youtube.com/embed/MkyIVXJDpJI',
-  },
+  { id: '1', videoId: '4zpUOu3wJFg' },
+  { id: '2', videoId: '4OTpEl5RTac' },
+  { id: '3', videoId: '2t5b0TuA56U' },
+  { id: '4', videoId: 'QqA4hAeGqsA' },
+  { id: '5', videoId: 'qlZRa3MiCzA' },
+  { id: '6', videoId: 'e9c-_uw8Si0' },
+  { id: '7', videoId: 'n0M49khlZKM' },
+  { id: '8', videoId: '7PpCF6UkVOU' },
+  { id: '9', videoId: 'Fd4a0jBkhN4' },
+  { id: '10', videoId: 'MkyIVXJDpJI' },
 ];
 
 function YourVoiceMatters() {
   const [selectedVideo, setSelectedVideo] = useState(null);
+  const [loadedVideos, setLoadedVideos] = useState({});
+
+  const loadIframe = (id) => {
+    setSelectedVideo((prev) => ({ ...prev, [id]: true }));
+  };
 
   return (
     <section className="py-12 px-4 bg-gradient-to-b from-red-50 to-white">
@@ -77,18 +52,9 @@ function YourVoiceMatters() {
             bulletActiveClass: 'swiper-pagination-bullet-active !bg-[#FF7128]',
           }}
           breakpoints={{
-            320: {
-              slidesPerView: 1,
-              centeredSlides: true,
-            },
-            768: {
-              slidesPerView: 2.5,
-              centeredSlides: false,
-            },
-            1024: {
-              slidesPerView: 3.5,
-              centeredSlides: false,
-            },
+            320: { slidesPerView: 1, centeredSlides: true },
+            768: { slidesPerView: 2.5, centeredSlides: false },
+            1024: { slidesPerView: 3.5, centeredSlides: false },
           }}
           className="!pb-12"
         >
@@ -97,13 +63,22 @@ function YourVoiceMatters() {
               <div className="md:w-[340px] w-[300px] md:h-[420px] h-[340px] cursor-pointer">
                 <div
                   className="relative w-full h-full rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group bg-gray-900"
-                  onClick={() => setSelectedVideo(video)}
+                  onClick={() => loadIframe(video.id)}
                 >
-                  <iframe
-                    src={video.videoUrl}
-                    className="w-full h-full pointer-events-none"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  />
+                  {loadedVideos[video.id] ? (
+                    <iframe
+                      src={`https://www.youtube.com/embed/${video.videoId}?autoplay=1`}
+                      className="w-full h-full"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  ) : (
+                    <img
+                      src={`https://img.youtube.com/vi/${video.videoId}/hqdefault.jpg`}
+                      alt="Video Thumbnail"
+                      className="w-full h-full object-cover"
+                    />
+                  )}
                 </div>
               </div>
             </SwiperSlide>
@@ -120,11 +95,11 @@ function YourVoiceMatters() {
                 <X size={24} />
               </button>
               <iframe
-                src={selectedVideo.videoUrl}
+                src={`https://www.youtube.com/embed/${selectedVideo.videoId}?autoplay=1`}
                 className="w-full h-full"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
-              ></iframe>
+              />
             </div>
           </div>
         )}

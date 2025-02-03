@@ -1,4 +1,49 @@
 export const missingDatas = [
+    {
+        "id": 0,
+        "en": {
+            "name": "Arabi Islam Suba",
+            "age": "11",
+            "image": "https://i.ibb.co.com/09C0WNF/467493297-8661664817243067-1066722786971245590-n.jpg",
+            "lostPlace": "Mohammadpur Prince Bazar, Around Krishi Market",
+            "lostDate": "2 February 2025",
+            "lostTime": "6:00 pm",
+            "description": "Arabi Islam Suba, an 11-year-old sixth-grade student, went missing yesterday around 6:00 PM from the Tin Road intersection near Mohammadpur Prince Bazar (adjacent to the Agriculture Market). She was wearing black pants and a pink t-shirt. Suba recently came to Dhaka from Barisal.Her mother is undergoing treatment for cancer. If anyone has any information about her, please contact: 01712 - 985858(Md.Rajib, Suba’s father).",
+            "fathersName": "Md. Rajib",
+            "mothersName": "N/A",
+            "guardiansName": "Zaynul Islam",
+            "fathersContactNo": "01712-985858",
+            "mothersContactNo": "N/A",
+            "guardianContactNo": "01712-985858",
+            "address": "Mohammadpur, Dhaka",
+            "lostSource": "Facebook Post",
+            "lostSourceLink": "https://i.ibb.co.com/N6ynV8TN/475862536-8778759115567004-3076650274090981104-n.jpg",
+            "isVerified": true,
+            "isFound": false,
+            "isDead": false
+        },
+        "bn": {
+            "name": "আরাবি ইসলাম সুবা",
+            "age": "১১",
+            "image": "https://i.ibb.co.com/09C0WNF/467493297-8661664817243067-1066722786971245590-n.jpg",
+            "lostPlace": "মোহাম্মাদপুর প্রিন্স বাজার (কৃষি মার্কেট সংলগ্ন)",
+            "lostDate": "২ ফেব্রুয়ারি ২০২৫",
+            "lostTime": "৬ঃ০০ pm",
+            "description": "আরাবি ইসলাম সুবা ১১ বছরের ষষ্ঠ শ্রেণির শিক্ষার্থী  গতকাল সন্ধ্যা ৬ঃ০০টার দিকে, মোহাম্মাদপুর প্রিন্স বাজার (কৃষি মার্কেট সংলগ্ন) টিন রাস্তার মোড় থেকে হঠাৎ হারিয়ে যায় , ওর পড়নে ছিলো কালো প্যান্ট ও গোলাপি রঙের টিশার্ট । সুবা কিছুদিন আগে বরিশাল থেকে ঢাকায় এসেছে, তার মা ক্যান্সারে আক্রান্ত হয়ে চিকিৎসাধীন আছেন। কেও সন্ধান পেলে দয়া করে যোগাযোগ করুনঃ 01712-985858(মোঃ রাজিব সুবার বাবা) ",
+            "fathersName": "মোঃ রাজিব",
+            "mothersName": "N/A",
+            "guardiansName": "মোঃ রাজিব",
+            "fathersContactNo": "01712-985858",
+            "mothersContactNo": "N/A",
+            "guardianContactNo": "01712-985858",
+            "address": "মোহাম্মাদপুর, ঢাকা ",
+            "lostSource": "Facebook Post",
+            "lostSourceLink": "https://i.ibb.co.com/N6ynV8TN/475862536-8778759115567004-3076650274090981104-n.jpg",
+            "isVerified": true,
+            "isFound": false,
+            "isDead": false
+        }
+    },
         {
             "id": 1,
             "en": {

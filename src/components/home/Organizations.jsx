@@ -7,7 +7,7 @@ const Organizations = () => {
 
     const data = {
         bn: [
-            "প্রধান উপদেষ্টা , গণপ্রজাতন্ত্রী বাংলাদেশ অন্তর্বর্তীকালীন সরকার",
+            "প্রধান উপদেষ্টা ,গণপ্রজাতন্ত্রী বাংলাদেশ অন্তর্বর্তীকালীন সরকার",
             "ন্যাশনাল সেন্টার ফর মিসিং অ্যান্ড এক্সপ্লয়েটেড চিলড্রেন",
             "স্বরাষ্ট্র মন্ত্রণালয়",
             "দুর্যোগ ব্যবস্থাপনা ও ত্রাণ মন্ত্রণালয়",
@@ -21,7 +21,11 @@ const Organizations = () => {
             "আইন বিচার ও সংসদ বিষয়ক মন্ত্রণালয়",
         ],
         en: [
+            "Chief Advisor, Republic of Bangaldesh",
+            "National Center for Missing and Exploited Children",
             "Ministry of Home Affairs",
+            "Ministry of Disaster Management and Relief",
+            "Meta Platform, Inc",
             "Bangladesh Telecommunication Regulatory Commission",
             "Ministry of Women and Children Affairs",
             "Ministry of Social Welfare",

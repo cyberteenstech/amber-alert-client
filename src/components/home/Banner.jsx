@@ -165,6 +165,7 @@ const Banner = () => {
                     height={200}
                     className="rounded-lg image-beep md:w-[200px] w-[100px] md:block hidden"
                     style={{ animationDelay: '0s' }}
+                    // priority={false}
                 />
 
                 {/* Image and Petition Form */}
@@ -175,6 +176,7 @@ const Banner = () => {
                         width={1300}
                         height={800}
                         className="absolute md:top-[27%] top-[69.5%] left-1/2 -translate-x-1/2"
+                        // priority={false}
                     />
 
                     <div className="flex flex-col md:flex-row max-w-[600px] w-full mx-auto items-center md:bg-[#fff] md:border-[1px] rounded-lg border-dashed border-[#FF7128] md:mt-6 mt-0 relative">
@@ -215,6 +217,7 @@ const Banner = () => {
                     height={200}
                     className="rounded-lg image-beep md:w-[200px] w-[100px] md:block hidden"
                     style={{ animationDelay: '.5s' }}
+                    // priority={false}
                 />
             </div>
             <div className='md:block hidden'>
@@ -226,6 +229,7 @@ const Banner = () => {
                         height={200}
                         className="rounded-lg image-beep md:w-[200px] w-[100px]"
                         style={{ animationDelay: '1s' }}
+                        // priority={false}
                     />
                     <Image
                         src="https://i.ibb.co.com/ts5jDPt/Group-127.png"
@@ -234,6 +238,7 @@ const Banner = () => {
                         height={200}
                         className="rounded-lg image-beep md:w-[200px] w-[100px]"
                         style={{ animationDelay: '1.8s' }}
+                        // priority={false}
                     />
                     <Image
                         src="https://i.ibb.co.com/ZdgNkzt/10522561-3.png"
@@ -242,6 +247,7 @@ const Banner = () => {
                         height={200}
                         className="rounded-lg image-beep md:w-[200px] w-[100px]"
                         style={{ animationDelay: '1.4s' }}
+                        // priority={false}
                     />
                     <Image
                         src="https://i.ibb.co.com/pbSTMRZ/10522561-4.png"
@@ -250,6 +256,7 @@ const Banner = () => {
                         height={200}
                         className="rounded-lg image-beep md:w-[200px] w-[100px]"
                         style={{ animationDelay: '1.8s' }}
+                        // priority={false}
                     />
                 </div>
             </div>

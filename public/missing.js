@@ -4,7 +4,7 @@ export const missingDatas = [
         "en": {
             "name": "Arabi Islam Suba",
             "age": "11",
-            "image": "https://i.ibb.co.com/09C0WNF/467493297-8661664817243067-1066722786971245590-n.jpg",
+            "image": "https://i.ibb.co.com/N6ynV8TN/475862536-8778759115567004-3076650274090981104-n.jpg",
             "lostPlace": "Mohammadpur Prince Bazar, Around Krishi Market",
             "lostDate": "2 February 2025",
             "lostTime": "6:00 pm",
@@ -17,7 +17,7 @@ export const missingDatas = [
             "guardianContactNo": "01712-985858",
             "address": "Mohammadpur, Dhaka",
             "lostSource": "Facebook Post",
-            "lostSourceLink": "https://i.ibb.co.com/N6ynV8TN/475862536-8778759115567004-3076650274090981104-n.jpg",
+            "lostSourceLink": "N/A",
             "isVerified": true,
             "isFound": false,
             "isDead": false
@@ -25,7 +25,7 @@ export const missingDatas = [
         "bn": {
             "name": "আরাবি ইসলাম সুবা",
             "age": "১১",
-            "image": "https://i.ibb.co.com/09C0WNF/467493297-8661664817243067-1066722786971245590-n.jpg",
+            "image": "https://i.ibb.co.com/N6ynV8TN/475862536-8778759115567004-3076650274090981104-n.jpg",
             "lostPlace": "মোহাম্মাদপুর প্রিন্স বাজার (কৃষি মার্কেট সংলগ্ন)",
             "lostDate": "২ ফেব্রুয়ারি ২০২৫",
             "lostTime": "৬ঃ০০ pm",
@@ -38,7 +38,7 @@ export const missingDatas = [
             "guardianContactNo": "01712-985858",
             "address": "মোহাম্মাদপুর, ঢাকা ",
             "lostSource": "Facebook Post",
-            "lostSourceLink": "https://i.ibb.co.com/N6ynV8TN/475862536-8778759115567004-3076650274090981104-n.jpg",
+            "lostSourceLink": "N/A",
             "isVerified": true,
             "isFound": false,
             "isDead": false

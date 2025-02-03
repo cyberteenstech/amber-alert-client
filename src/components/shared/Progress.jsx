@@ -23,6 +23,9 @@ const Progress = ({ setClicked, clicked }) => {
     };
 
     useEffect(() => {
+        getVotersData()
+    }, [])
+    useEffect(() => {
         if (!socketRef.current) {
             socketRef.current = io(process.env.NEXT_PUBLIC_SERVER);
 
@@ -31,8 +34,6 @@ const Progress = ({ setClicked, clicked }) => {
                 setVoters((prevVoters) => [newVoter, ...prevVoters]); // Prepend the new voter
             });
         }
-
-        getVotersData(); // Fetch initial data
 
         return () => {
             if (socketRef.current) {

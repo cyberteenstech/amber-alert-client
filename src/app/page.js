@@ -20,16 +20,17 @@ const Home = () => {
    const [isOpen, setIsOpen] = useState(false);
   const alertBannerRef = useRef(null);
     const [voters, setVoters] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
    const getVotersData = async () => {
         try {
             const res = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/voter?limit=10`);
             console.log(res.data.data)
+            setIsLoading(false)
             setVoters(res.data.data.voters);
         } catch (e) {
             console.log(e);
         } finally {
-            setIsLoading(false);
         }
     };
     useEffect(() => {
@@ -44,8 +45,7 @@ const Home = () => {
       }
     }, 5000); // 5 seconds delay
    const visibilityTimeout = setTimeout(() => {
-      setAlertBannerVisible(true); // Set visible to false after 10 seconds
-      console.log(alertBannerVisible)
+      setAlertBannerVisible(true); 
     }, 5000); // 10 seconds delay
 
     // Clean up the timers when the component unmounts
@@ -81,6 +81,7 @@ const Home = () => {
     console.log("Alert banner visible:", alertBannerVisible); // Log updated state
   }, [alertBannerVisible]);
 
+  console.log(isLoading)
   return (
     <div>
       <AlertBanner ref={alertBannerRef} setIsOpen={setIsOpen} isOpen={isOpen}/>
@@ -88,13 +89,17 @@ const Home = () => {
         <Navbar />
       </div>
       <Banner voters={voters}
-                            setVoters={setVoters}/>
+                            setVoters={setVoters}
+                            isLoading={isLoading}
+                            setIsLoading={setIsLoading}/>
        <div className="md:hidden block">
         <YourVoiceMatters />
       </div>
       <div className="md:hidden block">
         <LatestVoters voters={voters}
-                            setVoters={setVoters} />
+                            setVoters={setVoters} 
+                             isLoading={isLoading}
+                            setIsLoading={setIsLoading}/>
       </div>
       <News />
        <div className="md:block hidden">

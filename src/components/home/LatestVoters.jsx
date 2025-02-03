@@ -15,10 +15,8 @@ const TIME_UNITS = Object.freeze({
     days: 'দিন.'
 });
 
-const Progress = ({voters,setVoters, setClicked, clicked }) => {
+const Progress = ({voters,setVoters, setClicked, clicked, isLoading, setIsLoading }) => {
     const socketRef = useRef(null);
-    const [isLoading, setIsLoading] = useState(true);
-
     // Socket connection and initial data fetch
     useEffect(() => {
         if (!socketRef.current) {

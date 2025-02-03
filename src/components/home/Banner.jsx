@@ -32,7 +32,6 @@ const Banner = ({voters, setVoters, isLoading, setIsLoading, votes}) => {
     // Calculate progress as a percentage (assuming 100,000 is the goal)
     const progress = (voteLenght / 100000) * 100;
 
-    console.log(voteLenght)
 
     useEffect(() => {
         // Function to handle toast display and audio playback
@@ -40,7 +39,6 @@ const Banner = ({voters, setVoters, isLoading, setIsLoading, votes}) => {
             const audio = new Audio('/alert.mp3'); // Path to your audio file
             audio.play()
                 .then(() => {
-                    console.log("Playing alert sound...");
                     setShowToast(true); // Show toast
                     // Hide toast after 2 seconds
                     setTimeout(() => setShowToast(false), 3000);

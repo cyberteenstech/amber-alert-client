@@ -26,7 +26,6 @@ const Home = () => {
    const getVotersData = async () => {
         try {
             const res = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/voter?limit=10`);
-            console.log(res.data.data)
             setIsLoading(false)
             setVoters(res.data.data.voters);
             setVotes(res.data.data.totalVotes);
@@ -80,7 +79,6 @@ const Home = () => {
 
   // Log the state after it changes
   useEffect(() => {
-    console.log("Alert banner visible:", alertBannerVisible); // Log updated state
   }, [alertBannerVisible]);
 
   return (

@@ -5,7 +5,6 @@ import io from "socket.io-client";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const Progress = ({ voters, setVoters, setClicked, clicked, isLoading, setIsLoading, votes}) => {
-    console.log(isLoading)
     const socketRef = useRef(null);
     const { language } = useLanguage(); // Get the current language
 

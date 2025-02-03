@@ -4,27 +4,11 @@ import axios from "axios";
 import io from "socket.io-client";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-const Progress = ({ setClicked, clicked }) => {
+const Progress = ({ voters, setVoters, setClicked, clicked }) => {
     const socketRef = useRef(null);
-    const [voters, setVoters] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const { language } = useLanguage(); // Get the current language
 
-    // Fetch voter data
-    const getVotersData = async () => {
-        try {
-            const res = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/voter`);
-            setVoters(res.data.data);
-        } catch (e) {
-            console.log(e);
-        } finally {
-            setIsLoading(false);
-        }
-    };
-
-    useEffect(() => {
-        getVotersData()
-    }, [])
     useEffect(() => {
         if (!socketRef.current) {
             socketRef.current = io(process.env.NEXT_PUBLIC_SERVER);

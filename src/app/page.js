@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useState, useRef } from "react";
 import Banner from "@/components/home/Banner";
-import Events from "@/components/home/Events";
 import FAQ from "@/components/home/FAQ";
 import Letter from "@/components/home/Letter";
 import Organizations from "@/components/home/Organizations";
@@ -14,11 +13,28 @@ import Connect from "@/components/home/Connect";
 import Comments from "@/components/home/Comments";
 import AlertBanner from "@/components/shared/AlertModal";
 import Navbar from "@/components/shared/Navbar";
+import axios from 'axios';
 
 const Home = () => {
   const [alertBannerVisible, setAlertBannerVisible] = useState(false);
    const [isOpen, setIsOpen] = useState(false);
   const alertBannerRef = useRef(null);
+    const [voters, setVoters] = useState([]);
+
+   const getVotersData = async () => {
+        try {
+            const res = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/voter?limit=10`);
+            console.log(res.data.data)
+            setVoters(res.data.data.voters);
+        } catch (e) {
+            console.log(e);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+    useEffect(() => {
+        getVotersData();
+    }, []);
 
   // Initially, set the alert banner to visible after 5 seconds
   useEffect(() => {
@@ -71,12 +87,14 @@ const Home = () => {
       <div className={isOpen ? "mt-[100vh]" : ""}>
         <Navbar />
       </div>
-      <Banner />
+      <Banner voters={voters}
+                            setVoters={setVoters}/>
        <div className="md:hidden block">
         <YourVoiceMatters />
       </div>
       <div className="md:hidden block">
-        <LatestVoters />
+        <LatestVoters voters={voters}
+                            setVoters={setVoters} />
       </div>
       <News />
        <div className="md:block hidden">

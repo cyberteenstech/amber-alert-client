@@ -14,29 +14,12 @@ import TypingEffect from 'react-typing-effect';
 import { ToastContainer, toast } from 'react-toastify';
 import ToastAlert from '../shared/ToastAlert';
 
-const Banner = () => {
+const Banner = ({voters, setVoters}) => {
     const [clicked, setClicked] = useState(false)
-    const [voters, setVoters] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const router = useRouter();
     const { language, changeLanguage } = useLanguage();
     const [showToast, setShowToast] = useState(false);
-
-    // Fetch voter data
-    const getVotersData = async () => {
-        try {
-            const res = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/voter`);
-            console.log(res);
-            setVoters(res.data.data);
-        } catch (e) {
-            console.log(e);
-        } finally {
-            setIsLoading(false);
-        }
-    };
-    useEffect(() => {
-        getVotersData();
-    }, []);
     const toBangla = (number) => {
         const banglaDigits = ["০", "১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯"];
         return number
@@ -48,11 +31,6 @@ const Banner = () => {
 
     // Calculate progress as a percentage (assuming 100,000 is the goal)
     const progress = (voters.length / 100000) * 100;
-
-    const openLinkToForm = () => {
-        //    open in new tab
-        window.open('https://docs.google.com/forms/d/e/1FAIpQLSc5FXjbnvaIV_0GtEEYeG-zDZgbvEczU-GmIcQgXinH-EDuXg/viewform', '_blank');
-    }
 
     useEffect(() => {
         // Function to handle toast display and audio playback
@@ -204,6 +182,8 @@ const Banner = () => {
                         </div>
                         <div className="w-full md:w-1/2 md:block hidden">
                             <Progress
+                            voters={voters}
+                            setVoters={setVoters}
                                 setClicked={setClicked}
                                 clicked={clicked} />
                         </div>

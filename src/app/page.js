@@ -25,7 +25,7 @@ const Home = () => {
 
    const getVotersData = async () => {
         try {
-            const res = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/voter?limit=10`);
+            const res = await axios.get(`http://localhost:5000/api/v1/voter?limit=10`);
             setIsLoading(false)
             setVoters(res.data.data.voters);
             setVotes(res.data.data.totalVotes);
@@ -88,10 +88,11 @@ const Home = () => {
         <Navbar />
       </div>
       <Banner voters={voters}
-                            setVoters={setVoters}
-                            isLoading={isLoading}
-                            setIsLoading={setIsLoading}
-                            votes={votes}/>
+        setVoters={setVoters}
+        isLoading={isLoading}
+        setIsLoading={setIsLoading}
+        votes={votes}
+        setVotes={setVotes} />
        <div className="md:hidden block">
         <YourVoiceMatters />
       </div>
@@ -100,7 +101,8 @@ const Home = () => {
                             setVoters={setVoters} 
                              isLoading={isLoading}
                             setIsLoading={setIsLoading}
-                            votes={votes}/>
+                            votes={votes}
+                            setVotes={setVotes} />
       </div>
       <News />
        <div className="md:block hidden">

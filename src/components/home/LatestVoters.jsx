@@ -15,7 +15,7 @@ const TIME_UNITS = Object.freeze({
     days: 'দিন.'
 });
 
-const Progress = ({voters,setVoters, setClicked, clicked, isLoading, setIsLoading, votes }) => {
+const Progress = ({voters,setVoters, setClicked, clicked, isLoading, setIsLoading, votes, setVotes }) => {
     const socketRef = useRef(null);
     // Socket connection and initial data fetch
     useEffect(() => {
@@ -28,6 +28,12 @@ const Progress = ({voters,setVoters, setClicked, clicked, isLoading, setIsLoadin
 
             socketRef.current.on("new_vote", (newVoter) => {
                 setVoters(prev => [newVoter, ...prev.slice(0, 9)]); // Keep array size constant
+            });
+             socketRef.current.on("updated_voters_count", (updatedVotersCount) => {
+                // Update the total voters count from the backend
+
+                console.log(updatedVotersCount)
+                setVotes(updatedVotersCount)
             });
         }
 

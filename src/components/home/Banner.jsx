@@ -14,7 +14,7 @@ import TypingEffect from 'react-typing-effect';
 import { ToastContainer, toast } from 'react-toastify';
 import ToastAlert from '../shared/ToastAlert';
 
-const Banner = ({voters, setVoters, isLoading, setIsLoading, votes}) => {
+const Banner = ({voters, setVoters, isLoading, setIsLoading, votes, setVotes}) => {
     const [clicked, setClicked] = useState(false)
     const router = useRouter();
     const { language, changeLanguage } = useLanguage();
@@ -188,7 +188,8 @@ const Banner = ({voters, setVoters, isLoading, setIsLoading, votes}) => {
                                 clicked={clicked}
                                 isLoading={isLoading}
                             setIsLoading={setIsLoading}
-                            votes={votes} />
+                            votes={votes} 
+                            setVotes={setVotes} />
                         </div>
                     </div>
                 </div>

@@ -4,19 +4,27 @@ import axios from "axios";
 import io from "socket.io-client";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-const Progress = ({ voters, setVoters, setClicked, clicked, isLoading, setIsLoading, votes}) => {
+const Progress = ({ voters, setVoters, setClicked, clicked, isLoading, setIsLoading, votes, setVotes}) => {
     const socketRef = useRef(null);
     const { language } = useLanguage(); // Get the current language
 
     useEffect(() => {
         if (!socketRef.current) {
-            socketRef.current = io(process.env.NEXT_PUBLIC_SERVER);
+            socketRef.current = io(`http://localhost:5000/api/v1`);
 
             // Listen for real-time updates
             socketRef.current.on("new_vote", (newVoter) => {
                 setVoters((prevVoters) => [newVoter, ...prevVoters]); // Prepend the new voter
             });
+            socketRef.current.on("updated_voters_count", (updatedVotersCount) => {
+                // Update the total voters count from the backend
+
+                console.log(updatedVotersCount)
+                setVotes(updatedVotersCount)
+            });
         }
+
+        console.log(votes)
 
         return () => {
             if (socketRef.current) {

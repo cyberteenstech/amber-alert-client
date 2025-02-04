@@ -77,8 +77,7 @@ const Progress = ({voters,setVoters, setClicked, clicked, isLoading, setIsLoadin
         setClicked(false);
     }
 
-    // Memoize derived values
-    const recentVoters = useMemo(() => voters.slice(0, 10), [voters]);
+    // Memoize derived value
     const totalVoters = Number(votes)
 
     // Memoize loading skeleton
@@ -103,7 +102,7 @@ const Progress = ({voters,setVoters, setClicked, clicked, isLoading, setIsLoadin
             </h2>
             <div className="bg-white p-4 rounded-lg shadow-lg w-[80%] mx-auto">
                 <ul className="space-y-4 py-4">
-                    {isLoading ? LoadingSkeleton : recentVoters.map((voter, index) => {
+                    {isLoading ? LoadingSkeleton : voters.map((voter, index) => {
                         const serialNumber = totalVoters - index;
                         return (
                             <li key={voter._id} className="flex items-center">

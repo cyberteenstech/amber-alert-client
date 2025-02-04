@@ -25,7 +25,7 @@ const Home = () => {
 
    const getVotersData = async () => {
         try {
-            const res = await axios.get(`http://localhost:5000/api/v1/voter?limit=10`);
+          const res = await axios.get(`https://api.amberalert4bangladesh.org/api/v1/voter?limit=10`);
             setIsLoading(false)
             setVoters(res.data.data.voters);
             setVotes(res.data.data.totalVotes);

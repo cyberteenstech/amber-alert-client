@@ -65,7 +65,12 @@ const PetitionForm = ({ setClicked }) => {
         e.preventDefault();
         const formData = { ...data, ip };
         try {
-            const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/voter/vote`, formData);
+            const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/voter/vote`, formData, {
+                headers: {
+                    "x-api-key": process.env.NEXT_PUBLIC_API_KEY, // Secure API key
+                    "Content-Type": "application/json"
+                }
+            });
             if (res.status === 200) {
                 setClicked(true);
                 setShowShare(true);

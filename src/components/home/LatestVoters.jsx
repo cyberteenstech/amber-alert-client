@@ -20,7 +20,7 @@ const Progress = ({voters,setVoters, setClicked, clicked, isLoading, setIsLoadin
     // Socket connection and initial data fetch
     useEffect(() => {
         if (!socketRef.current) {
-            socketRef.current = io('https://api.amberalert4bangladesh.org', {
+            socketRef.current = io(`${process.env.NEXT_PUBLIC_SERVER}`, {
                 transports: ['websocket'], // Force WebSocket transport
                 reconnectionDelay: 1000,
                 reconnectionAttempts: 5

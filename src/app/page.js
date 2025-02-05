@@ -25,7 +25,12 @@ const Home = () => {
 
    const getVotersData = async () => {
         try {
-          const res = await axios.get(`https://api.amberalert4bangladesh.org/api/v1/voter?limit=10`);
+          const res = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/voter?limit=10`, {
+                headers: {
+                    "x-api-key": process.env.NEXT_PUBLIC_API_KEY, // Secure API key
+                    "Content-Type": "application/json"
+                }
+            });
             setIsLoading(false)
             setVoters(res.data.data.voters);
             setVotes(res.data.data.totalVotes);

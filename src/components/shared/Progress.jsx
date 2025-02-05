@@ -10,7 +10,7 @@ const Progress = ({ voters, setVoters, setClicked, clicked, isLoading, setIsLoad
 
     useEffect(() => {
         if (!socketRef.current) {
-            socketRef.current = io(`https://api.amberalert4bangladesh.org/api/v1`);
+            socketRef.current = io(`${process.env.NEXT_PUBLIC_SERVER}`);
 
             // Listen for real-time updates
             socketRef.current.on("new_vote", (newVoter) => {

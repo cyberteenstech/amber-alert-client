@@ -15,7 +15,12 @@ const Comments = () => {
 
     const getComments = async () => {
         try {
-            const res = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/comment`);
+            const res = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/comment`, {
+                headers: {
+                    "x-api-key": process.env.NEXT_PUBLIC_API_KEY, // Secure API key
+                    "Content-Type": "application/json"
+                }
+            });
             setComments(res.data.data);
         } catch (e) {
             console.error(e);

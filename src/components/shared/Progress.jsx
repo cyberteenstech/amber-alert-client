@@ -47,7 +47,6 @@ const Progress = ({ voters, setVoters, isLoading, setIsLoading, votes, setVotes}
     // Function to calculate time ago
     const timeAgo = (createdAt) => {
         // if (!createdAt) return "⏳"; // Show placeholder if data is missing
-console.log(createdAt)
         const now = new Date();
         const createdDate = new Date(createdAt);
 

@@ -27,6 +27,9 @@ import {
     LinkedinIcon,
     EmailIcon,
 } from "react-share";
+
+import ReCAPTCHA from "react-google-recaptcha";
+
 // Set the root element for the modal
 // Modal.setAppElement('#__next');
 
@@ -36,7 +39,7 @@ const PetitionForm = () => {
     const { language, changeLanguage } = useLanguage();
     // const [text, setText] = useState("")
     // const [url, setUrl] = useState("")
-    const [ip, setIp] = useState("");
+    const [cap, setCap] = useState("");
 
    
     const {
@@ -45,26 +48,21 @@ const PetitionForm = () => {
         formState: { errors },
     } = useForm();
 
-
-    useEffect(() => {
-        const fetchIP = async () => {
-            try {
-                const res = await axios.get('https://api64.ipify.org?format=json');
-                console.log(res.data)
-                setIp(res.data.ip);
-            } catch (error) {
-                console.error("Error fetching IP:", error);
-            }
-        };
-
-        fetchIP();
-    }, []);
+    const recaptchaRef = useRef();
 
     const alertAudioRef = useRef(null);
     const submitForm = async (data, e) => {
         e.preventDefault();
-        const formData = { ...data, ip };
+        
         try {
+             const token = await recaptchaRef.current.executeAsync();
+             console.log("recaptchaRef",token)
+             if(!token){
+                 toast.error("Captcha Invalid");
+                 return;
+             }
+             const formData = {...data, token}
+             console.log(formData)
             const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/voter/vote`, formData,{
                 headers: {
                     "x-api-key": process.env.NEXT_PUBLIC_API_KEY, // Secure API key
@@ -170,6 +168,13 @@ const PetitionForm = () => {
                         rows={3}
                     ></textarea>
                 </div>
+
+                <ReCAPTCHA
+                size="invisible"
+                    ref={recaptchaRef}
+                    sitekey="6LeHjc0qAAAAANwuuYDrNNEerX9YHwnBjFejcgJf"
+                    onChange={setCap}
+                />
                 <button
                     type="submit"
                     className="w-full bg-orange-500 text-white font-semibold text-sm py-3 rounded-md hover:bg-orange-600 transition duration-300"

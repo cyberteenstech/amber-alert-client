@@ -46,8 +46,13 @@ const Progress = ({ voters, setVoters, setClicked, clicked, isLoading, setIsLoad
 
     // Function to calculate time ago
     const timeAgo = (createdAt) => {
+        // if (!createdAt) return "⏳"; // Show placeholder if data is missing
+
         const now = new Date();
         const createdDate = new Date(createdAt);
+
+        if (isNaN(createdDate.getTime())) return "⏳";
+
         const diffInSeconds = Math.max(0, Math.floor((now - createdDate) / 1000));
 
         if (diffInSeconds < 60) {

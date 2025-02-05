@@ -36,6 +36,9 @@ const PetitionForm = ({ setClicked }) => {
     const { language, changeLanguage } = useLanguage();
     // const [text, setText] = useState("")
     // const [url, setUrl] = useState("")
+    const [ip, setIp] = useState("");
+
+   
     const {
         register,
         handleSubmit,
@@ -43,12 +46,25 @@ const PetitionForm = ({ setClicked }) => {
     } = useForm();
 
 
+    useEffect(() => {
+        const fetchIP = async () => {
+            try {
+                const res = await axios.get('https://api64.ipify.org?format=json');
+                setIp(res.data.ip);
+            } catch (error) {
+                console.error("Error fetching IP:", error);
+            }
+        };
+
+        fetchIP();
+    }, []);
+
     const alertAudioRef = useRef(null);
     const submitForm = async (data, e) => {
         e.preventDefault();
-
+        const formData = { ...data, ip };
         try {
-            const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/voter/vote`, data);
+            const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/voter/vote`, formData);
             if (res.status === 200) {
                 setClicked(true);
                 setShowShare(true);

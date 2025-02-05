@@ -30,7 +30,7 @@ const Banner = ({voters, setVoters, isLoading, setIsLoading, votes, setVotes}) =
 
     const voteLenght= Number(votes)
     // Calculate progress as a percentage (assuming 100,000 is the goal)
-    const progress = (voteLenght / 100000) * 100;
+    const progress = (voteLenght / 350000) * 100;
 
 
     useEffect(() => {
@@ -156,7 +156,16 @@ const Banner = ({voters, setVoters, isLoading, setIsLoading, votes, setVotes}) =
                         className="absolute md:top-[27%] top-[69.5%] left-1/2 -translate-x-1/2"
                         // priority={false}
                     />
-
+                   <div className="flex w-full items-center mx-auto justify-center md:mb-4 mb-4">
+                     <Image
+                        src="/ms.png"
+                        alt="hand"
+                        width={350}
+                        height={300}
+                        className="md:w-[50%]"
+                    // priority={false}
+                    />
+                   </div>
                     <div className="flex flex-col md:flex-row max-w-[600px] w-full mx-auto items-center md:bg-[#fff] md:border-[1px] rounded-lg border-dashed border-[#FF7128] md:mt-6 mt-0 relative">
                         <div className="md:hidden block w-[70%]">
                             <div className="flex items-center justify-between mb-2 w-full">
@@ -165,7 +174,7 @@ const Banner = ({voters, setVoters, isLoading, setIsLoading, votes, setVotes}) =
                                 </h3>
                                 <span className="text-[#072E75] text-[12px]">
                                     {language === "bn" ? "প্রয়োজন " : "Need"}
-                                    <span className="text-[#FF7128] font-medium text-[14px]">{language === "bn" ? "১০০,০০০" : "100000"}</span>
+                                    <span className="text-[#FF7128] font-medium text-[14px]">{language === "bn" ? "৩৫০,০০০" : "350000"}</span>
                                 </span>
                             </div>
 

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from 'react-toastify';
@@ -50,6 +50,7 @@ const PetitionForm = ({ setClicked }) => {
         const fetchIP = async () => {
             try {
                 const res = await axios.get('https://api64.ipify.org?format=json');
+                console.log(res.data)
                 setIp(res.data.ip);
             } catch (error) {
                 console.error("Error fetching IP:", error);

@@ -51,8 +51,6 @@ const Progress = ({ voters, setVoters, setClicked, clicked, isLoading, setIsLoad
         const now = new Date();
         const createdDate = new Date(createdAt);
 
-        if (isNaN(createdDate.getTime())) return "⏳";
-
         const diffInSeconds = Math.max(0, Math.floor((now - createdDate) / 1000));
 
         if (diffInSeconds < 60) {
@@ -133,7 +131,7 @@ const Progress = ({ voters, setVoters, setClicked, clicked, isLoading, setIsLoad
                                     </p>
                                 </div>
                                 <span className="ml-auto text-sm text-[#072E75]">
-                                    {timeAgo(voter.createdAt)}
+                                    {voter.createdAt ? timeAgo(voter.createdAt) : '⏳'}
                                 </span>
                             </li>
                         );

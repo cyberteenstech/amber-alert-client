@@ -34,7 +34,7 @@ const News = () => {
                         <a
                             key={news.id}
                             href={news.link}
-                            target="_blank"
+                            _blank="true"
                             rel="noopener noreferrer"
                             className="flex items-center space-x-3 cursor-pointer"
                         >
@@ -47,7 +47,7 @@ const News = () => {
                         <a
                             key={news.id + '-clone'}
                             href={news.link}
-                            target="_blank"
+                            _blank="true"
                             rel="noopener noreferrer"
                             className="flex items-center space-x-3 cursor-pointer"
                         >

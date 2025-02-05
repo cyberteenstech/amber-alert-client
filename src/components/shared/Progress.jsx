@@ -4,7 +4,7 @@ import axios from "axios";
 import io from "socket.io-client";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-const Progress = ({ voters, setVoters, setClicked, clicked, isLoading, setIsLoading, votes, setVotes}) => {
+const Progress = ({ voters, setVoters, isLoading, setIsLoading, votes, setVotes}) => {
     const socketRef = useRef(null);
     const { language } = useLanguage(); // Get the current language
 
@@ -47,7 +47,7 @@ const Progress = ({ voters, setVoters, setClicked, clicked, isLoading, setIsLoad
     // Function to calculate time ago
     const timeAgo = (createdAt) => {
         // if (!createdAt) return "⏳"; // Show placeholder if data is missing
-
+console.log(createdAt)
         const now = new Date();
         const createdDate = new Date(createdAt);
 
@@ -70,10 +70,6 @@ const Progress = ({ voters, setVoters, setClicked, clicked, isLoading, setIsLoad
         const diffInDays = Math.floor(diffInHours / 24);
         return `${diffInDays} ${language === 'bn' ? 'দিন.' : 'days.'}`;
     };
-
-    if (clicked === true) {
-        setClicked(false);
-    }
 
     // Get the most recent 5 voters
     const recentVoters = voters.slice(0, 5); // Latest 5 voters
@@ -131,7 +127,7 @@ const Progress = ({ voters, setVoters, setClicked, clicked, isLoading, setIsLoad
                                     </p>
                                 </div>
                                 <span className="ml-auto text-sm text-[#072E75]">
-                                    {voter.createdAt ? timeAgo(voter.createdAt) : '⏳'}
+                                    {voter.createdAt ? timeAgo(voter.createdAt) : "⏳"}
                                 </span>
                             </li>
                         );

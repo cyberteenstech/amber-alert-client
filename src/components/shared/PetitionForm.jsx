@@ -30,7 +30,7 @@ import {
 // Set the root element for the modal
 // Modal.setAppElement('#__next');
 
-const PetitionForm = ({ setClicked }) => {
+const PetitionForm = () => {
     const [showShare, setShowShare] = useState(false);
     const [showToast, setShowToast] = useState(false);
     const { language, changeLanguage } = useLanguage();
@@ -65,14 +65,14 @@ const PetitionForm = ({ setClicked }) => {
         e.preventDefault();
         const formData = { ...data, ip };
         try {
-            const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/voter/vote`, formData, {
+            const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/voter/vote`, formData,{
                 headers: {
                     "x-api-key": process.env.NEXT_PUBLIC_API_KEY, // Secure API key
                     "Content-Type": "application/json"
                 }
             });
             if (res.status === 200) {
-                setClicked(true);
+                // setClicked(true);
                 setShowShare(true);
                 toast.success('পিটিশন স্বাক্ষর সফল হয়েছে');
                 if (alertAudioRef.current) {

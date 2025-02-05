@@ -15,7 +15,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import ToastAlert from '../shared/ToastAlert';
 
 const Banner = ({voters, setVoters, isLoading, setIsLoading, votes, setVotes}) => {
-    const [clicked, setClicked] = useState(false)
+    // const [clicked, setClicked] = useState(false)
     const router = useRouter();
     const { language, changeLanguage } = useLanguage();
     const [showToast, setShowToast] = useState(false);
@@ -177,15 +177,14 @@ const Banner = ({voters, setVoters, isLoading, setIsLoading, votes, setVotes}) =
                             </div>
                         </div>
                         <div className="w-[70%] md:w-1/2">
-                            <PetitionForm
-                                setClicked={setClicked} />
+                            <PetitionForm />
                         </div>
                         <div className="w-full md:w-1/2 md:block hidden">
                             <Progress
                             voters={voters}
                             setVoters={setVoters}
-                                setClicked={setClicked}
-                                clicked={clicked}
+                                // setClicked={setClicked}
+                                // clicked={clicked}
                                 isLoading={isLoading}
                             setIsLoading={setIsLoading}
                             votes={votes} 

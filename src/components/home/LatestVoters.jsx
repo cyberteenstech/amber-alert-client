@@ -15,7 +15,7 @@ const TIME_UNITS = Object.freeze({
     days: 'দিন.'
 });
 
-const Progress = ({voters,setVoters, setClicked, clicked, isLoading, setIsLoading, votes, setVotes }) => {
+const Progress = ({voters,setVoters,isLoading, setIsLoading, votes, setVotes }) => {
     const socketRef = useRef(null);
     // Socket connection and initial data fetch
     useEffect(() => {
@@ -73,9 +73,9 @@ const Progress = ({voters,setVoters, setClicked, clicked, isLoading, setIsLoadin
         return `${toBangla(diffInDays)} ${TIME_UNITS.days}`;
     }, [toBangla]);
 
-    if (clicked === true) {
-        setClicked(false);
-    }
+    // if (clicked === true) {
+    //     setClicked(false);
+    // }
 
     // Memoize derived value
     const totalVoters = Number(votes)

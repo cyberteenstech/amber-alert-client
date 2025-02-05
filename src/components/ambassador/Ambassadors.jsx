@@ -29,7 +29,7 @@ const SocialIcon = ({ platform, url }) => {
   return (
     <Link
       href={url}
-      target="_blank"
+     _blank="true"
       rel="noopener noreferrer"
       className="text-gray-600 hover:text-[#FF7128] transition-colors"
     >

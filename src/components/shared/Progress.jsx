@@ -75,7 +75,7 @@ const Progress = ({ voters, setVoters, isLoading, setIsLoading, votes, setVotes}
     const totalVoters = Number(votes)
 
     // Calculate progress as a percentage (assuming 100,000 is the goal)
-    const progress = (totalVoters / 350000) * 100;
+    const progress = (totalVoters / 100000) * 100;
 
     return (
         <div className="bg-white p-4 rounded-lg ">
@@ -84,10 +84,10 @@ const Progress = ({ voters, setVoters, isLoading, setIsLoading, votes, setVotes}
                     <h3 className="text-lg text-[#072E75]">
                         <span className="font-semibold"> {language === 'bn' ? `${toBangla(totalVoters)}` : `${totalVoters}`}</span> {language === 'bn' ? 'স্বাক্ষর' : 'signs'}
                     </h3>
-                    <span className="text-[#072E75]">
+                    {/* <span className="text-[#072E75]">
                         {language === 'bn' ? 'প্রয়োজন' : 'Required'} 
                         <span className="text-[#FF7128] font-semibold">  {language === 'bn' ? '৩৫০,০০০' : '350000'}</span>
-                    </span>
+                    </span> */}
                 </div>
             </div>
             <div className="w-full bg-gray-200 h-2 rounded-full mb-4">

@@ -30,7 +30,7 @@ const Banner = ({voters, setVoters, isLoading, setIsLoading, votes, setVotes}) =
 
     const voteLenght= Number(votes)
     // Calculate progress as a percentage (assuming 100,000 is the goal)
-    const progress = (voteLenght / 350000) * 100;
+    const progress = (voteLenght / 100000) * 100;
 
 
     useEffect(() => {
@@ -172,10 +172,10 @@ const Banner = ({voters, setVoters, isLoading, setIsLoading, votes, setVotes}) =
                                 <h3 className="text-[12px] text-[#072E75]">
                                     <span className="font-medium text-[12px]">{toBangla(voteLenght)}</span> {language === "bn" ? "স্বাক্ষর" : "Signs"}
                                 </h3>
-                                <span className="text-[#072E75] text-[12px]">
+                                {/* <span className="text-[#072E75] text-[12px]">
                                     {language === "bn" ? "প্রয়োজন " : "Need"}
                                     <span className="text-[#FF7128] font-medium text-[14px]">{language === "bn" ? "৩৫০,০০০" : "350000"}</span>
-                                </span>
+                                </span> */}
                             </div>
 
                             <div className="w-full bg-gray-200 h-2 rounded-full mb-4">

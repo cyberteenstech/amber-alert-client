@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useState, useRef } from "react";
 import Banner from "@/components/home/Banner";
-import Events from "@/components/home/Events";
 import FAQ from "@/components/home/FAQ";
 import Letter from "@/components/home/Letter";
 import Organizations from "@/components/home/Organizations";
@@ -9,15 +8,43 @@ import VideoSection from "@/components/home/VideoSection";
 import Supporters from "@/components/home/Supporters";
 import LatestVoters from "@/components/home/LatestVoters";
 import News from "@/components/home/News";
+import YourVoiceMatters from "@/components/home/YourVoiceMatters";
 import Connect from "@/components/home/Connect";
 import Comments from "@/components/home/Comments";
 import AlertBanner from "@/components/shared/AlertModal";
 import Navbar from "@/components/shared/Navbar";
+import axios from "axios";
 
 const Home = () => {
   const [alertBannerVisible, setAlertBannerVisible] = useState(false);
-   const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const alertBannerRef = useRef(null);
+  const [voters, setVoters] = useState([]);
+  const [votes, setVotes] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const getVotersData = async () => {
+    try {
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_SERVER}/voter?limit=10`,
+        {
+          headers: {
+            "x-api-key": process.env.NEXT_PUBLIC_API_KEY, // Secure API key
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      setIsLoading(false);
+      setVoters(res.data.data.voters);
+      setVotes(res.data.data.totalVotes);
+    } catch (e) {
+      console.log(e);
+    } finally {
+    }
+  };
+  useEffect(() => {
+    getVotersData();
+  }, []);
 
   // Initially, set the alert banner to visible after 5 seconds
   useEffect(() => {
@@ -26,9 +53,8 @@ const Home = () => {
         alertBannerRef.current.scrollIntoView({ behavior: "smooth" }); // Scroll to the banner
       }
     }, 5000); // 5 seconds delay
-   const visibilityTimeout = setTimeout(() => {
-      setAlertBannerVisible(true); // Set visible to false after 10 seconds
-      console.log(alertBannerVisible)
+    const visibilityTimeout = setTimeout(() => {
+      setAlertBannerVisible(true);
     }, 5000); // 10 seconds delay
 
     // Clean up the timers when the component unmounts
@@ -60,26 +86,44 @@ const Home = () => {
   }, []);
 
   // Log the state after it changes
-  useEffect(() => {
-    console.log("Alert banner visible:", alertBannerVisible); // Log updated state
-  }, [alertBannerVisible]);
+  useEffect(() => {}, [alertBannerVisible]);
 
   return (
     <div>
-      <AlertBanner ref={alertBannerRef} setIsOpen={setIsOpen} isOpen={isOpen}/>
+      <AlertBanner ref={alertBannerRef} setIsOpen={setIsOpen} isOpen={isOpen} />
       <div className={isOpen ? "mt-[100vh]" : ""}>
         <Navbar />
       </div>
-      <Banner />
+      <Banner
+        voters={voters}
+        setVoters={setVoters}
+        isLoading={isLoading}
+        setIsLoading={setIsLoading}
+        votes={votes}
+        setVotes={setVotes}
+      />
       <div className="md:hidden block">
-        <LatestVoters />
+        <YourVoiceMatters />
+      </div>
+      <div className="md:hidden block">
+        <LatestVoters
+          voters={voters}
+          setVoters={setVoters}
+          isLoading={isLoading}
+          setIsLoading={setIsLoading}
+          votes={votes}
+          setVotes={setVotes}
+        />
       </div>
       <News />
+      <div className="md:block hidden">
+        <YourVoiceMatters />
+      </div>
       <VideoSection />
       <Comments />
       <Letter />
       <Organizations />
-      <Events />
+      {/* <Events /> */}
       <FAQ />
       <Supporters />
       <Connect />

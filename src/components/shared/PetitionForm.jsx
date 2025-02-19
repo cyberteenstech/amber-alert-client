@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from 'react-toastify';
@@ -14,51 +14,71 @@ import { FaFacebookMessenger, FaWhatsapp } from 'react-icons/fa';
 import { useLanguage } from "@/contexts/LanguageContext";
 
 import {
-  FacebookShareButton,
-  TwitterShareButton,
-  WhatsappShareButton,
-  LinkedinShareButton,
-  EmailShareButton,
+    FacebookShareButton,
+    TwitterShareButton,
+    WhatsappShareButton,
+    LinkedinShareButton,
+    EmailShareButton,
 } from "react-share";
 import {
-  FacebookIcon,
-  TwitterIcon,
-  WhatsappIcon,
-  LinkedinIcon,
-  EmailIcon,
+    FacebookIcon,
+    TwitterIcon,
+    WhatsappIcon,
+    LinkedinIcon,
+    EmailIcon,
 } from "react-share";
+
+import ReCAPTCHA from "react-google-recaptcha";
+
 // Set the root element for the modal
 // Modal.setAppElement('#__next');
 
-const PetitionForm = ({ setClicked }) => {
+const PetitionForm = () => {
     const [showShare, setShowShare] = useState(false);
-    const [showToast, setShowToast] = useState(false); 
+    const [showToast, setShowToast] = useState(false);
     const { language, changeLanguage } = useLanguage();
     // const [text, setText] = useState("")
     // const [url, setUrl] = useState("")
+    const [cap, setCap] = useState("");
+
+   
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm();
- 
+
+    const recaptchaRef = useRef();
 
     const alertAudioRef = useRef(null);
     const submitForm = async (data, e) => {
         e.preventDefault();
-
+        
         try {
-            const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/voter/vote`, data);
+             const token = await recaptchaRef.current.executeAsync();
+             console.log("recaptchaRef",token)
+             if(!token){
+                 toast.error("Captcha Invalid");
+                 return;
+             }
+             const formData = {...data, token}
+             console.log(formData)
+            const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/voter/vote`, formData,{
+                headers: {
+                    "x-api-key": process.env.NEXT_PUBLIC_API_KEY, // Secure API key
+                    "Content-Type": "application/json"
+                }
+            });
             if (res.status === 200) {
-                setClicked(true);
+                // setClicked(true);
                 setShowShare(true);
-                toast.success('পিটিশন সাক্ষর সফল হয়েছে');
+                toast.success('পিটিশন স্বাক্ষর সফল হয়েছে');
                 if (alertAudioRef.current) {
                     alertAudioRef.current.play().catch(err => console.error("Audio playback error:", err));
                 }
 
             } else {
-                toast.error(`${language === "bn" ? "একবারের বেশি সাক্ষর করা যাবে না" : "You can only sign once"}`);
+                toast.error(`${language === "bn" ? "একবারের বেশি স্বাক্ষর করা যাবে না" : "You can only sign once"}`);
             }
         } catch (err) {
             console.error(err);
@@ -67,7 +87,7 @@ const PetitionForm = ({ setClicked }) => {
     };
 
     const shareToSocialMedia = (platform) => {
-       
+
 
         let url = '';
 
@@ -87,15 +107,15 @@ const PetitionForm = ({ setClicked }) => {
             case 'messenger':
                 url = `https://www.messenger.com/share/?link=${url}&quote=${text}`;
                 break;
-            
+
             default:
                 break;
         }
 
         window.open(url, '_blank');
     };
- const text = encodeURIComponent(`${language === "bn" ? "বাংলাদেশে শিশুদের সুরক্ষায় Amber Alert চালুর দাবীতে আমি একটি গুরুত্বপূর্ণ পিটিশনে সাক্ষর করেছি। আপনিও স্বাক্ষর করুনঃ #Amberalert4bangladesh #Every_Child_Matters" : "I signed a petition for the safety of children in Bangladesh. Sign your petition too: #Amberalert4bangladesh #Every_Child_Matters"}`);
-        const url = "http://amberalert4bangladesh.org"; // Current page URL
+    const text = encodeURIComponent(`${language === "bn" ? "বাংলাদেশে শিশুদের সুরক্ষায় Amber Alert চালুর দাবীতে আমি একটি গুরুত্বপূর্ণ পিটিশনে স্বাক্ষর করেছি। আপনিও স্বাক্ষর করুনঃ #Amberalert4bangladesh #Every_Child_Matters" : "I signed a petition for the safety of children in Bangladesh. Sign your petition too: #Amberalert4bangladesh #Every_Child_Matters"}`);
+    const url = "http://amberalert4bangladesh.org"; // Current page URL
 
     const playAlertSound = () => {
         if (alertAudioRef.current) {
@@ -113,7 +133,7 @@ const PetitionForm = ({ setClicked }) => {
         <div className="bg-[#ffd8c412] border-r-[1px] md:border-l-[0px] border-l-[1px] md:border-b-[0px] border-b-[1px] border-[#FF7128] border-dashed rounded-lg shadow-md p-5 relative">
             <div className="absolute -top-2 left-0 right-0 h-4 bg-[#FF7128] rounded-t-lg"></div>
             <h3 className="text-lg font-semibold text-orange-500 mb-4 flex items-center">
-                <span className="mr-2">📜</span> {language === "bn" ? "পিটিশন সাক্ষর করুন" : "Sign the petition"}
+                <span className="mr-2">📜</span> {language === "bn" ? "পিটিশন স্বাক্ষর করুন" : "Sign the petition"}
             </h3>
             <form onSubmit={handleSubmit(submitForm)} className='w-full text-center'>
                 <div className="mb-3">
@@ -142,12 +162,19 @@ const PetitionForm = ({ setClicked }) => {
                 </div>
                 <div className="mb-3">
                     <textarea
-                        placeholder={language === "bn" ? "আপনার কোনো মতামত বা পরামর্শ থাকলে আমাদের এখানে জানাতে পারেন ": "If you have any comments or suggestions, you can let us know here"}
+                        placeholder={language === "bn" ? "আপনার কোনো মতামত বা পরামর্শ থাকলে আমাদের এখানে জানাতে পারেন " : "If you have any comments or suggestions, you can let us know here"}
                         {...register("comment")}
                         className="w-full p-3 border border-gray-300 rounded-md bg-white text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-orange-400"
                         rows={3}
                     ></textarea>
                 </div>
+
+                <ReCAPTCHA
+                size="invisible"
+                    ref={recaptchaRef}
+                    sitekey="6LeDkdAqAAAAAO8ncixwxLXlyRnEYAFlnBLQxlp9"
+                    onChange={setCap}
+                />
                 <button
                     type="submit"
                     className="w-full bg-orange-500 text-white font-semibold text-sm py-3 rounded-md hover:bg-orange-600 transition duration-300"
@@ -188,21 +215,21 @@ const PetitionForm = ({ setClicked }) => {
                     {language === "bn" ? "আপনার সমর্থনের জন্য আমরা সত্যিই কৃতজ্ঞ। আপনার স্বাক্ষর বাংলাদেশের অ্যাম্বার অ্যালার্ট বাস্তবায়নের পথে একটি বড় পদক্ষেপ। এখন এটি আপনার বন্ধু ও পরিবারের সঙ্গে শেয়ার করে আরও মানুষকে যুক্ত করতে সাহায্য করুন।" : "We truly believe that your petition will be a step towards the implementation of Bangladesh AMBER Alert. Now, share it with your friends and family to help more people."}
                 </p>
                 <div className="flex justify-center space-x-4 mb-6">
-                <FacebookShareButton url={url} hashtag="#Amberalert4bangladesh #Every_Child_Matters">
-                <FacebookIcon size={32} round />
-              </FacebookShareButton>
-              <TwitterShareButton url={url} title={text}>
-                <TwitterIcon size={32} round />
-              </TwitterShareButton>
-              <WhatsappShareButton url={url} title={text}>
-                <WhatsappIcon size={32} round />
-              </WhatsappShareButton>
-              <LinkedinShareButton url={url} summary={text}>
-                <LinkedinIcon size={32} round />
-              </LinkedinShareButton>
-              <EmailShareButton url={url} subject={`Save Kids, Sign The Petition`} body={text}>
-                <EmailIcon size={32} round />
-              </EmailShareButton>
+                    <FacebookShareButton url={url} hashtag="#Amberalert4bangladesh #Every_Child_Matters">
+                        <FacebookIcon size={32} round />
+                    </FacebookShareButton>
+                    <TwitterShareButton url={url} title={text}>
+                        <TwitterIcon size={32} round />
+                    </TwitterShareButton>
+                    <WhatsappShareButton url={url} title={text}>
+                        <WhatsappIcon size={32} round />
+                    </WhatsappShareButton>
+                    <LinkedinShareButton url={url} summary={text}>
+                        <LinkedinIcon size={32} round />
+                    </LinkedinShareButton>
+                    <EmailShareButton url={url} subject={`Save Kids, Sign The Petition`} body={text}>
+                        <EmailIcon size={32} round />
+                    </EmailShareButton>
                 </div>
                 <button
                     onClick={() => setShowShare(false)}

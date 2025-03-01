@@ -172,7 +172,7 @@ const PetitionForm = () => {
                 <ReCAPTCHA
                 size="invisible"
                     ref={recaptchaRef}
-                    sitekey="6LeHjc0qAAAAANwuuYDrNNEerX9YHwnBjFejcgJf"
+                    sitekey="6LeDkdAqAAAAAO8ncixwxLXlyRnEYAFlnBLQxlp9"
                     onChange={setCap}
                 />
                 <button

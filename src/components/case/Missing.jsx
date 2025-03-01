@@ -1,24 +1,15 @@
-"use client";
-import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
-import { AlertTriangle, Phone, Calendar, Clock, MapPin, Share2, Download, Eye } from 'lucide-react';
-import { missingDatas } from "../../../public/missing";
-import { useLanguage } from "@/contexts/LanguageContext";
-import Link from "next/link";
-import {
-  FacebookShareButton,
-  TwitterShareButton,
-  WhatsappShareButton,
-  FacebookIcon,
-  TwitterIcon,
-  WhatsappIcon,
-} from "react-share";
-import html2canvas from "html2canvas";
+import React, { useEffect, useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import { formatDistanceToNow } from "date-fns";
+import { AlertTriangle, Phone, Calendar, Clock, MapPin, Share2, Download, Eye, User } from 'lucide-react';
+import { generatePoster } from "../utils/posterGenerator";
+import axios from "axios";
 
-const MissingCard = ({ data, language }) => {
-  const { name, age, lostDate, lostPlace, lostTime, image, guardianContactNo } =
-    data[language];
-  const title = `Missing Child: ${name}`;
+// API URL - replace with your actual API endpoint
+const API_URL = "https://api.amberalert4bangladesh.org/api";
+
+const MissingCard = ({ child, language }) => {
+  const navigate = useNavigate();
   const [shareUrl, setShareUrl] = useState("");
   const posterRef = useRef(null);
 
@@ -26,186 +17,84 @@ const MissingCard = ({ data, language }) => {
     setShareUrl(window.location.href);
   }, []);
 
-  const downloadPoster = async () => {
-    const posterContent = `
-      <div style="width: 1200px; height:100%; background-color: white; position: relative; font-family: system-ui, -apple-system, sans-serif;">
-        <!-- Header Banner -->
-        <div style="background: linear-gradient(to right, #DC2626, #991B1B); color: white; padding: 40px 45px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-          <div style="display: flex; align-items: center; gap: 16px;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
-            <span style="font-weight: 800; font-size: 32px; letter-spacing: -0.025em; margin-top: -7%;">MISSING PERSON</span>
-          </div>
-          <div style="font-size: 32px; font-weight: 700; margin-top: -3%;">নিখোঁজ ব্যক্তি</div>
-        </div>
+  const handleViewDetails = () => {
+    navigate(`/missing/${child.id}`);
+  };
 
-        <!-- Main Content -->
-        <div style="flex: 1; display: flex; padding: 32px; background: linear-gradient(135deg, #FEF2F2, white); height: 100%;">
-          <div style="display: flex; gap: 40px; width: 100%; max-width: 1100px; margin: 0 auto;">
-            <!-- Left Column - Photo -->
-            <div style="flex: 0 0 45%;">
-              <div style="border-radius: 12px; border: 5px solid #DC2626; box-shadow: 0 8px 16px rgba(220, 38, 38, 0.15); overflow: hidden; background: white;">
-                <img src="${image}" alt="${name}" style="width: 100%; height: 100%; max-height: 600px; object-fit: cover;" crossorigin="anonymous" />
-              </div>
-            </div>
+  const handleDownloadPoster = (e) => {
+    e.stopPropagation();
+    generatePoster(child);
+  };
 
-            <!-- Right Column - Details -->
-            <div style="flex: 1; display: flex; flex-direction: column; gap: 24px;">
-              <div>
-                <h2 style="font-size: 42px; font-weight: 800; color: #991B1B; margin: 0; line-height: 1.2;">${name}</h2>
-                <p style="font-size: 28px; color: #4B5563; margin: 8px 0; font-weight: 500;">${age} ${language === "bn" ? "বছর বয়সী" : "years old"
-      }</p>
-              </div>
-
-              <div style="display: flex; flex-direction: column; gap: 24px; background: white; padding: 24px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);">
-                <div style="display: flex; gap: 16px; align-items: flex-start;">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#991B1B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                  <div>
-                    <p style="font-weight: 600; color: #374151; margin: 0; font-size: 20px;">${language === "bn" ? "নিখোঁজের স্থান" : "Last Seen Location"
-      }</p>
-                    <p style="color: #111827; margin: 4px 0 0 0; font-size: 24px; font-weight: 500;">${lostPlace}</p>
-                  </div>
-                </div>
-
-                <div style="display: flex; gap: 16px; align-items: flex-start;">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#991B1B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                  <div>
-                    <p style="font-weight: 600; color: #374151; margin: 0; font-size: 20px;">${language === "bn" ? "নিখোঁজের তারিখ" : "Date Missing"
-      }</p>
-                    <p style="color: #111827; margin: 4px 0 0 0; font-size: 24px; font-weight: 500;">${lostDate}</p>
-                  </div>
-                </div>
-
-                <div style="display: flex; gap: 16px; align-items: flex-start;">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#991B1B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                  <div>
-                    <p style="font-weight: 600; color: #374151; margin: 0; font-size: 20px;">${language === "bn" ? "নিখোঁজের সময়" : "Time Missing"
-      }</p>
-                    <p style="color: #111827; margin: 4px 0 0 0; font-size: 24px; font-weight: 500;">${lostTime || "N/A"
-      }</p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Contact Box -->
-              <div style="background: linear-gradient(to right, #FEE2E2, #FEF2F2); padding: 24px; border-radius: 12px; border: 2px solid #FCA5A5; margin-top: auto;">
-                <p style="font-size: 20px; text-align: center; margin: 0 0 12px 0; color: #991B1B; font-weight: 500;">
-                  ${language === "bn"
-        ? "যদি আপনি এই ব্যক্তিকে দেখে থাকেন তবে অনুগ্রহ করে যোগাযোগ করুন"
-        : "If you have any information, please contact"
-      }
-                </p>
-                <div style="display: flex; justify-content: center; align-items: center; gap: 12px; font-size: 32px; font-weight: 700; color: #991B1B;">
-                  <svg style="margin-bottom: -5%" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                  <span >${guardianContactNo || "Emergency Hotline: 999"}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Footer with Amber Alert Logo -->
-        <div style="background-color: white; padding: 16px; display: flex; justify-content: space-between; align-items: center; gap: 24px; border-top: 1px solid #E5E7EB; width: 100%;">
-          <img src="https://i.ibb.co.com/tcqRM1B/amberalert.webp" alt="Amber Alert Logo" style="height: 80px; width: 100px;" crossorigin="anonymous" />
-          <div style="display: flex; flex-direction: column; align-items: center;">
-            <a href="http://amberalert4bangladesh.org" style="color: #991B1B; text-decoration: none; font-weight: 600; font-size: 18px; margin-top: -10%;">
-              www.amberalert4bangladesh.org
-            </a>
-          </div>
-        </div>
-      </div>
-    `
-
-    const tempDiv = document.createElement("div")
-    tempDiv.style.position = "absolute"
-    tempDiv.style.left = "-9999px"
-    tempDiv.innerHTML = posterContent
-    document.body.appendChild(tempDiv)
-
+  const formatDate = (dateString) => {
     try {
-      const canvas = await html2canvas(tempDiv, {
-        scale: 2,
-        useCORS: true,
-        allowTaint: true,
-        width: 1200,
-        height: 900,
-      })
-
-      canvas.toBlob((blob) => {
-        if (blob) {
-          const link = document.createElement("a")
-          const url = URL.createObjectURL(blob)
-          link.href = url
-          link.download = `missing_poster_${name}.png`
-          link.click()
-          URL.revokeObjectURL(url)
-        } else {
-          console.error("Error: Failed to create blob.")
-        }
-      }, "image/png")
-    } finally {
-      document.body.removeChild(tempDiv)
+      return formatDistanceToNow(new Date(dateString), { addSuffix: true });
+    } catch (error) {
+      return dateString;
     }
-  }
-
+  };
 
   return (
     <div className="bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl">
       <div className="relative">
-        <Image
-          src={image}
-          alt={name}
-          width={500}
-          height={300}
+        <img
+          src={child.imageUrl}
+          alt={child.name}
           className="w-full h-64 object-cover"
         />
         <div className="absolute top-0 right-0 bg-red-500 text-white text-xs px-3 py-1 rounded-bl-lg">
           {language === "bn" ? "জরুরি" : "Urgent"}
         </div>
+        <button
+          onClick={handleDownloadPoster}
+          className="absolute bottom-2 right-2 bg-white text-red-600 hover:bg-red-50 p-2 rounded-full shadow-md transition-colors"
+          title="Download Poster"
+        >
+          <Download size={18} />
+        </button>
       </div>
       <div className="p-6">
-        <h3 className="text-2xl font-semibold text-gray-900 mb-2">{name}</h3>
+        <h3 className="text-2xl font-semibold text-gray-900 mb-2">{child.name}</h3>
         <p className="text-lg text-gray-600 mb-4">
-          {age} {language === "bn" ? "বছর বয়সী" : "years old"}
+          {child.age} {language === "bn" ? "বছর বয়সী" : "years old"}
         </p>
+
+        {child.contactName && (
+          <div className="flex items-center mb-2">
+            <User className="w-5 h-5 text-gray-500 mr-2" />
+            <span className="text-gray-700">
+              {language === "bn" ? "অভিভাবক:" : "Guardian:"} {child.contactName}
+            </span>
+          </div>
+        )}
+
         <div className="flex items-center mb-2">
           <MapPin className="w-5 h-5 text-gray-500 mr-2" />
           <span className="text-gray-700">
-            {language === "bn" ? "হারানোর জায়গা:" : "Missing Place:"}{" "}
-            {lostPlace}
+            {language === "bn" ? "হারানোর জায়গা:" : "Missing Place:"} {child.location}
           </span>
         </div>
         <div className="flex items-center mb-4">
           <Clock className="w-5 h-5 text-gray-500 mr-2" />
           <span className="text-gray-700">
-            {language === "bn" ? "হারানোর তারিখ:" : "Missing From:"} {lostDate}
+            {language === "bn" ? "হারানোর তারিখ:" : "Missing From:"} {formatDate(child.lastSeen)}
           </span>
-        </div>
-        <div className="flex space-x-2 mb-4">
-          <FacebookShareButton url={shareUrl} quote={title}>
-            <FacebookIcon size={32} round />
-          </FacebookShareButton>
-          <TwitterShareButton url={shareUrl} title={title}>
-            <TwitterIcon size={32} round />
-          </TwitterShareButton>
-          <WhatsappShareButton url={shareUrl} title={title}>
-            <WhatsappIcon size={32} round />
-          </WhatsappShareButton>
         </div>
         <div className="flex space-x-2">
           <button
-            onClick={downloadPoster}
+            onClick={handleDownloadPoster}
             className="flex-1 bg-[#FF7128] text-white py-2 px-4 rounded-md hover:bg-[#FF7128] transition duration-300 flex items-center justify-center text-[15px]"
           >
             <Download className="w-5 h-5 mr-2" />
             {language === "bn" ? "পোস্টার ডাউনলোড" : "Download Poster"}
           </button>
-          <Link
-            href={`/cases/missing/${data.id}`}
+          <button
+            onClick={handleViewDetails}
             className="flex-1 border-[#FF7128] text-[#FF7128] py-2 px-4 rounded-md hover:bg-gray-300 transition duration-300 flex items-center justify-center text-[15px]"
           >
             <Eye className="w-5 h-5 mr-2" />
             {language === "bn" ? "বিস্তারিত দেখুন" : "View Details"}
-          </Link>
+          </button>
         </div>
       </div>
     </div>
@@ -213,7 +102,48 @@ const MissingCard = ({ data, language }) => {
 };
 
 const RecentMissing = () => {
-  const { language } = useLanguage();
+  const [language, setLanguage] = useState("en"); // Default language
+  const [recentMissingChildren, setRecentMissingChildren] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchRecentMissingChildren = async () => {
+      try {
+        setLoading(true);
+        // In a real app, you would fetch from your API
+        const response = await axios.get(`${API_URL}/missing`);
+
+        console.log(response)
+        if (response.status == 200) {
+          setRecentMissingChildren(response.data.data);
+        } else {
+          setError('Failed to fetch recent missing children');
+        }
+      } catch (err) {
+        setError('An error occurred while fetching data');
+        console.error(err);
+
+        // Fallback to mock data for demo purposes
+        const mockResponse = await import("../services/api").then(module =>
+          module.childrenService.getRecentMissingChildren()
+        );
+
+        if (mockResponse.success) {
+          setRecentMissingChildren(mockResponse.data);
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchRecentMissingChildren();
+  }, []);
+
+  // Toggle language function (for demo)
+  const toggleLanguage = () => {
+    setLanguage(prev => prev === "en" ? "bn" : "en");
+  };
 
   const pageTitle =
     language === "bn" ? "সাম্প্রতিক হারানো শিশু" : "Recent Missing Cases";
@@ -225,21 +155,51 @@ const RecentMissing = () => {
   return (
     <div className="bg-gradient-to-b from-red-50 to-white min-h-screen py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
+        <div className="flex justify-end mb-4">
+          <button
+            onClick={toggleLanguage}
+            className="bg-red-600 text-white px-4 py-2 rounded-md"
+          >
+            {language === "en" ? "বাংলা" : "English"}
+          </button>
+        </div>
+
         <h1 className="text-4xl font-bold text-center text-[#FF7128] mb-6">
           {pageTitle}
         </h1>
         <p className="text-xl text-center text-gray-600 mb-12">
           {pageSubtitle}
         </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {missingDatas.map((caseItem) => (
-            <MissingCard
-              key={caseItem.id}
-              data={caseItem}
-              language={language}
-            />
-          ))}
-        </div>
+
+        {loading ? (
+          <div className="text-center py-12">
+            <div className="inline-block animate-spin rounded-full h-8 w-8 border-4 border-red-600 border-t-transparent"></div>
+            <p className="mt-4 text-gray-600">
+              {language === "bn" ? "লোড হচ্ছে..." : "Loading..."}
+            </p>
+          </div>
+        ) : error ? (
+          <div className="bg-red-50 border border-red-200 rounded-lg p-4 flex items-start">
+            <AlertTriangle size={24} className="text-red-600 mr-3 flex-shrink-0" />
+            <div>
+              <h3 className="font-semibold text-red-800">
+                {language === "bn" ? "ত্রুটি" : "Error"}
+              </h3>
+              <p className="text-red-700">{error}</p>
+            </div>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {recentMissingChildren.map((child) => (
+              <MissingCard
+                key={child.id}
+                child={child}
+                language={language}
+              />
+            ))}
+          </div>
+        )}
+
         <div className="mt-16 bg-red-100 rounded-lg p-8 text-center">
           <h2 className="text-2xl font-semibold text-red-800 mb-4">
             {language === "bn" ? "আপনার কাছে তথ্য আছে?" : "Have Information?"}
@@ -266,4 +226,3 @@ const RecentMissing = () => {
 };
 
 export default RecentMissing;
-

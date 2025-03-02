@@ -3,14 +3,16 @@ import React, { useEffect, useState, useRef } from "react";
 import { formatDistanceToNow } from "date-fns";
 import { AlertTriangle, Phone, Calendar, Clock, MapPin, Share2, Download, Eye, User } from 'lucide-react';
 import { useRouter } from "next/navigation";
-import { generatePoster } from "@/utils/posterGenerator";
 import axios from "axios";
 import Link from "next/link"
+import { generatePoster } from "@/utils/posterGenerator";
 
 // API URL - replace with your actual API endpoint
 const API_URL = "https://api.amberalert4bangladesh.org/api/v1";
 
-const MissingCard = ({ child, language }) => {
+const MissingCard = ({ key, child, language }) => {
+
+  console.log(key)
   const router = useRouter();
   const [shareUrl, setShareUrl] = useState("");
   const posterRef = useRef(null);
@@ -87,7 +89,7 @@ const MissingCard = ({ child, language }) => {
             {language === "bn" ? "পোস্টার ডাউনলোড" : "Download Poster"}
           </button>
           <Link
-          href={`/missing/${child._id}`}
+          href={`/cases/missing/${child._id}`}
             className="flex-1 border-[#FF7128] text-[#FF7128] py-2 px-4 rounded-md hover:bg-gray-300 transition duration-300 flex items-center justify-center text-[15px]"
           >
             <Eye className="w-5 h-5 mr-2" />
@@ -105,6 +107,7 @@ const RecentMissing = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  console.log(recentMissingChildren)
   useEffect(() => {
     const fetchRecentMissingChildren = async () => {
       try {
@@ -112,8 +115,8 @@ const RecentMissing = () => {
         // In a real app, you would fetch from your API
         const response = await axios.get(`${API_URL}/missing`);
 
-        console.log(response)
         if (response.status == 200) {
+          console.log(response.data.data)
           setRecentMissingChildren(response.data.data);
         } else {
           setError('Failed to fetch recent missing children');
@@ -122,15 +125,13 @@ const RecentMissing = () => {
         setError('An error occurred while fetching data');
         console.error(err);
 
-      } finally {
-        setLoading(false);
-      }
+      } 
     };
 
     fetchRecentMissingChildren();
   }, []);
 
-  console.log(recentMissingChildren)
+  console.log("recentMissingChildren")
   // Toggle language function (for demo)
   const toggleLanguage = () => {
     setLanguage(prev => prev === "en" ? "bn" : "en");
@@ -181,9 +182,9 @@ const RecentMissing = () => {
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {recentMissingChildren.map((child) => (
+            {recentMissingChildren.map((child, index) => (
               <MissingCard
-                key={child._id}
+                key={index}
                 child={child}
                 language={language}
               />

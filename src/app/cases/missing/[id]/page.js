@@ -1,13 +1,16 @@
+"use client"
+import { useParams } from 'next/navigation';
 import Details from '@/components/case/Details';
 import React from 'react';
-import Navbar from "@/components/shared/Navbar";
+import Navbar from '@/components/shared/Navbar';
 
+const DetailCase = () => {
+    const params = useParams(); // Get the dynamic parameters from the URL
 
-const DetailCase = ({params}) => {
     return (
         <div>
-            <Navbar/>
-            <Details id={params.id}/>
+            <Navbar />
+            <Details id={params.id} />
         </div>
     );
 };

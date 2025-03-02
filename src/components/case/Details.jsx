@@ -66,6 +66,7 @@ const InfoItem = ({ icon, label, value }) => {
 };
 
 const DetailsPage = ({id}) => {
+    console.log("ID", id)
     const router = useRouter();
     const [language, setLanguage] = useState("en"); // Default language
     const [child, setChild] = useState(null);
@@ -91,15 +92,6 @@ const DetailsPage = ({id}) => {
             } catch (err) {
                 setError('An error occurred while fetching data');
                 console.error(err);
-
-                // Fallback to mock data for demo purposes
-                const mockResponse = await import("../services/api").then(module =>
-                    module.childrenService.getChildById(id)
-                );
-
-                if (mockResponse.success) {
-                    setChild(mockResponse.data);
-                }
             } finally {
                 setLoading(false);
             }
@@ -139,7 +131,7 @@ const DetailsPage = ({id}) => {
     };
 
     const handleBackToList = () => {
-        router.push('/missing')
+        router.push('/cases/missing')
     };
 
     if (loading) {

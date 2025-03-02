@@ -1,25 +1,23 @@
+"use client"
 import React, { useEffect, useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
 import { formatDistanceToNow } from "date-fns";
 import { AlertTriangle, Phone, Calendar, Clock, MapPin, Share2, Download, Eye, User } from 'lucide-react';
-import { generatePoster } from "../utils/posterGenerator";
+import { useRouter } from "next/navigation";
+import { generatePoster } from "@/utils/posterGenerator";
 import axios from "axios";
+import Link from "next/link"
 
 // API URL - replace with your actual API endpoint
-const API_URL = "https://api.amberalert4bangladesh.org/api";
+const API_URL = "https://api.amberalert4bangladesh.org/api/v1";
 
 const MissingCard = ({ child, language }) => {
-  const navigate = useNavigate();
+  const router = useRouter();
   const [shareUrl, setShareUrl] = useState("");
   const posterRef = useRef(null);
 
   useEffect(() => {
     setShareUrl(window.location.href);
   }, []);
-
-  const handleViewDetails = () => {
-    navigate(`/missing/${child.id}`);
-  };
 
   const handleDownloadPoster = (e) => {
     e.stopPropagation();
@@ -88,13 +86,13 @@ const MissingCard = ({ child, language }) => {
             <Download className="w-5 h-5 mr-2" />
             {language === "bn" ? "পোস্টার ডাউনলোড" : "Download Poster"}
           </button>
-          <button
-            onClick={handleViewDetails}
+          <Link
+          href={`/missing/${child._id}`}
             className="flex-1 border-[#FF7128] text-[#FF7128] py-2 px-4 rounded-md hover:bg-gray-300 transition duration-300 flex items-center justify-center text-[15px]"
           >
             <Eye className="w-5 h-5 mr-2" />
             {language === "bn" ? "বিস্তারিত দেখুন" : "View Details"}
-          </button>
+          </Link>
         </div>
       </div>
     </div>
@@ -124,14 +122,6 @@ const RecentMissing = () => {
         setError('An error occurred while fetching data');
         console.error(err);
 
-        // Fallback to mock data for demo purposes
-        const mockResponse = await import("../services/api").then(module =>
-          module.childrenService.getRecentMissingChildren()
-        );
-
-        if (mockResponse.success) {
-          setRecentMissingChildren(mockResponse.data);
-        }
       } finally {
         setLoading(false);
       }
@@ -140,6 +130,7 @@ const RecentMissing = () => {
     fetchRecentMissingChildren();
   }, []);
 
+  console.log(recentMissingChildren)
   // Toggle language function (for demo)
   const toggleLanguage = () => {
     setLanguage(prev => prev === "en" ? "bn" : "en");
@@ -192,7 +183,7 @@ const RecentMissing = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {recentMissingChildren.map((child) => (
               <MissingCard
-                key={child.id}
+                key={child._id}
                 child={child}
                 language={language}
               />

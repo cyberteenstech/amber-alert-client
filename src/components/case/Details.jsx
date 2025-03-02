@@ -1,12 +1,13 @@
+"use client";
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 import { format, formatDistanceToNow } from "date-fns";
 import { AlertTriangle, Share2, Phone, MapPin, Calendar, User, FileText, Download, Mail } from 'lucide-react';
 import axios from "axios";
-import { generatePoster } from "../utils/posterGenerator";
+import { generatePoster } from "@/utils/posterGenerator";
 
 // API URL - replace with your actual API endpoint
-const API_URL = "https://api.amberalert4bangladesh.org/api";
+const API_URL = "https://api.amberalert4bangladesh.org/api/v1";
 
 const translations = {
     en: {
@@ -64,9 +65,8 @@ const InfoItem = ({ icon, label, value }) => {
     );
 };
 
-const DetailsPage = () => {
-    const { id } = useParams();
-    const navigate = useNavigate();
+const DetailsPage = ({id}) => {
+    const router = useRouter();
     const [language, setLanguage] = useState("en"); // Default language
     const [child, setChild] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -139,7 +139,7 @@ const DetailsPage = () => {
     };
 
     const handleBackToList = () => {
-        navigate('/missing');
+        router.push('/missing')
     };
 
     if (loading) {

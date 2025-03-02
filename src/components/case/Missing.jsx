@@ -108,28 +108,29 @@ const RecentMissing = () => {
   const [error, setError] = useState(null);
 
   console.log(recentMissingChildren)
-  useEffect(() => {
-    const fetchRecentMissingChildren = async () => {
-      try {
-        setLoading(true);
-        // In a real app, you would fetch from your API
-        const response = await axios.get(`${API_URL}/missing`);
+useEffect(() => {
+  const fetchRecentMissingChildren = async () => {
+    try {
+      setLoading(true);
+      const response = await axios.get(`${API_URL}/missing`);
 
-        if (response.status == 200) {
-          console.log(response.data.data)
-          setRecentMissingChildren(response.data.data);
-        } else {
-          setError('Failed to fetch recent missing children');
-        }
-      } catch (err) {
-        setError('An error occurred while fetching data');
-        console.error(err);
+      if (response.status == 200) {
+        console.log(response.data.data);
+        setRecentMissingChildren(response.data.data);
+      } else {
+        setError("Failed to fetch recent missing children");
+      }
+    } catch (err) {
+      setError("An error occurred while fetching data");
+      console.error(err);
+    } finally {
+      setLoading(false); // Ensure loading state is updated after API call
+    }
+  };
 
-      } 
-    };
+  fetchRecentMissingChildren();
+}, []);
 
-    fetchRecentMissingChildren();
-  }, []);
 
   console.log("recentMissingChildren")
   // Toggle language function (for demo)

@@ -232,7 +232,7 @@ const Banner = ({
                 ></div>
               </div>
             </div>
-            {/* <div className="w-[70%] md:w-1/2">
+            <div className="w-[70%] md:w-1/2">
                             <PetitionForm />
                         </div>
                         <div className="w-full md:w-1/2 md:block hidden">
@@ -245,7 +245,7 @@ const Banner = ({
                             setIsLoading={setIsLoading}
                             votes={votes} 
                             setVotes={setVotes} />
-                        </div> */}
+                        </div>
           </div>
         </div>
 

@@ -31,7 +31,7 @@ const VideoSection = () => {
                     <div className="relative w-full h-0 pb-[56.25%] rounded-xl shadow-lg overflow-hidden">
                         {!isPaused && 
                         <ReactPlayer
-                            url="https://youtu.be/ONEBdKjN-2Q"
+                            url="https://youtu.be/QO80htjN0AY"
                             playing={!isPaused}
                             controls
                             width="100%"
@@ -46,7 +46,7 @@ const VideoSection = () => {
                             <div
                                 className="absolute inset-0 bg-cover bg-center flex items-center justify-center cursor-pointer"
                                 style={{
-                                    backgroundImage: `url('/thumb.jpg')`, // Replace with your poster image path
+                                    backgroundImage: `url('https://img.youtube.com/vi/QO80htjN0AY/maxresdefault.jpg')`, // Replace with your poster image path
                                 }}
                                 onClick={handlePlayPause}
                             >

@@ -92,8 +92,8 @@ const Progress = ({ voters, setVoters, isLoading, setIsLoading, votes, setVotes}
             </div>
             <div className="w-full bg-gray-200 h-2 rounded-full mb-4">
                 <div
-                    className="bg-orange-500 h-2 rounded-full"
-                    style={{ width: `${progress}%` }}
+                    className="bg-orange-500 h-2 rounded-full max-w-[100%] w-full"
+                    // style={{ width: `${progress}%` }}
                 ></div>
             </div>
             <ul className="space-y-4 py-4">

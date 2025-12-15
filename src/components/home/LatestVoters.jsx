@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef, useCallback, useMemo } from "react";
+"use client";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import axios from "axios";
 import io from "socket.io-client";
 // Memoize conversion map
@@ -80,8 +81,8 @@ const Progress = ({voters,setVoters,isLoading, setIsLoading, votes, setVotes }) 
     // Memoize derived value
     const totalVoters = Number(votes)
 
-    // Memoize loading skeleton
-    const LoadingSkeleton = useMemo(() => (
+    // Loading skeleton component
+    const renderLoadingSkeleton = () => (
         Array(10).fill(0).map((_, index) => (
             <li key={index} className="flex items-center animate-pulse">
                 <div className="w-10 h-10 bg-gray-300 rounded-full"></div>
@@ -92,7 +93,7 @@ const Progress = ({voters,setVoters,isLoading, setIsLoading, votes, setVotes }) 
                 <div className="ml-auto h-4 bg-gray-300 rounded w-10"></div>
             </li>
         ))
-    ), []);
+    );
 
     return (
         <div className="max-w-[1440px] w-full mx-auto px-4 md:px-10 py-[40px] md:py-[80px]">
@@ -102,7 +103,7 @@ const Progress = ({voters,setVoters,isLoading, setIsLoading, votes, setVotes }) 
             </h2>
             <div className="bg-white p-4 rounded-lg shadow-lg w-[80%] mx-auto">
                 <ul className="space-y-4 py-4">
-                    {isLoading ? LoadingSkeleton : voters.map((voter, index) => {
+                    {isLoading ? renderLoadingSkeleton() : voters.map((voter, index) => {
                         const serialNumber = totalVoters - index;
                         return (
                             <li key={voter._id} className="flex items-center">

@@ -1,19 +1,22 @@
 "use client";
+import dynamic from "next/dynamic";
 import { useEffect, useState, useRef } from "react";
-import Banner from "@/components/home/Banner";
-import FAQ from "@/components/home/FAQ";
-import Letter from "@/components/home/Letter";
-import Organizations from "@/components/home/Organizations";
-import VideoSection from "@/components/home/VideoSection";
-import Supporters from "@/components/home/Supporters";
-import LatestVoters from "@/components/home/LatestVoters";
-import News from "@/components/home/News";
-import YourVoiceMatters from "@/components/home/YourVoiceMatters";
-import Connect from "@/components/home/Connect";
-import Comments from "@/components/home/Comments";
-import AlertBanner from "@/components/shared/AlertModal";
-import Navbar from "@/components/shared/Navbar";
 import axios from "axios";
+
+// Dynamic imports to avoid SSR issues
+const Banner = dynamic(() => import("@/components/home/Banner"), { ssr: false });
+const FAQ = dynamic(() => import("@/components/home/FAQ"), { ssr: false });
+const Letter = dynamic(() => import("@/components/home/Letter"), { ssr: false });
+const Organizations = dynamic(() => import("@/components/home/Organizations"), { ssr: false });
+const VideoSection = dynamic(() => import("@/components/home/VideoSection"), { ssr: false });
+const Supporters = dynamic(() => import("@/components/home/Supporters"), { ssr: false });
+const LatestVoters = dynamic(() => import("@/components/home/LatestVoters"), { ssr: false });
+const News = dynamic(() => import("@/components/home/News"), { ssr: false });
+const YourVoiceMatters = dynamic(() => import("@/components/home/YourVoiceMatters"), { ssr: false });
+const Connect = dynamic(() => import("@/components/home/Connect"), { ssr: false });
+const Comments = dynamic(() => import("@/components/home/Comments"), { ssr: false });
+const AlertBanner = dynamic(() => import("@/components/shared/AlertModal"), { ssr: false });
+const Navbar = dynamic(() => import("@/components/shared/Navbar"), { ssr: false });
 
 const Home = () => {
   const [alertBannerVisible, setAlertBannerVisible] = useState(false);

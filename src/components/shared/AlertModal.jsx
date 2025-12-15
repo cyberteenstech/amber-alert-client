@@ -6,7 +6,7 @@ import { GrClose } from "react-icons/gr";
 // import Lottie from "lottie-react";
 import Image from "next/image";
 import { useLanguage } from "@/contexts/LanguageContext";
-import TypingEffect from "react-typing-effect";
+import TypeWriter from "./TypeWriter";
 import Link from "next/link";
 import { IoDocumentTextOutline } from "react-icons/io5";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
@@ -112,16 +112,16 @@ const AlertBanner = ({ setIsOpen, isOpen }) => {
           <div className="hidden lg:flex absolute top-0 left-0 md:w-16 w-10 h-full bg-[#FF7128] items-center justify-center z-30 overflow-hidden ">
             <div className="flex flex-col items-center justify-center h-full">
               <div className="text-white text-sm font-bold tracking-wide leading-6 flex flex-col items-center">
-                <TypingEffect
-                  text={[
+                <TypeWriter
+                  texts={[
                     "E\nv\ne\nr\ny\n\nS\ne\nc\no\nn\nd\n\nM\na\nt\nt\ne\nr\ns\n\nW\nh\ne\nn\n\n" +
                       "A\n\nC\nh\ni\nl\nd\n\n" +
                       "G\no\ne\ns\n\nM\ni\ns\ns\ni\nn\ng",
                   ]}
-                  speed={75} // Typing speed per character
-                  eraseSpeed={50} // Erase speed per character
-                  typingDelay={500} // Delay before typing starts
-                  eraseDelay={3000} // Delay before erasing starts
+                  speed={75}
+                  eraseSpeed={50}
+                  typingDelay={500}
+                  eraseDelay={3000}
                   displayTextRenderer={(text, i) => {
                     return (
                       <>

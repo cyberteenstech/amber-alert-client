@@ -10,7 +10,7 @@ import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useLanguage } from "@/contexts/LanguageContext";
-import TypingEffect from "react-typing-effect";
+import TypeWriter from "../shared/TypeWriter";
 import { ToastContainer, toast } from "react-toastify";
 import ToastAlert from "../shared/ToastAlert";
 
@@ -137,8 +137,8 @@ const Banner = ({
 
       <h2 className="!leading-[1.5] text-3xl md:text-5xl font-bold mt-20 text-[#072E75] text-center flex flex-col justify-center">
         <span className="text-[16px] md:text-base text-[#FF7128] text-center">
-          <TypingEffect
-            text={[
+          <TypeWriter
+            texts={[
               "#EveryChildMatters",
               "#SaveMissingChildren",
               "#AmberAlertForBangladesh",

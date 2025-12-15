@@ -4,7 +4,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import ReactPlayer from "react-player";
 import { GrClose } from "react-icons/gr";
 // import Lottie from "lottie-react";
-import scrollArrowAnimation from "/public/scrolldown.json";
 import Image from "next/image";
 import { useLanguage } from "@/contexts/LanguageContext";
 import TypingEffect from "react-typing-effect";
@@ -106,7 +105,7 @@ const AlertBanner = ({ setIsOpen, isOpen }) => {
 
           {/* Lottie Animation */}
           <div className="absolute bottom-[-40vh] left-1/2 transform -translate-x-1/2">
-            <DotLottieReact src={scrollArrowAnimation} loop autoplay />
+            <DotLottieReact src="/scrolldown.json" loop autoplay />
           </div>
 
           {/* Left Ribbon with Sliding Hashtags */}

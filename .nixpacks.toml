@@ -1,20 +1,22 @@
 [phases.setup]
 nixPkgs = [
-    "nodejs-20.x",  # Match your local Node.js version
+    "nodejs-20.x",
     "pnpm-9_x"
 ]
 
 [phases.install]
 cmds = ["pnpm install --frozen-lockfile"]
+cacheDirectories = ["node_modules"]
 
 [phases.build]
 cmds = ["pnpm run build"]
+env = {
+    "NEXT_TELEMETRY_DISABLED" = "1",
+    "CI" = "true"
+}
 
 [start]
 cmd = "pnpm start"
 
-# Optional: Optimize for Next.js
-[phases.build]
-env = {
-    "NEXT_TELEMETRY_DISABLED" = "1"
-}
+[build]
+context = "."

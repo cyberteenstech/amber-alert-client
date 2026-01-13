@@ -19,7 +19,7 @@ const Progress = ({
   useEffect(() => {
     if (!socketRef.current) {
       socketRef.current = io(socketUrl, {
-        transports: ["polling"],
+        transports: ["polling", "websocket"],
         reconnection: true,
       });
 

@@ -8,7 +8,7 @@ import Link from "next/link"
 import { generatePoster } from "@/utils/posterGenerator";
 
 // API URL - replace with your actual API endpoint
-const API_URL = "https://api.amberalert4bangladesh.org/api/v1";
+const API_URL = "http://api.amberalert4bangladesh.org/api/v1";
 
 const MissingCard = ({ key, child, language }) => {
 

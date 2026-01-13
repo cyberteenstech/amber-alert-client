@@ -36,26 +36,11 @@ const Progress = ({
 
   const socketUrl = "http://api.amberalert4bangladesh.org";
 
-  // Socket connection and initial data fetch
   useEffect(() => {
     if (!socketRef.current) {
       socketRef.current = io(socketUrl, {
-        transports: ["polling", "websocket"], // Allow both, polling first
+        transports: ["polling"],
         reconnection: true,
-        reconnectionDelay: 1000,
-        reconnectionAttempts: 10,
-        timeout: 20000,
-        forceNew: true,
-        withCredentials: true,
-        path: "/socket.io/", // Explicit path
-      });
-
-      socketRef.current.on("connect", () => {
-        console.log("Socket connected:", socketRef.current.id);
-      });
-
-      socketRef.current.on("connect_error", (error) => {
-        console.error("Socket connection error:", error);
       });
 
       socketRef.current.on("new_vote", (newVoter) => {

@@ -171,7 +171,12 @@ const Banner = ({
           </button>
         </Link>
 
-        <Link href="#video-section" passHref _blank>
+        <Link
+          href="#video-section"
+          passHref
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <button className="flex items-center gap-x-2 border-[#072E75] border-[1.5px] text-[#072E75] md:px-6 px-4 py-2 rounded-lg ">
             <RiVideoLine className="md:text-xl text-lg" />
             {language === "bn" ? "ভিডিও দেখুন" : "Watch Video"}
@@ -233,19 +238,20 @@ const Banner = ({
               </div>
             </div>
             <div className="w-[70%] md:w-1/2">
-                            <PetitionForm />
-                        </div>
-                        <div className="w-full md:w-1/2 md:block hidden">
-                            <Progress
-                            voters={voters}
-                            setVoters={setVoters}
-                                // setClicked={setClicked}
-                                // clicked={clicked}
-                                isLoading={isLoading}
-                            setIsLoading={setIsLoading}
-                            votes={votes} 
-                            setVotes={setVotes} />
-                        </div>
+              <PetitionForm />
+            </div>
+            <div className="w-full md:w-1/2 md:block hidden">
+              <Progress
+                voters={voters}
+                setVoters={setVoters}
+                // setClicked={setClicked}
+                // clicked={clicked}
+                isLoading={isLoading}
+                setIsLoading={setIsLoading}
+                votes={votes}
+                setVotes={setVotes}
+              />
+            </div>
           </div>
         </div>
 
